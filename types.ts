@@ -43,10 +43,13 @@ type BackgroundType = {
 
 type ObjectList = ObjectType[];
 
-type ObjectType = TextObject | PictureObject | PrimitiveObject;
+type ObjectType = TextObjectType | PictureObjectType | PrimitiveObjectType;
 
 type SlideObjectBase = {
     id: string,
+    type: SlideObjectType,
+    size: Size,
+    position: Position,
 }
 
 type TextStyle = {
@@ -56,34 +59,40 @@ type TextStyle = {
     cursive: boolean, 
 }
 
-type TextObject = SlideObjectBase & {
+type TextObjectType = SlideObjectBase & {
     type: SlideObjectType.TEXT,
-    value: string,
-    position: Position,
-    size: Size,
     style: TextStyle,
+    text: string,
 }
 
-type PictureObject = SlideObjectBase & {
+type PictureObjectType = SlideObjectBase & {
     type: SlideObjectType.PICTURE,
-    url: string,
-    position: Position,
-    size: Size,
+    data: string,
 }
 
-type PrimitiveObject = SlideObjectBase & {
+type PrimitiveObjectType = SlideObjectBase & {
     type: SlideObjectType.PRIMITIVE,
-    url: string,
-    position: Position,
-    size: Size,
+    item: PrimitiveSquare | PrimitiveTriangle | PrimitiveEllipse
     backgroundColor: string,
     borderColor: string,
 }
 
+type PrimitiveSquare = {
+    // some square props
+}
+
+type PrimitiveTriangle = {
+    // some triangle props
+}
+
+type PrimitiveEllipse = {
+    // some ellipse props
+}
+
 export {
-    PrimitiveObject,
-    PictureObject,
-    TextObject,
+    PrimitiveObjectType,
+    PictureObjectType,
+    TextObjectType,
     SlideObjectType
 }
 
