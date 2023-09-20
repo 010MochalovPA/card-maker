@@ -2,7 +2,11 @@ import {
     PictureObjectType,
     TextObjectType,
     SlideObjectType,
-    PrimitiveObjectType
+    PrimitiveObjectType,
+    SlideType,
+    SlideBackgroundType,
+    DocType,
+    Editor
 } from "./types"
 
 const picture1 : PictureObjectType = {
@@ -29,6 +33,20 @@ const picture2 : PictureObjectType = {
     position: {
         x: 0,
         y: 0,
+    },
+    data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
+}
+
+const picture3 : PictureObjectType = {
+    id: "131b368770a44fb3ab74b5f2b2280d09",
+    type: SlideObjectType.PICTURE,
+    size: {
+        width: 128,
+        height: 128,
+    },
+    position: {
+        x: 360,
+        y: 240,
     },
     data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
 }
@@ -85,6 +103,32 @@ const text2 : TextObjectType = {
     }
 }
 
+const text3 : TextObjectType = {
+    id: "6bf260cf55cf4dfcb4e5fb667e759f18",
+    type: SlideObjectType.TEXT,
+    size: {
+        width: 125,
+        height: 125,
+    },
+    position: {
+        x: 360,
+        y: 120,
+    },
+    text: "Suspendisse et erat.",
+    style: {
+        font: "Roboto",
+        size: 16,
+        bold: false,
+        cursive: true,
+        color: {
+            r: 220,
+            g: 220,
+            b: 220,
+            a: 1,
+        }
+    }
+}
+
 const primitive1 : PrimitiveObjectType = {
     id: "f6ba95e407ab48db939aeed916d4fc31",
     type: SlideObjectType.PRIMITIVE,
@@ -135,4 +179,94 @@ const primitive2 : PrimitiveObjectType = {
         b: 120,
         a: 1,
     },
+}
+
+const primitive3 : PrimitiveObjectType = {
+    id: "c1770501005b4c5297da47724fc361e1",
+    type: SlideObjectType.PRIMITIVE,
+    item: {},
+    size: {
+        width: 200,
+        height: 200,
+    },
+    position: {
+        x: 250,
+        y: 250,
+    },
+    backgroundColor: {
+        r: 180,
+        g: 70,
+        b: 26,
+        a: 1,
+    },
+    borderColor: {
+        r: 200,
+        g: 200,
+        b: 200,
+        a: 0.5,
+    },
+}
+
+const slide0: SlideType = {
+    id: "90b877d2b36b454e820378127e8b9f7e",
+    background: {
+        type: SlideBackgroundType.PICTURE,
+        data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
+    },
+    objects: [],
+}
+
+const slide1: SlideType = {
+    id: "c932d26bcf6946618042e9852163c642",
+    background: {
+        type: SlideBackgroundType.PICTURE,
+        data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
+    },
+    objects: [ picture1, text1, primitive1 ],
+}
+
+const slide2: SlideType = {
+    id: "4713d4539004469d8ac1bb0afd408f25",
+    background: {
+        type: SlideBackgroundType.SOLID_COLOR,
+        color: {
+            r: 255,
+            g: 255,
+            b: 255,
+            a: 0.1,
+        }
+    },
+    objects: [ picture2, text2, primitive2 ],
+}
+
+const slide3: SlideType = {
+    id: "c1d4b504d20a44b9a104709adfd29839",
+    background: {
+        type: SlideBackgroundType.PICTURE,
+        data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
+    },
+    objects: [ picture3, text3, primitive3 ],
+}
+
+const document1: DocType = {
+    title: "presentation1",
+    slideList: [slide1, slide2, slide3],
+}
+
+const document2: DocType = {
+    title: "presentation2",
+    slideList: [slide1, slide0],
+}
+
+const document3: DocType = {
+    title: "presentation3",
+    slideList: [slide0],
+}
+
+const editor1: Editor = {
+    document: document1,
+}
+
+const editor2: Editor = {
+    document: document2,
 }

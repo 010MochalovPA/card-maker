@@ -43,9 +43,16 @@ type SlideType = {
     objects: ObjectList,
 }
 
-type BackgroundType = {
-    type: SlideBackgroundType,
-    value: string,
+type BackgroundType = BackgroundSolidType | BackgroundPictureType;
+
+type BackgroundSolidType = {
+    type: SlideBackgroundType.SOLID_COLOR,
+    color: ColorType,
+}
+
+type BackgroundPictureType = {
+    type: SlideBackgroundType.PICTURE,
+    data: string,
 }
 
 type ObjectList = ObjectType[];
@@ -101,6 +108,10 @@ export {
     PrimitiveObjectType,
     PictureObjectType,
     TextObjectType,
-    SlideObjectType
+    SlideObjectType,
+    SlideType,
+    SlideBackgroundType,
+    DocType,
+    Editor
 }
 
