@@ -270,3 +270,7 @@ const editor1: Editor = {
 const editor2: Editor = {
     document: document2,
 }
+
+const editor3: Editor = {
+    document: document3,
+}
