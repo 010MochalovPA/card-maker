@@ -28,6 +28,13 @@ type Size = {
     height: number,
 }
 
+type ColorType = {
+    r: number,
+    g: number,
+    b: number,
+    a: number,
+}
+
 type SlideList = SlideType[];
 
 type SlideType = {
@@ -57,6 +64,7 @@ type TextStyle = {
     size: number,
     bold: boolean,
     cursive: boolean, 
+    color: ColorType,
 }
 
 type TextObjectType = SlideObjectBase & {
@@ -73,8 +81,8 @@ type PictureObjectType = SlideObjectBase & {
 type PrimitiveObjectType = SlideObjectBase & {
     type: SlideObjectType.PRIMITIVE,
     item: PrimitiveSquare | PrimitiveTriangle | PrimitiveEllipse
-    backgroundColor: string,
-    borderColor: string,
+    backgroundColor: ColorType,
+    borderColor: ColorType,
 }
 
 type PrimitiveSquare = {

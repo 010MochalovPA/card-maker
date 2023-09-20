@@ -50,6 +50,12 @@ const text1 : TextObjectType = {
         size: 12,
         bold: true,
         cursive: false, 
+        color: {
+            r: 255,
+            g: 255,
+            b: 255,
+            a: 0.8,
+        }
     }
 }
 
@@ -69,7 +75,13 @@ const text2 : TextObjectType = {
         font: "Arial",
         size: 16,
         bold: false,
-        cursive: true, 
+        cursive: true,
+        color: {
+            r: 255,
+            g: 255,
+            b: 255,
+            a: 0.8,
+        }
     }
 }
 
@@ -85,8 +97,18 @@ const primitive1 : PrimitiveObjectType = {
         x: 50,
         y: 50,
     },
-    backgroundColor: "ffffff",
-    borderColor: '000000',
+    backgroundColor: {
+        r: 0,
+        g: 128,
+        b: 0,
+        a: 0.5,
+    },
+    borderColor: {
+        r: 255,
+        g: 255,
+        b: 255,
+        a: 0.8,
+    },
 }
 
 const primitive2 : PrimitiveObjectType = {
@@ -101,6 +123,16 @@ const primitive2 : PrimitiveObjectType = {
         x: 30,
         y: 200,
     },
-    backgroundColor: "ff00ff",
-    borderColor: 'ff0000',
+    backgroundColor: {
+        r: 255,
+        g: 255,
+        b: 255,
+        a: 0.2,
+    },
+    borderColor: {
+        r: 120,
+        g: 120,
+        b: 120,
+        a: 1,
+    },
 }
