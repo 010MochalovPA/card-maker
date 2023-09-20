@@ -10,12 +10,17 @@ enum SlideObjectType {
 }
 
 type Editor = {
-    document: DocType,
+    document: Doc,
+    hist: HistItem[],
 }
 
-type DocType = {
+type Doc = {
     title: string,
-    slideList: SlideList,
+    slideList: SlideType[],
+}
+
+type HistItem = {
+    // hist item props
 }
 
 type Position = {
@@ -35,15 +40,11 @@ type ColorType = {
     a: number,
 }
 
-type SlideList = SlideType[];
-
 type SlideType = {
     id: string,
-    background: BackgroundType,
-    objects: ObjectList,
+    background: BackgroundSolidType | BackgroundPictureType,
+    objects: (TextObjectType | PictureObjectType | PrimitiveObjectType)[],
 }
-
-type BackgroundType = BackgroundSolidType | BackgroundPictureType;
 
 type BackgroundSolidType = {
     type: SlideBackgroundType.SOLID_COLOR,
@@ -55,10 +56,6 @@ type BackgroundPictureType = {
     data: string,
 }
 
-type ObjectList = ObjectType[];
-
-type ObjectType = TextObjectType | PictureObjectType | PrimitiveObjectType;
-
 type SlideObjectBase = {
     id: string,
     type: SlideObjectType,
@@ -66,7 +63,7 @@ type SlideObjectBase = {
     position: Position,
 }
 
-type TextStyle = {
+type TextParam = {
     font: string,
     size: number,
     bold: boolean,
@@ -76,7 +73,7 @@ type TextStyle = {
 
 type TextObjectType = SlideObjectBase & {
     type: SlideObjectType.TEXT,
-    style: TextStyle,
+    params: TextParam,
     text: string,
 }
 
@@ -86,7 +83,6 @@ type PictureObjectType = SlideObjectBase & {
 }
 
 type PrimitiveObjectType = SlideObjectBase & {
-    type: SlideObjectType.PRIMITIVE,
     item: PrimitiveSquare | PrimitiveTriangle | PrimitiveEllipse
     backgroundColor: ColorType,
     borderColor: ColorType,
@@ -105,13 +101,13 @@ type PrimitiveEllipse = {
 }
 
 export {
+    SlideObjectType,
+    SlideBackgroundType,
     PrimitiveObjectType,
     PictureObjectType,
     TextObjectType,
-    SlideObjectType,
     SlideType,
-    SlideBackgroundType,
-    DocType,
+    Doc,
     Editor
 }
 
