@@ -1,15 +1,15 @@
 import {
-    PictureObjectType,
-    TextObjectType,
     SlideObjectType,
-    PrimitiveObjectType,
-    SlideType,
     SlideBackgroundType,
-    DocType,
+    PrimitiveObject,
+    PictureObject,
+    TextObject,
+    Slide,
+    Doc,
     Editor
 } from "./types"
 
-const picture1 : PictureObjectType = {
+const picture1 : PictureObject = {
     id: "a38883aff79d4daf8ce292a0a8353b7f",
     type: SlideObjectType.PICTURE,
     size: {
@@ -20,10 +20,11 @@ const picture1 : PictureObjectType = {
         x: 30,
         y: 45,
     },
+    angle: 10,
     data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
 }
 
-const picture2 : PictureObjectType = {
+const picture2 : PictureObject = {
     id: "89bca59ceade4a5f92a3900fda5415e2",
     type: SlideObjectType.PICTURE,
     size: {
@@ -34,10 +35,11 @@ const picture2 : PictureObjectType = {
         x: 0,
         y: 0,
     },
+    angle: 45,
     data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
 }
 
-const picture3 : PictureObjectType = {
+const picture3 : PictureObject = {
     id: "131b368770a44fb3ab74b5f2b2280d09",
     type: SlideObjectType.PICTURE,
     size: {
@@ -48,10 +50,11 @@ const picture3 : PictureObjectType = {
         x: 360,
         y: 240,
     },
+    angle: 90,
     data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
 }
 
-const text1 : TextObjectType = {
+const text1 : TextObject = {
     id: "188014653ffb49cd898a60c63acfaaf7",
     type: SlideObjectType.TEXT,
     size: {
@@ -62,8 +65,9 @@ const text1 : TextObjectType = {
         x: 300,
         y: 100,
     },
+    angle: 0,
     text: "Lorem ipsum dolor",
-    style: {
+    params: {
         font: "Roboto",
         size: 12,
         bold: true,
@@ -77,7 +81,7 @@ const text1 : TextObjectType = {
     }
 }
 
-const text2 : TextObjectType = {
+const text2 : TextObject = {
     id: "83157e6a6fec4a5dbb27b95bcd68f3c2",
     type: SlideObjectType.TEXT,
     size: {
@@ -88,8 +92,9 @@ const text2 : TextObjectType = {
         x: 500,
         y: 500,
     },
+    angle: 0,
     text: "Suspendisse et erat.",
-    style: {
+    params: {
         font: "Arial",
         size: 16,
         bold: false,
@@ -103,7 +108,7 @@ const text2 : TextObjectType = {
     }
 }
 
-const text3 : TextObjectType = {
+const text3 : TextObject = {
     id: "6bf260cf55cf4dfcb4e5fb667e759f18",
     type: SlideObjectType.TEXT,
     size: {
@@ -115,7 +120,8 @@ const text3 : TextObjectType = {
         y: 120,
     },
     text: "Suspendisse et erat.",
-    style: {
+    angle: 0,
+    params: {
         font: "Roboto",
         size: 16,
         bold: false,
@@ -129,7 +135,7 @@ const text3 : TextObjectType = {
     }
 }
 
-const primitive1 : PrimitiveObjectType = {
+const primitive1 : PrimitiveObject = {
     id: "f6ba95e407ab48db939aeed916d4fc31",
     type: SlideObjectType.PRIMITIVE,
     item: {},
@@ -141,6 +147,7 @@ const primitive1 : PrimitiveObjectType = {
         x: 50,
         y: 50,
     },
+    angle: 0,
     backgroundColor: {
         r: 0,
         g: 128,
@@ -155,7 +162,7 @@ const primitive1 : PrimitiveObjectType = {
     },
 }
 
-const primitive2 : PrimitiveObjectType = {
+const primitive2 : PrimitiveObject = {
     id: "73e2788497de4fd987696e79ccdd3977",
     type: SlideObjectType.PRIMITIVE,
     item: {},
@@ -167,6 +174,7 @@ const primitive2 : PrimitiveObjectType = {
         x: 30,
         y: 200,
     },
+    angle: 0,
     backgroundColor: {
         r: 255,
         g: 255,
@@ -181,7 +189,7 @@ const primitive2 : PrimitiveObjectType = {
     },
 }
 
-const primitive3 : PrimitiveObjectType = {
+const primitive3 : PrimitiveObject = {
     id: "c1770501005b4c5297da47724fc361e1",
     type: SlideObjectType.PRIMITIVE,
     item: {},
@@ -193,6 +201,7 @@ const primitive3 : PrimitiveObjectType = {
         x: 250,
         y: 250,
     },
+    angle: 120,
     backgroundColor: {
         r: 180,
         g: 70,
@@ -207,7 +216,7 @@ const primitive3 : PrimitiveObjectType = {
     },
 }
 
-const slide0: SlideType = {
+const slide0: Slide = {
     id: "90b877d2b36b454e820378127e8b9f7e",
     background: {
         type: SlideBackgroundType.PICTURE,
@@ -216,7 +225,7 @@ const slide0: SlideType = {
     objects: [],
 }
 
-const slide1: SlideType = {
+const slide1: Slide = {
     id: "c932d26bcf6946618042e9852163c642",
     background: {
         type: SlideBackgroundType.PICTURE,
@@ -225,7 +234,7 @@ const slide1: SlideType = {
     objects: [ picture1, text1, primitive1 ],
 }
 
-const slide2: SlideType = {
+const slide2: Slide = {
     id: "4713d4539004469d8ac1bb0afd408f25",
     background: {
         type: SlideBackgroundType.SOLID_COLOR,
@@ -239,7 +248,7 @@ const slide2: SlideType = {
     objects: [ picture2, text2, primitive2 ],
 }
 
-const slide3: SlideType = {
+const slide3: Slide = {
     id: "c1d4b504d20a44b9a104709adfd29839",
     background: {
         type: SlideBackgroundType.PICTURE,
@@ -248,17 +257,17 @@ const slide3: SlideType = {
     objects: [ picture3, text3, primitive3 ],
 }
 
-const document1: DocType = {
+const document1: Doc = {
     title: "presentation1",
     slideList: [slide1, slide2, slide3],
 }
 
-const document2: DocType = {
+const document2: Doc = {
     title: "presentation2",
     slideList: [slide1, slide0],
 }
 
-const document3: DocType = {
+const document3: Doc = {
     title: "presentation3",
     slideList: [slide0],
 }
@@ -273,4 +282,10 @@ const editor2: Editor = {
 
 const editor3: Editor = {
     document: document3,
+}
+
+export {
+    editor1,
+    editor2,
+    editor3
 }

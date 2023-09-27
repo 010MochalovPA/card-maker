@@ -13,7 +13,7 @@ type Editor = {
     document: Doc,
     hist: HistItem[],
     currentSlide: number,
-    selected: selectedObjects | selectedSlides,
+    selected: SelectedObjects | SelectedSlides,
 }
 
 type SelectedObjects = {
@@ -26,7 +26,7 @@ type SelectedSlides = {
 
 type Doc = {
     title: string,
-    slideList: SlideType[],
+    slideList: Slide[],
 }
 
 type HistItem = {
@@ -43,25 +43,25 @@ type Size = {
     height: number,
 }
 
-type ColorType = {
+type Color = {
     r: number,
     g: number,
     b: number,
     a: number,
 }
 
-type SlideType = {
+type Slide = {
     id: string,
-    background: BackgroundSolidType | BackgroundPictureType,
-    objects: (TextObjectType | PictureObjectType | PrimitiveObjectType)[],
+    background: BackgroundSolid | BackgroundPicture,
+    objects: (TextObject | PictureObject | PrimitiveObject)[],
 }
 
-type BackgroundSolidType = {
+type BackgroundSolid = {
     type: SlideBackgroundType.SOLID_COLOR,
-    color: ColorType,
+    color: Color,
 }
 
-type BackgroundPictureType = {
+type BackgroundPicture = {
     type: SlideBackgroundType.PICTURE,
     data: string,
 }
@@ -79,24 +79,24 @@ type TextParam = {
     size: number,
     bold: boolean,
     cursive: boolean, 
-    color: ColorType,
+    color: Color,
 }
 
-type TextObjectType = SlideObjectBase & {
+type TextObject = SlideObjectBase & {
     type: SlideObjectType.TEXT,
     params: TextParam,
     text: string,
 }
 
-type PictureObjectType = SlideObjectBase & {
+type PictureObject = SlideObjectBase & {
     type: SlideObjectType.PICTURE,
     data: string,
 }
 
-type PrimitiveObjectType = SlideObjectBase & {
+type PrimitiveObject = SlideObjectBase & {
     item: PrimitiveSquare | PrimitiveTriangle | PrimitiveEllipse
-    backgroundColor: ColorType,
-    borderColor: ColorType,
+    backgroundColor: Color,
+    borderColor: Color,
 }
 
 type PrimitiveSquare = {
@@ -112,10 +112,10 @@ type PrimitiveEllipse = {
 export {
     SlideObjectType,
     SlideBackgroundType,
-    PrimitiveObjectType,
-    PictureObjectType,
-    TextObjectType,
-    SlideType,
+    PrimitiveObject,
+    PictureObject,
+    TextObject,
+    Slide,
     Doc,
     Editor
 }
