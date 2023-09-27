@@ -11,17 +11,17 @@ enum SlideObjectType {
 
 type Editor = {
     document: Doc,
-    hist: HistItem[],
-    currentSlide: number,
+    history: HistoryItem[],
+    currentSlide: string | null,
     selected: SelectedObjects | SelectedSlides,
 }
 
 type SelectedObjects = {
-    slideObjectIds: number[],
+    slideObjectIds: string[],
 }
 
 type SelectedSlides = {
-    slideIds: number[],
+    slideIds: string[],
 }
 
 type Doc = {
@@ -29,7 +29,7 @@ type Doc = {
     slideList: Slide[],
 }
 
-type HistItem = {
+type HistoryItem = {
     // hist item props
 }
 

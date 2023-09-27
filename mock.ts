@@ -274,18 +274,27 @@ const document3: Doc = {
 
 const editor1: Editor = {
     document: document1,
+    history: [],
+    currentSlide: "c1d4b504d20a44b9a104709adfd29839",
+    selected: {
+        slideIds: ["c932d26bcf6946618042e9852163c642", "4713d4539004469d8ac1bb0afd408f25"]
+    }
 }
 
 const editor2: Editor = {
     document: document2,
+    history: [],
+    currentSlide: "c932d26bcf6946618042e9852163c642",
+    selected: {
+        slideObjectIds: ["188014653ffb49cd898a60c63acfaaf7"]
+    }
 }
 
 const editor3: Editor = {
     document: document3,
-}
-
-export {
-    editor1,
-    editor2,
-    editor3
+    history: [],
+    currentSlide: null,
+    selected: {
+        slideObjectIds: []
+    }
 }
