@@ -12,6 +12,16 @@ enum SlideObjectType {
 type Editor = {
     document: Doc,
     hist: HistItem[],
+    currentSlide: number,
+    selected: selectedObjects | selectedSlides,
+}
+
+type SelectedObjects = {
+    slideObjectIds: number[],
+}
+
+type SelectedSlides = {
+    slideIds: number[],
 }
 
 type Doc = {
@@ -61,6 +71,7 @@ type SlideObjectBase = {
     type: SlideObjectType,
     size: Size,
     position: Position,
+    angle: number,
 }
 
 type TextParam = {
@@ -89,15 +100,13 @@ type PrimitiveObjectType = SlideObjectBase & {
 }
 
 type PrimitiveSquare = {
-    // some square props
 }
 
 type PrimitiveTriangle = {
-    // some triangle props
+    vertex: number,
 }
 
 type PrimitiveEllipse = {
-    // some ellipse props
 }
 
 export {
