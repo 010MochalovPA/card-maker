@@ -9,10 +9,16 @@ enum SlideObjectType {
     PRIMITIVE,
 }
 
+enum PrimitiveType {
+    RECTANGLE,
+    TRIANGLE,
+    ELLIPSE,
+}
+
 type Editor = {
     document: Doc,
     history: HistoryItem[],
-    currentSlide: string | null,
+    currentSlide: string,
     selected: SelectedObjects | SelectedSlides,
 }
 
@@ -68,14 +74,13 @@ type BackgroundPicture = {
 
 type SlideObjectBase = {
     id: string,
-    type: SlideObjectType,
     size: Size,
     position: Position,
     angle: number,
 }
 
 type TextParam = {
-    font: string,
+    fontFamily: string,
     size: number,
     bold: boolean,
     cursive: boolean, 
@@ -94,24 +99,16 @@ type PictureObject = SlideObjectBase & {
 }
 
 type PrimitiveObject = SlideObjectBase & {
-    item: PrimitiveSquare | PrimitiveTriangle | PrimitiveEllipse
+    type: SlideObjectType.PRIMITIVE,
+    shapeType: PrimitiveType.RECTANGLE | PrimitiveType.TRIANGLE | PrimitiveType.ELLIPSE,
     backgroundColor: Color,
     borderColor: Color,
-}
-
-type PrimitiveSquare = {
-}
-
-type PrimitiveTriangle = {
-    vertex: number,
-}
-
-type PrimitiveEllipse = {
 }
 
 export {
     SlideObjectType,
     SlideBackgroundType,
+    PrimitiveType,
     PrimitiveObject,
     PictureObject,
     TextObject,

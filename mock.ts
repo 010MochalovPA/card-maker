@@ -1,6 +1,7 @@
 import {
     SlideObjectType,
     SlideBackgroundType,
+    PrimitiveType,
     PrimitiveObject,
     PictureObject,
     TextObject,
@@ -68,7 +69,7 @@ const text1 : TextObject = {
     angle: 0,
     text: "Lorem ipsum dolor",
     params: {
-        font: "Roboto",
+        fontFamily: "Roboto",
         size: 12,
         bold: true,
         cursive: false, 
@@ -95,7 +96,7 @@ const text2 : TextObject = {
     angle: 0,
     text: "Suspendisse et erat.",
     params: {
-        font: "Arial",
+        fontFamily: "Arial",
         size: 16,
         bold: false,
         cursive: true,
@@ -122,7 +123,7 @@ const text3 : TextObject = {
     text: "Suspendisse et erat.",
     angle: 0,
     params: {
-        font: "Roboto",
+        fontFamily: "Roboto",
         size: 16,
         bold: false,
         cursive: true,
@@ -138,7 +139,7 @@ const text3 : TextObject = {
 const primitive1 : PrimitiveObject = {
     id: "f6ba95e407ab48db939aeed916d4fc31",
     type: SlideObjectType.PRIMITIVE,
-    item: {},
+    shapeType: PrimitiveType.RECTANGLE,
     size: {
         width: 75,
         height: 75,
@@ -165,7 +166,7 @@ const primitive1 : PrimitiveObject = {
 const primitive2 : PrimitiveObject = {
     id: "73e2788497de4fd987696e79ccdd3977",
     type: SlideObjectType.PRIMITIVE,
-    item: {},
+    shapeType: PrimitiveType.TRIANGLE,
     size: {
         width: 120,
         height: 30,
@@ -192,7 +193,7 @@ const primitive2 : PrimitiveObject = {
 const primitive3 : PrimitiveObject = {
     id: "c1770501005b4c5297da47724fc361e1",
     type: SlideObjectType.PRIMITIVE,
-    item: {},
+    shapeType: PrimitiveType.ELLIPSE,
     size: {
         width: 200,
         height: 200,
@@ -293,7 +294,7 @@ const editor2: Editor = {
 const editor3: Editor = {
     document: document3,
     history: [],
-    currentSlide: null,
+    currentSlide: "c1d4b504d20a44b9a104709adfd29839",
     selected: {
         slideObjectIds: []
     }
