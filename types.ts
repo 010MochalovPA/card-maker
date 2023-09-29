@@ -1,6 +1,7 @@
 enum SlideBackgroundType {
     SOLID_COLOR,
-    PICTURE,
+    PICTURE_BASE64,
+    PICTURE_URL
 }
 
 enum SlideObjectType {
@@ -9,10 +10,15 @@ enum SlideObjectType {
     PRIMITIVE,
 }
 
-enum PrimitiveType {
+enum ShapeType {
     RECTANGLE,
     TRIANGLE,
     ELLIPSE,
+}
+
+enum PictureType {
+    BASE64,
+    URL,
 }
 
 type Editor = {
@@ -59,7 +65,7 @@ type Color = {
 type Slide = {
     id: string,
     background: BackgroundSolid | BackgroundPicture,
-    objects: (TextObject | PictureObject | PrimitiveObject)[],
+    objects: (TextObject | PictureObject | ShapeObject)[],
 }
 
 type BackgroundSolid = {
@@ -68,7 +74,7 @@ type BackgroundSolid = {
 }
 
 type BackgroundPicture = {
-    type: SlideBackgroundType.PICTURE,
+    type: SlideBackgroundType.PICTURE_BASE64 | SlideBackgroundType.PICTURE_URL,
     data: string,
 }
 
@@ -95,12 +101,13 @@ type TextObject = SlideObjectBase & {
 
 type PictureObject = SlideObjectBase & {
     type: SlideObjectType.PICTURE,
+    pictureType: PictureType,
     data: string,
 }
 
-type PrimitiveObject = SlideObjectBase & {
+type ShapeObject = SlideObjectBase & {
     type: SlideObjectType.PRIMITIVE,
-    shapeType: PrimitiveType.RECTANGLE | PrimitiveType.TRIANGLE | PrimitiveType.ELLIPSE,
+    shapeType: ShapeType,
     backgroundColor: Color,
     borderColor: Color,
 }
@@ -108,8 +115,9 @@ type PrimitiveObject = SlideObjectBase & {
 export {
     SlideObjectType,
     SlideBackgroundType,
-    PrimitiveType,
-    PrimitiveObject,
+    ShapeType,
+    PictureType,
+    ShapeObject,
     PictureObject,
     TextObject,
     Slide,

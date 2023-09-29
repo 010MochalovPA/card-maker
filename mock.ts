@@ -1,8 +1,9 @@
 import {
     SlideObjectType,
     SlideBackgroundType,
-    PrimitiveType,
-    PrimitiveObject,
+    ShapeType,
+    PictureType,
+    ShapeObject,
     PictureObject,
     TextObject,
     Slide,
@@ -13,6 +14,7 @@ import {
 const picture1 : PictureObject = {
     id: "a38883aff79d4daf8ce292a0a8353b7f",
     type: SlideObjectType.PICTURE,
+    pictureType: PictureType.BASE64,
     size: {
         width: 100,
         height: 100,
@@ -28,6 +30,7 @@ const picture1 : PictureObject = {
 const picture2 : PictureObject = {
     id: "89bca59ceade4a5f92a3900fda5415e2",
     type: SlideObjectType.PICTURE,
+    pictureType: PictureType.URL,
     size: {
         width: 250,
         height: 250,
@@ -37,12 +40,13 @@ const picture2 : PictureObject = {
         y: 0,
     },
     angle: 45,
-    data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
+    data: "https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg",
 }
 
 const picture3 : PictureObject = {
     id: "131b368770a44fb3ab74b5f2b2280d09",
     type: SlideObjectType.PICTURE,
+    pictureType: PictureType.BASE64,
     size: {
         width: 128,
         height: 128,
@@ -120,7 +124,7 @@ const text3 : TextObject = {
         x: 360,
         y: 120,
     },
-    text: "Suspendisse et erat.",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, modi repellendus esse dicta labore iusto expedita ab officia debitis, ullam temporibus. Sequi, ducimus. Natus, quidem! Facere eos obcaecati ipsa, fugit quod nihil voluptates nemo animi ullam blanditiis veritatis mollitia excepturi. Voluptatibus velit est nisi nesciunt neque autem dolores vero, quo, sed aliquid in natus? Nostrum repellendus earum corporis perspiciatis exercitationem! Quisquam saepe ex voluptas. Qui, quasi eaque. Nesciunt asperiores culpa impedit odio et animi corrupti tempore iste odit ipsa ullam nostrum ducimus nobis provident harum deserunt quo at, nulla iure, praesentium omnis magni. Incidunt iure saepe, quisquam veniam pariatur vel!",
     angle: 0,
     params: {
         fontFamily: "Roboto",
@@ -136,10 +140,10 @@ const text3 : TextObject = {
     }
 }
 
-const primitive1 : PrimitiveObject = {
+const primitive1 : ShapeObject = {
     id: "f6ba95e407ab48db939aeed916d4fc31",
     type: SlideObjectType.PRIMITIVE,
-    shapeType: PrimitiveType.RECTANGLE,
+    shapeType: ShapeType.RECTANGLE,
     size: {
         width: 75,
         height: 75,
@@ -163,10 +167,10 @@ const primitive1 : PrimitiveObject = {
     },
 }
 
-const primitive2 : PrimitiveObject = {
+const primitive2 : ShapeObject = {
     id: "73e2788497de4fd987696e79ccdd3977",
     type: SlideObjectType.PRIMITIVE,
-    shapeType: PrimitiveType.TRIANGLE,
+    shapeType: ShapeType.TRIANGLE,
     size: {
         width: 120,
         height: 30,
@@ -190,10 +194,10 @@ const primitive2 : PrimitiveObject = {
     },
 }
 
-const primitive3 : PrimitiveObject = {
+const primitive3 : ShapeObject = {
     id: "c1770501005b4c5297da47724fc361e1",
     type: SlideObjectType.PRIMITIVE,
-    shapeType: PrimitiveType.ELLIPSE,
+    shapeType: ShapeType.ELLIPSE,
     size: {
         width: 200,
         height: 200,
@@ -220,7 +224,7 @@ const primitive3 : PrimitiveObject = {
 const slide0: Slide = {
     id: "90b877d2b36b454e820378127e8b9f7e",
     background: {
-        type: SlideBackgroundType.PICTURE,
+        type: SlideBackgroundType.PICTURE_BASE64,
         data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
     },
     objects: [],
@@ -229,7 +233,7 @@ const slide0: Slide = {
 const slide1: Slide = {
     id: "c932d26bcf6946618042e9852163c642",
     background: {
-        type: SlideBackgroundType.PICTURE,
+        type: SlideBackgroundType.PICTURE_BASE64,
         data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
     },
     objects: [ picture1, text1, primitive1 ],
@@ -252,15 +256,61 @@ const slide2: Slide = {
 const slide3: Slide = {
     id: "c1d4b504d20a44b9a104709adfd29839",
     background: {
-        type: SlideBackgroundType.PICTURE,
-        data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
+        type: SlideBackgroundType.PICTURE_URL,
+        data: "https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg",
     },
     objects: [ picture3, text3, primitive3 ],
 }
 
+const slide4: Slide = {
+    id: "9741ab9d1b7e40ae8d1004eaf73edd21",
+    background: {
+        type: SlideBackgroundType.SOLID_COLOR,
+        color: {
+            r: 60,
+            g: 60,
+            b: 60,
+            a: 1,
+        }
+    },
+    objects: [ text1, text2, text3 ],
+}
+
+const slide5: Slide = {
+    id: "adbf79efcf1f49b980fdaf2e8775601a",
+    background: {
+        type: SlideBackgroundType.SOLID_COLOR,
+        color: {
+            r: 235,
+            g: 235,
+            b: 235,
+            a: 1,
+        }
+    },
+    objects: [ picture3 ],
+}
+
+const slide6: Slide = {
+    id: "18e8ae4602194c5ea369749e464d2f28",
+    background: {
+        type: SlideBackgroundType.PICTURE_BASE64,
+        data: "data:image/jpg;base64,aHR0cHM6Ly90bi5maXNoa2kubmV0LzIwL3ByZXZpZXcvMjg5NzMzMy5qcGc=",
+    },
+    objects: [ primitive1, primitive2, primitive3 ],
+}
+
+const slide7: Slide = {
+    id: "5fd3ef9443244fc2a19c33c0499ecf69",
+    background: {
+        type: SlideBackgroundType.PICTURE_URL,
+        data: "https://sportishka.com/uploads/posts/2022-04/1650706226_1-sportishka-com-p-islandiya-vikipediya-krasivo-foto-1.jpg",
+    },
+    objects: [ picture1, text3, picture3 ],
+}
+
 const document1: Doc = {
     title: "presentation1",
-    slideList: [slide1, slide2, slide3],
+    slideList: [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10],
 }
 
 const document2: Doc = {
@@ -278,7 +328,7 @@ const editor1: Editor = {
     history: [],
     currentSlide: "c1d4b504d20a44b9a104709adfd29839",
     selected: {
-        slideIds: ["c932d26bcf6946618042e9852163c642", "4713d4539004469d8ac1bb0afd408f25"]
+        slideIds: ["c932d26bcf6946618042e9852163c642", "c1d4b504d20a44b9a104709adfd29839"]
     }
 }
 
