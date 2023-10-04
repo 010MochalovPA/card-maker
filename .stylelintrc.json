@@ -3,7 +3,8 @@
     "stylelint-config-standard"
   ],
   "plugins": [
-    "stylelint-order"
+    "stylelint-order",
+    "stylelint-prettier"
   ],
   "rules": {
     "order/order": [
@@ -14,6 +15,7 @@
       "width",
       "height"
     ],
+    "prettier/prettier": true,
     "color-hex-case": "upper",
     "color-hex-length": "long",
     "color-no-invalid-hex": true
