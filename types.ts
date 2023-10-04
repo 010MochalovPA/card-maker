@@ -7,7 +7,7 @@ enum SlideBackgroundType {
 enum SlideObjectType {
   TEXT,
   PICTURE,
-  PRIMITIVE,
+  SHAPE,
 }
 
 enum ShapeType {
@@ -21,24 +21,12 @@ enum PictureType {
   URL,
 }
 
-type Editor = {
-  document: Doc
-  history: HistoryItem[]
-  currentSlide: string
-  selected: SelectedObjects | SelectedSlides
-}
-
 type SelectedObjects = {
   slideObjectIds: string[]
 }
 
 type SelectedSlides = {
   slideIds: string[]
-}
-
-type Doc = {
-  title: string
-  slideList: Slide[]
 }
 
 type HistoryItem = {
@@ -60,12 +48,6 @@ type Color = {
   g: number
   b: number
   a: number
-}
-
-type Slide = {
-  id: string
-  background: BackgroundSolid | BackgroundPicture
-  objects: (TextObject | PictureObject | ShapeObject)[]
 }
 
 type BackgroundSolid = {
@@ -106,10 +88,28 @@ type PictureObject = SlideObjectBase & {
 }
 
 type ShapeObject = SlideObjectBase & {
-  type: SlideObjectType.PRIMITIVE
+  type: SlideObjectType.SHAPE
   shapeType: ShapeType
   backgroundColor: Color
   borderColor: Color
+}
+
+type Slide = {
+  id: string
+  background: BackgroundSolid | BackgroundPicture
+  objects: (TextObject | PictureObject | ShapeObject)[]
+}
+
+type Doc = {
+  title: string
+  slideList: Slide[]
+}
+
+type Editor = {
+  document: Doc
+  history: HistoryItem[]
+  currentSlide: string
+  selected: SelectedObjects | SelectedSlides
 }
 
 export {

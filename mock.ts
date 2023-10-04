@@ -140,9 +140,9 @@ const text3: TextObject = {
   },
 }
 
-const primitive1: ShapeObject = {
+const shape1: ShapeObject = {
   id: 'f6ba95e407ab48db939aeed916d4fc31',
-  type: SlideObjectType.PRIMITIVE,
+  type: SlideObjectType.SHAPE,
   shapeType: ShapeType.RECTANGLE,
   size: {
     width: 75,
@@ -167,9 +167,9 @@ const primitive1: ShapeObject = {
   },
 }
 
-const primitive2: ShapeObject = {
+const shape2: ShapeObject = {
   id: '73e2788497de4fd987696e79ccdd3977',
-  type: SlideObjectType.PRIMITIVE,
+  type: SlideObjectType.SHAPE,
   shapeType: ShapeType.TRIANGLE,
   size: {
     width: 120,
@@ -194,9 +194,9 @@ const primitive2: ShapeObject = {
   },
 }
 
-const primitive3: ShapeObject = {
+const shape3: ShapeObject = {
   id: 'c1770501005b4c5297da47724fc361e1',
-  type: SlideObjectType.PRIMITIVE,
+  type: SlideObjectType.SHAPE,
   shapeType: ShapeType.ELLIPSE,
   size: {
     width: 200,
@@ -236,7 +236,7 @@ const slide1: Slide = {
     type: SlideBackgroundType.PICTURE_BASE64,
     data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=',
   },
-  objects: [picture1, text1, primitive1],
+  objects: [picture1, text1, shape1],
 }
 
 const slide2: Slide = {
@@ -250,7 +250,7 @@ const slide2: Slide = {
       a: 0.1,
     },
   },
-  objects: [picture2, text2, primitive2],
+  objects: [picture2, text2, shape2],
 }
 
 const slide3: Slide = {
@@ -259,7 +259,7 @@ const slide3: Slide = {
     type: SlideBackgroundType.PICTURE_URL,
     data: 'https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg',
   },
-  objects: [picture3, text3, primitive3],
+  objects: [picture3, text3, shape3],
 }
 
 const slide4: Slide = {
@@ -296,7 +296,7 @@ const slide6: Slide = {
     type: SlideBackgroundType.PICTURE_BASE64,
     data: 'data:image/jpg;base64,aHR0cHM6Ly90bi5maXNoa2kubmV0LzIwL3ByZXZpZXcvMjg5NzMzMy5qcGc=',
   },
-  objects: [primitive1, primitive2, primitive3],
+  objects: [shape1, shape2, shape3],
 }
 
 const slide7: Slide = {
@@ -306,6 +306,58 @@ const slide7: Slide = {
     data: 'https://sportishka.com/uploads/posts/2022-04/1650706226_1-sportishka-com-p-islandiya-vikipediya-krasivo-foto-1.jpg',
   },
   objects: [picture1, text3, picture3],
+}
+
+const slide8: Slide = {
+  id: 'ee801b22443f47c49b80332b8a15afdc',
+  background: {
+    type: SlideBackgroundType.SOLID_COLOR,
+    color: {
+      r: 235,
+      g: 235,
+      b: 235,
+      a: 1,
+    },
+  },
+  objects: [picture1, text1, text2, text3, picture3],
+}
+
+const slide9: Slide = {
+  id: '4ae80354dd914db887dfcf8c967f1394',
+  background: {
+    type: SlideBackgroundType.SOLID_COLOR,
+    color: {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 1,
+    },
+  },
+  objects: [picture1, picture2, picture3, text3],
+}
+
+const slide10: Slide = {
+  id: '8b8fe802c9284809b5742c1dab37ad47',
+  background: {
+    type: SlideBackgroundType.SOLID_COLOR,
+    color: {
+      r: 255,
+      g: 0,
+      b: 0,
+      a: 1,
+    },
+  },
+  objects: [
+    picture1,
+    picture2,
+    picture3,
+    text1,
+    text2,
+    text3,
+    shape1,
+    shape2,
+    shape3,
+  ],
 }
 
 const document1: Doc = {
@@ -363,3 +415,5 @@ const editor3: Editor = {
     slideObjectIds: [],
   },
 }
+
+export { editor1, editor2, editor3 }
