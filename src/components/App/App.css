@@ -1,18 +1,13 @@
 .app {
-  grid-template: 
-            "top-panel top-panel top-panel" 40px
-            "slides-panel slide slide" 40px
-            "slides-panel slide slide" 40px / 1fr 1fr 1fr;
+  position: relative;
+  display: grid;
+  grid-template:
+    'top-panel top-panel top-panel' 120px
+    'slides-panel slide slide' calc(100% - 120px) / 320px 1fr 1fr;
+  height: 100vh;
 }
 
 .top-panel {
   grid-area: top-panel;
-}
-
-.slides-panel {
-  grid-area: slides-panel;
-}
-
-.slide {
-  grid-area: slide;
+  background-color: #fdcb6e;
 }

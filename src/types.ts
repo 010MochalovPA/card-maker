@@ -123,4 +123,5 @@ export {
   Slide,
   Doc,
   Editor,
+  Color,
 }

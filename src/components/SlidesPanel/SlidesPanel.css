@@ -1,0 +1,15 @@
+.slides-panel {
+  grid-area: slides-panel;
+  background-color: #ff7675;
+  overflow-y: auto;
+}
+
+.slides-wrapper {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
