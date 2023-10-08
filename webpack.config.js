@@ -1,15 +1,17 @@
 /* eslint-disable */
 const webpack = require('webpack')
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const production = process.env.NODE_ENV === 'production'
+
 module.exports = {
-  mode: 'development',
   entry: { script: path.resolve(__dirname, './src/') },
   output: {
     path: path.resolve(__dirname, './build'),
-    filename: '[name].[contenthash].js',
+    filename: production ? '[name].[contenthash].js' : '[name].js',
   },
   module: {
     rules: [
@@ -30,6 +32,7 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: '[name]__[local]___[hash:base64:5]',
+                exportLocalsConvention: 'camelCase',
               },
             },
           },
@@ -56,5 +59,9 @@ module.exports = {
       title: 'PresentationMaker',
       template: './src/index.html',
     }),
-  ]
+    new MiniCssExtractPlugin({
+      filename: production ? '[name].[contenthash].css' : '[name].css',
+    }),
+  ],
+  mode: production ? 'production' : 'development',
 }
