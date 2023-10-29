@@ -7,12 +7,9 @@ type SlideContentPropsType = {
   slide: Slide
 }
 
-const SlideContent = ({
-  slide,
-}: SlideContentPropsType) => {
+const SlideContent = ({ slide }: SlideContentPropsType) => {
+  const background = useSlideBackground(slide)
 
-  const background = useSlideBackground(slide);
-  
   console.log(background)
 
   return (
@@ -20,7 +17,7 @@ const SlideContent = ({
       <div
         className={styles.slide}
         style={{
-          background: `${background} center / cover`
+          background: `${background} center / cover`,
         }}
       >
         {slide.id}

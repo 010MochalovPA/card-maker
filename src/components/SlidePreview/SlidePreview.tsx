@@ -4,15 +4,11 @@ import classNames from 'classnames'
 
 type SlidePreviewPropsType = {
   slide: Slide
-  onClick: () => void;
+  onClick: () => void
   isActive: boolean
 }
 
-const SlidePreview = ({
-  slide,
-  onClick,
-  isActive
-}: SlidePreviewPropsType) => {
+const SlidePreview = ({ slide, onClick, isActive }: SlidePreviewPropsType) => {
   return (
     <div
       className={classNames(styles.slidePreview, isActive && styles.active)}
