@@ -3,6 +3,8 @@ import { Slide, SlideObjectType } from '../../types'
 import useSlideBackground from '../../hooks/useSlideBackground'
 import classNames from 'classnames'
 import ObjectText from '../ObjectText/ObjectText'
+import ObjectPicture from '../ObjectPicture/ObjectPicture'
+import ObjectShape from '../ObjectShape/ObjectShape'
 
 type SlideContentPropsType = {
   slide: Slide
@@ -10,9 +12,6 @@ type SlideContentPropsType = {
 
 const SlideContent = ({ slide }: SlideContentPropsType) => {
   const background = useSlideBackground(slide)
-
-  console.log(background)
-  console.log(slide.objects)
 
   return (
     <div className={classNames(styles.slideContainer)}>
@@ -28,9 +27,9 @@ const SlideContent = ({ slide }: SlideContentPropsType) => {
             case SlideObjectType.TEXT:
               return <ObjectText props={slideObject} />
             case SlideObjectType.PICTURE:
-              return
+              return <ObjectPicture props={slideObject} />
             case SlideObjectType.SHAPE:
-              return
+              return <ObjectShape props={slideObject} />
           }
         })}
       </div>
