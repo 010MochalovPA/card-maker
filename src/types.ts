@@ -124,4 +124,7 @@ export {
   Doc,
   Editor,
   Color,
+  SlideObjectBase,
+  TextParam,
+  Position,
 }
