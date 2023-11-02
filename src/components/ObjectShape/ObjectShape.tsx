@@ -1,3 +1,4 @@
+import styles from './ObjectShape.css'
 import { Color, ShapeType, SlideObjectBase, SlideObjectType } from '../../types'
 
 type objectShapeProps = {
@@ -10,7 +11,7 @@ type objectShapeProps = {
 }
 
 const ObjectShape = (props: objectShapeProps) => {
-  return <div></div>
+  return <div className={styles.shape}></div>
 }
 
 export default ObjectShape

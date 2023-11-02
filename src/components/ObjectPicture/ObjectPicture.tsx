@@ -1,3 +1,4 @@
+import styles from './ObjectPicture.css'
 import { PictureType, SlideObjectBase, SlideObjectType } from '../../types'
 
 type objectPictureProps = {
@@ -9,7 +10,7 @@ type objectPictureProps = {
 }
 
 const ObjectPicture = (props: objectPictureProps) => {
-  return <div></div>
+  return <div className={styles.picture}></div>
 }
 
 export default ObjectPicture
