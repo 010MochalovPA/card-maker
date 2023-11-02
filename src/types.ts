@@ -34,8 +34,8 @@ type HistoryItem = {
 }
 
 type Position = {
-  x: number
-  y: number
+  left: number
+  top: number
 }
 
 type Size = {
@@ -69,10 +69,10 @@ type SlideObjectBase = {
 
 type TextParam = {
   fontFamily: string
-  size: number
+  fontSize: number
   bold: boolean
   cursive: boolean
-  color: Color
+  fontColor: Color
 }
 
 type TextObject = SlideObjectBase & {

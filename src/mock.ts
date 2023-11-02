@@ -20,8 +20,8 @@ const picture1: PictureObject = {
     height: 100,
   },
   position: {
-    x: 30,
-    y: 45,
+    left: 30,
+    top: 45,
   },
   angle: 10,
   data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=',
@@ -36,8 +36,8 @@ const picture2: PictureObject = {
     height: 250,
   },
   position: {
-    x: 0,
-    y: 0,
+    left: 0,
+    top:0,
   },
   angle: 45,
   data: 'https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg',
@@ -52,8 +52,8 @@ const picture3: PictureObject = {
     height: 128,
   },
   position: {
-    x: 360,
-    y: 240,
+    left: 360,
+    top:240,
   },
   angle: 90,
   data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=',
@@ -67,17 +67,17 @@ const text1: TextObject = {
     height: 30,
   },
   position: {
-    x: 300,
-    y: 100,
+    left: 300,
+    top:100,
   },
   angle: 0,
   text: 'Lorem ipsum dolor',
   params: {
     fontFamily: 'Roboto',
-    size: 12,
+    fontSize: 12,
     bold: true,
     cursive: false,
-    color: {
+    fontColor: {
       r: 255,
       g: 255,
       b: 255,
@@ -94,17 +94,17 @@ const text2: TextObject = {
     height: 100,
   },
   position: {
-    x: 500,
-    y: 500,
+    left: 500,
+    top:500,
   },
   angle: 0,
   text: 'Suspendisse et erat.',
   params: {
     fontFamily: 'Arial',
-    size: 16,
+    fontSize: 16,
     bold: false,
     cursive: true,
-    color: {
+    fontColor: {
       r: 255,
       g: 255,
       b: 255,
@@ -121,17 +121,17 @@ const text3: TextObject = {
     height: 125,
   },
   position: {
-    x: 360,
-    y: 120,
+    left: 360,
+    top:120,
   },
   text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, modi repellendus esse dicta labore iusto expedita ab officia debitis, ullam temporibus. Sequi, ducimus. Natus, quidem! Facere eos obcaecati ipsa, fugit quod nihil voluptates nemo animi ullam blanditiis veritatis mollitia excepturi. Voluptatibus velit est nisi nesciunt neque autem dolores vero, quo, sed aliquid in natus? Nostrum repellendus earum corporis perspiciatis exercitationem! Quisquam saepe ex voluptas. Qui, quasi eaque. Nesciunt asperiores culpa impedit odio et animi corrupti tempore iste odit ipsa ullam nostrum ducimus nobis provident harum deserunt quo at, nulla iure, praesentium omnis magni. Incidunt iure saepe, quisquam veniam pariatur vel!',
   angle: 0,
   params: {
     fontFamily: 'Roboto',
-    size: 16,
+    fontSize: 16,
     bold: false,
     cursive: true,
-    color: {
+    fontColor: {
       r: 220,
       g: 220,
       b: 220,
@@ -149,8 +149,8 @@ const shape1: ShapeObject = {
     height: 75,
   },
   position: {
-    x: 50,
-    y: 50,
+    left: 50,
+    top:50,
   },
   angle: 0,
   backgroundColor: {
@@ -176,8 +176,8 @@ const shape2: ShapeObject = {
     height: 30,
   },
   position: {
-    x: 30,
-    y: 200,
+    left: 30,
+    top:200,
   },
   angle: 0,
   backgroundColor: {
@@ -203,8 +203,8 @@ const shape3: ShapeObject = {
     height: 200,
   },
   position: {
-    x: 250,
-    y: 250,
+    left: 250,
+    top:250,
   },
   angle: 120,
   backgroundColor: {
