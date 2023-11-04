@@ -79,6 +79,8 @@ type TextObject = SlideObjectBase & {
   type: SlideObjectType.TEXT
   params: TextParam
   text: string
+  borderColor: Color
+  bgColor: Color
 }
 
 type PictureObject = SlideObjectBase & {

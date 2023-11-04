@@ -84,6 +84,18 @@ const text1: TextObject = {
       a: 0.8,
     },
   },
+  borderColor: {
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 0,
+  },
+  bgColor: {
+    r: 0,
+    g: 156,
+    b: 0,
+    a: 1,
+  },
 }
 
 const text2: TextObject = {
@@ -111,6 +123,18 @@ const text2: TextObject = {
       a: 0.8,
     },
   },
+  borderColor: {
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 0,
+  },
+  bgColor: {
+    r: 0,
+    g: 0,
+    b: 100,
+    a: 1,
+  },
 }
 
 const text3: TextObject = {
@@ -132,11 +156,23 @@ const text3: TextObject = {
     bold: false,
     cursive: true,
     fontColor: {
-      r: 220,
-      g: 220,
-      b: 220,
+      r: 160,
+      g: 160,
+      b: 160,
       a: 1,
     },
+  },
+  borderColor: {
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 1,
+  },
+  bgColor: {
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 1,
   },
 }
 
