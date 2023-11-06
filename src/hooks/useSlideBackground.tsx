@@ -7,9 +7,8 @@ const useSlideBackground = (slide: Slide) => {
     case SlideBackgroundType.SOLID_COLOR:
       return useColorBackground(slide.background.color)
     case SlideBackgroundType.PICTURE_BASE64:
-      return useImageBackground(slide.background.data)
     case SlideBackgroundType.PICTURE_URL:
-      return useImageBackground(slide.background.data)
+      return `#ffffff ${useImageBackground(slide.background.data)} center/cover`
   }
 }
 

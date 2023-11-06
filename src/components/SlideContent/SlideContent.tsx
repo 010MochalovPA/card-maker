@@ -18,18 +18,27 @@ const SlideContent = ({ slide }: SlideContentPropsType) => {
       <div
         className={styles.slide}
         style={{
-          background: `${background} center / cover`,
+          background: background,
         }}
       >
         {slide.id}
         {slide.objects.map((slideObject) => {
           switch (slideObject.type) {
             case SlideObjectType.TEXT:
-              return <ObjectText props={slideObject} />
+              return <ObjectText
+                key={slideObject.id}
+                props={slideObject}
+              />
             case SlideObjectType.PICTURE:
-              return <ObjectPicture props={slideObject} />
+              return <ObjectPicture
+                props={slideObject}
+                key={slideObject.id}
+              />
             case SlideObjectType.SHAPE:
-              return <ObjectShape props={slideObject} />
+              return <ObjectShape
+                props={slideObject}
+                key={slideObject.id}
+              />
           }
         })}
       </div>
