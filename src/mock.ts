@@ -188,7 +188,7 @@ const shape1: ShapeObject = {
     left: 50,
     top:50,
   },
-  angle: 0,
+  angle: 58,
   backgroundColor: {
     r: 0,
     g: 128,
@@ -215,7 +215,7 @@ const shape2: ShapeObject = {
     left: 30,
     top:200,
   },
-  angle: 0,
+  angle: 15,
   backgroundColor: {
     r: 255,
     g: 255,
@@ -235,7 +235,7 @@ const shape3: ShapeObject = {
   type: SlideObjectType.SHAPE,
   shapeType: ShapeType.ELLIPSE,
   size: {
-    width: 200,
+    width: 150,
     height: 200,
   },
   position: {
