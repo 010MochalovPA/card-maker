@@ -11,11 +11,12 @@ type objectPictureProps = {
 }
 
 const ObjectPicture = (props: objectPictureProps) => {
-  const {size, position} = props.props
+  const {size, position, angle} = props.props
   const {width, height} = size
   const {left, top} = position
   const background = useObjectPictureBackground(props.props)
   const backgroundSize = `${width}px ${height}px`
+  const transform = `rotate(${angle}deg)`
 
   return <div className={styles.picture} style={{
     width,
@@ -23,7 +24,8 @@ const ObjectPicture = (props: objectPictureProps) => {
     left,
     top,
     background,
-    backgroundSize
+    backgroundSize,
+    transform,
   }}></div>
 }
 

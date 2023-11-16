@@ -24,6 +24,7 @@ const ObjectText = (props: objectTextProps) => {
   const color = `rgba(${r}, ${g}, ${b}, ${a})`
   const border = `1px solid rgba(${borr}, ${borg}, ${borb}, ${bora}`
   const backgroundColor = `rgba(${bgcr}, ${bgcg}, ${bgcb}, ${bgca}`
+  const transform = `rotate(${angle}deg)`
 
   return <div
     className={styles.text}
@@ -39,6 +40,7 @@ const ObjectText = (props: objectTextProps) => {
       fontStyle,
       backgroundColor,
       color,
+      transform,
     }}>{text}</div>
 }
 
