@@ -4,6 +4,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin  = require('copy-webpack-plugin')
 
 const production = process.env.NODE_ENV === 'production'
 
@@ -54,6 +55,11 @@ module.exports = {
     extensions: ['.*', '.js', '.jsx', '.tsx', '.ts', '.css'],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public', to: 'public' },
+      ],
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'PresentationMaker',

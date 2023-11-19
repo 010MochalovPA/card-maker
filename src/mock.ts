@@ -37,7 +37,7 @@ const picture2: PictureObjectType = {
   },
   position: {
     left: 0,
-    top:0,
+    top: 0,
   },
   angle: 45,
   data: 'https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg',
@@ -53,7 +53,7 @@ const picture3: PictureObjectType = {
   },
   position: {
     left: 360,
-    top:240,
+    top: 240,
   },
   angle: 90,
   data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=',
@@ -68,7 +68,7 @@ const text1: TextObjectType = {
   },
   position: {
     left: 300,
-    top:100,
+    top: 100,
   },
   angle: 0,
   text: 'Lorem ipsum dolor',
@@ -90,7 +90,7 @@ const text1: TextObjectType = {
     b: 255,
     a: 0,
   },
-  bgColor: {
+  backgroundColor: {
     r: 0,
     g: 156,
     b: 0,
@@ -107,7 +107,7 @@ const text2: TextObjectType = {
   },
   position: {
     left: 500,
-    top:500,
+    top: 500,
   },
   angle: 0,
   text: 'Suspendisse et erat.',
@@ -129,7 +129,7 @@ const text2: TextObjectType = {
     b: 255,
     a: 0,
   },
-  bgColor: {
+  backgroundColor: {
     r: 0,
     g: 0,
     b: 100,
@@ -146,7 +146,7 @@ const text3: TextObjectType = {
   },
   position: {
     left: 360,
-    top:120,
+    top: 120,
   },
   text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, modi repellendus esse dicta labore iusto expedita ab officia debitis, ullam temporibus. Sequi, ducimus. Natus, quidem! Facere eos obcaecati ipsa, fugit quod nihil voluptates nemo animi ullam blanditiis veritatis mollitia excepturi. Voluptatibus velit est nisi nesciunt neque autem dolores vero, quo, sed aliquid in natus? Nostrum repellendus earum corporis perspiciatis exercitationem! Quisquam saepe ex voluptas. Qui, quasi eaque. Nesciunt asperiores culpa impedit odio et animi corrupti tempore iste odit ipsa ullam nostrum ducimus nobis provident harum deserunt quo at, nulla iure, praesentium omnis magni. Incidunt iure saepe, quisquam veniam pariatur vel!',
   angle: 0,
@@ -168,7 +168,7 @@ const text3: TextObjectType = {
     b: 0,
     a: 1,
   },
-  bgColor: {
+  backgroundColor: {
     r: 255,
     g: 255,
     b: 255,
@@ -186,7 +186,7 @@ const shape1: ShapeObjectType = {
   },
   position: {
     left: 50,
-    top:50,
+    top: 50,
   },
   angle: 58,
   backgroundColor: {
@@ -213,7 +213,7 @@ const shape2: ShapeObjectType = {
   },
   position: {
     left: 30,
-    top:200,
+    top: 200,
   },
   angle: 15,
   backgroundColor: {
@@ -240,7 +240,7 @@ const shape3: ShapeObjectType = {
   },
   position: {
     left: 250,
-    top:250,
+    top: 250,
   },
   angle: 120,
   backgroundColor: {
@@ -397,7 +397,7 @@ const slide10: Slide = {
 }
 
 const document1: Doc = {
-  title: 'presentation1',
+  title: 'Presentation 1',
   slideList: [
     slide1,
     slide2,

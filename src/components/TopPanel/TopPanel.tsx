@@ -1,9 +1,15 @@
-import styles from './TopPanel.css';
+import Header from '../Header/Header'
+import styles from './TopPanel.css'
 
-const TopPanel = () => (
-    <div className={styles.topPanel} >
-        Название
-    </div>
-);
+type TopPanelProps = {
+  title: string
+  setTitle: (title: string) => void
+}
 
-export default TopPanel;
+const TopPanel = ({ title, setTitle }: TopPanelProps) => (
+  <div className={styles.topPanel}>
+    <Header title={title} setTitle={setTitle} />
+  </div>
+)
+
+export default TopPanel

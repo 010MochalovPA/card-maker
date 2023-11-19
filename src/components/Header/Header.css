@@ -1,3 +1,12 @@
 .header {
-    
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  background-color: #badfe7;
+}
+
+.spacer {
+  flex-grow: 1;
 }

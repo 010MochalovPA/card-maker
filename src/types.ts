@@ -80,7 +80,7 @@ type TextObjectType = SlideObjectBase & {
   style: TextStyle
   text: string
   borderColor: Color
-  bgColor: Color
+  backgroundColor: Color
 }
 
 type PictureObjectType = SlideObjectBase & {
@@ -99,11 +99,11 @@ type ShapeObjectType = SlideObjectBase & {
 type SlideObject = TextObjectType | PictureObjectType | ShapeObjectType
 
 type ObjectStyle = {
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-  transform: string;
+  top: number
+  left: number
+  width: number
+  height: number
+  transform: string
 }
 
 type Slide = {
@@ -140,5 +140,6 @@ export {
   Color,
   SlideObjectBase,
   TextStyle,
-  Position, Size,
+  Position,
+  Size,
 }

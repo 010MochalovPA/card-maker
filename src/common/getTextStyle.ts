@@ -1,5 +1,5 @@
-import { TextStyle } from "../types";
-import colorToString from "./colorToString";
+import { TextStyle } from '../types'
+import colorToString from './colorToString'
 
 export const getTextStyle = (style: TextStyle) => {
   return {
@@ -8,5 +8,5 @@ export const getTextStyle = (style: TextStyle) => {
     fontWeight: style.bold ? 'bold' : 'normal',
     fontStyle: style.cursive ? 'italic' : 'normal',
     color: colorToString(style.fontColor),
-  };
-};
+  }
+}

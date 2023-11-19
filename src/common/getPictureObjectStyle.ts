@@ -1,12 +1,17 @@
-import { Position, Size } from "../types";
-import getRotateString from "./getRotateString";
+import { Position, Size } from '../types'
+import getRotateString from './getRotateString'
 
-const getPictureObjectStyle = (position: Position, size: Size, angle: number, pictureData: string) => {
-  const { left, top } = position;
-  const { width, height } = size;
+const getPictureObjectStyle = (
+  position: Position,
+  size: Size,
+  angle: number,
+  pictureData: string,
+) => {
+  const { left, top } = position
+  const { width, height } = size
 
-  const background = `transparent url('${pictureData}') center/cover`;
-  const backgroundSize = `${width}px ${height}px`;
+  const background = `transparent url('${pictureData}') center/cover`
+  const backgroundSize = `${width}px ${height}px`
 
   return {
     width,
@@ -15,8 +20,8 @@ const getPictureObjectStyle = (position: Position, size: Size, angle: number, pi
     top: `${top}px`,
     transform: getRotateString(angle),
     backgroundSize,
-    background
-  };
-};
+    background,
+  }
+}
 
 export default getPictureObjectStyle

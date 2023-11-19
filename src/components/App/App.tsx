@@ -11,6 +11,7 @@ const App = () => {
 
   const [selectSlideId, setSelectSlideId] = useState(slideList[0].id)
   const [selectSlide, setSelectSlide] = useState(slideList[0])
+  const [title, setTitle] = useState(editor1.document.title)
 
   const onClickSlide = (id: string) => {
     const slide = slideList.find((slide) => slide.id == id)
@@ -25,7 +26,7 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <TopPanel />
+      <TopPanel title={title} setTitle={setTitle} />
       <SlidesPanel
         slideList={slideList.map((slide) => ({
           slide: slide,

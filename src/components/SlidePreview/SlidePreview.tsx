@@ -8,15 +8,13 @@ type SlidePreviewPropsType = {
   isActive: boolean
 }
 
-const SlidePreview = ({ slide, onClick, isActive }: SlidePreviewPropsType) => {
-  return (
-    <div
-      className={classNames(styles.slidePreview, isActive && styles.active)}
-      onClick={onClick}
-    >
-      {slide.id}
-    </div>
-  )
-}
+const SlidePreview = ({ slide, onClick, isActive }: SlidePreviewPropsType) => (
+  <div
+    className={classNames(styles.slidePreview, isActive && styles.active)}
+    onClick={onClick}
+  >
+    {slide.id}
+  </div>
+)
 
 export default SlidePreview

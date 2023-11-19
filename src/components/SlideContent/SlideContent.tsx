@@ -22,8 +22,8 @@ const SlideContent = (slide: Slide) => {
 
   return (
     <div className={classNames(styles.slideContainer)}>
-      <div className={styles.slide} style={{background}}>
-        {slide.objects.map((slideObject) => (getSlideObject(slideObject)))}
+      <div className={styles.slide} style={{ background }}>
+        {slide.objects.map((slideObject) => getSlideObject(slideObject))}
       </div>
     </div>
   )

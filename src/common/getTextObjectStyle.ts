@@ -1,9 +1,15 @@
-import { Color, Position, Size } from "../types";
-import colorToString from "./colorToString";
+import { Color, Position, Size } from '../types'
+import colorToString from './colorToString'
 
-const getTextObjectStyle = (position: Position, size: Size, angle: number, borderColor: Color, bgColor: Color) => {
-  const { left, top } = position;
-  const { width, height } = size;
+const getTextObjectStyle = (
+  position: Position,
+  size: Size,
+  angle: number,
+  borderColor: Color,
+  backgroundColor: Color,
+) => {
+  const { left, top } = position
+  const { width, height } = size
 
   return {
     left: `${left}px`,
@@ -12,8 +18,8 @@ const getTextObjectStyle = (position: Position, size: Size, angle: number, borde
     height: `${height}px`,
     transform: `rotate(${angle}deg)`,
     borderColor: colorToString(borderColor),
-    backgroundColor: colorToString(bgColor),
-  };
-};
+    backgroundColor: colorToString(backgroundColor),
+  }
+}
 
 export default getTextObjectStyle

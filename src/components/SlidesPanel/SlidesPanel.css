@@ -1,6 +1,5 @@
 .slides-panel {
   grid-area: slides-panel;
-  background-color: #ff7675;
   overflow-y: auto;
 }
 
