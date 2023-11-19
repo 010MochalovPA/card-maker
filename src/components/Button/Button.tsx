@@ -13,16 +13,12 @@ type ButtonProps = {
   onClick: () => void
 }
 
-const Button = ({
-  type = ButtonType.PRIMARY,
-  icon,
-  text,
-  onClick,
-}: ButtonProps) => {
+const Button = ({ type = ButtonType.PRIMARY, icon, text, onClick }: ButtonProps) => {
   return (
     <div
-      className={`${styles.button} ${text ? styles.text : ''} ${type === ButtonType.PRIMARY ? styles.primary : styles.secondary
-        }`}
+      className={`${styles.button} ${text ? styles.text : ''} ${
+        type === ButtonType.PRIMARY ? styles.primary : styles.secondary
+      }`}
       onClick={onClick}
     >
       {icon}

@@ -383,33 +383,12 @@ const slide10: Slide = {
       a: 1,
     },
   },
-  objects: [
-    picture1,
-    picture2,
-    picture3,
-    text1,
-    text2,
-    text3,
-    shape1,
-    shape2,
-    shape3,
-  ],
+  objects: [picture1, picture2, picture3, text1, text2, text3, shape1, shape2, shape3],
 }
 
 const document1: Doc = {
   title: 'Presentation 1',
-  slideList: [
-    slide1,
-    slide2,
-    slide3,
-    slide4,
-    slide5,
-    slide6,
-    slide7,
-    slide8,
-    slide9,
-    slide10,
-  ],
+  slideList: [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10],
 }
 
 const document2: Doc = {
@@ -427,10 +406,7 @@ const editor1: Editor = {
   history: [],
   currentSlide: 'c1d4b504d20a44b9a104709adfd29839',
   selected: {
-    slideIds: [
-      'c932d26bcf6946618042e9852163c642',
-      'c1d4b504d20a44b9a104709adfd29839',
-    ],
+    slideIds: ['c932d26bcf6946618042e9852163c642', 'c1d4b504d20a44b9a104709adfd29839'],
   },
 }
 

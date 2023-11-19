@@ -9,10 +9,7 @@ const getEllipseShapeStyle = (
   const { width, height } = size
 
   const fill: string = colorToString(backgroundColor)
-  const stroke: string =
-    borderColor.a === 0
-      ? colorToString(backgroundColor)
-      : colorToString(borderColor)
+  const stroke: string = borderColor.a === 0 ? colorToString(backgroundColor) : colorToString(borderColor)
 
   const cx: string = `${width / 2}`
   const cy: string = `${height / 2}`

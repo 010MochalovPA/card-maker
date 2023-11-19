@@ -8,9 +8,7 @@ const getSlideBackgroundString = (slide: Slide) => {
       return colorToString(slide.background.color)
     case SlideBackgroundType.PICTURE_BASE64:
     case SlideBackgroundType.PICTURE_URL:
-      return `#ffffff ${getPicuteBackground(
-        slide.background.data,
-      )} center/cover`
+      return `#ffffff ${getPicuteBackground(slide.background.data)} center/cover`
   }
 }
 

@@ -3,23 +3,9 @@ import { getTextStyle } from '../../common/getTextStyle'
 import { TextObjectType } from '../../types'
 import getTextObjectStyle from '../../common/getTextObjectStyle'
 
-const TextObject = ({
-  position,
-  size,
-  angle,
-  style,
-  text,
-  borderColor,
-  backgroundColor,
-}: TextObjectType) => {
+const TextObject = ({ position, size, angle, style, text, borderColor, backgroundColor }: TextObjectType) => {
   const textStyle = getTextStyle(style)
-  const objectStyle = getTextObjectStyle(
-    position,
-    size,
-    angle,
-    borderColor,
-    backgroundColor,
-  )
+  const objectStyle = getTextObjectStyle(position, size, angle, borderColor, backgroundColor)
 
   return (
     <div className={styles.text} style={objectStyle}>
