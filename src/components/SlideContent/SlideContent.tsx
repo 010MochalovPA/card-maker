@@ -1,46 +1,29 @@
 import styles from './SlideContent.css'
-import { Slide, SlideObjectType } from '../../types'
-import useSlideBackground from '../../hooks/useSlideBackground'
+import { Slide, SlideObjectType, SlideObject } from '../../types'
 import classNames from 'classnames'
-import ObjectText from '../ObjectText/ObjectText'
-import ObjectPicture from '../ObjectPicture/ObjectPicture'
-import ObjectShape from '../ObjectShape/ObjectShape'
+import TextObject from '../TextObject/TextObject'
+import PictureObject from '../PictureObject/PictureObject'
+import ShapeObject from '../ShapeObject/ShapeObject'
+import getSlideBackgroundString from '../../common/getSlideBackgroundString'
 
-type SlideContentPropsType = {
-  slide: Slide
+function getSlideObject(slideObject: SlideObject) {
+  switch (slideObject.type) {
+    case SlideObjectType.TEXT:
+      return <TextObject key={slideObject.id} {...slideObject} />
+    case SlideObjectType.PICTURE:
+      return <PictureObject key={slideObject.id} {...slideObject} />
+    case SlideObjectType.SHAPE:
+      return <ShapeObject key={slideObject.id} {...slideObject} />
+  }
 }
 
-const SlideContent = ({ slide }: SlideContentPropsType) => {
-  const background = useSlideBackground(slide)
+const SlideContent = (slide: Slide) => {
+  const background = getSlideBackgroundString(slide)
 
   return (
     <div className={classNames(styles.slideContainer)}>
-      <div
-        className={styles.slide}
-        style={{
-          background: background,
-        }}
-      >
-        {slide.id}
-        {slide.objects.map((slideObject) => {
-          switch (slideObject.type) {
-            case SlideObjectType.TEXT:
-              return <ObjectText
-                key={slideObject.id}
-                props={slideObject}
-              />
-            case SlideObjectType.PICTURE:
-              return <ObjectPicture
-                props={slideObject}
-                key={slideObject.id}
-              />
-            case SlideObjectType.SHAPE:
-              return <ObjectShape
-                props={slideObject}
-                key={slideObject.id}
-              />
-          }
-        })}
+      <div className={styles.slide} style={{background}}>
+        {slide.objects.map((slideObject) => (getSlideObject(slideObject)))}
       </div>
     </div>
   )
