@@ -9,12 +9,7 @@ const getRectangleShapeStyle = (size: Size, borderColor: Color, backgroundColor:
 
   const points = `0 ${height}, ${width / 2} 0, ${width} ${height}`
 
-  return {
-    points,
-    fill,
-    strokeWidth: '1',
-    stroke,
-  }
+  return { points, fill, strokeWidth: '1', stroke }
 }
 
 export default getRectangleShapeStyle
