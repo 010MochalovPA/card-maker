@@ -70,7 +70,7 @@ const text1: TextObject = {
     left: 300,
     top:100,
   },
-  angle: 0,
+  angle: 5,
   text: 'Lorem ipsum dolor',
   params: {
     fontFamily: 'Roboto',
@@ -109,7 +109,7 @@ const text2: TextObject = {
     left: 500,
     top:500,
   },
-  angle: 0,
+  angle: 35,
   text: 'Suspendisse et erat.',
   params: {
     fontFamily: 'Arial',
@@ -149,7 +149,7 @@ const text3: TextObject = {
     top:120,
   },
   text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, modi repellendus esse dicta labore iusto expedita ab officia debitis, ullam temporibus. Sequi, ducimus. Natus, quidem! Facere eos obcaecati ipsa, fugit quod nihil voluptates nemo animi ullam blanditiis veritatis mollitia excepturi. Voluptatibus velit est nisi nesciunt neque autem dolores vero, quo, sed aliquid in natus? Nostrum repellendus earum corporis perspiciatis exercitationem! Quisquam saepe ex voluptas. Qui, quasi eaque. Nesciunt asperiores culpa impedit odio et animi corrupti tempore iste odit ipsa ullam nostrum ducimus nobis provident harum deserunt quo at, nulla iure, praesentium omnis magni. Incidunt iure saepe, quisquam veniam pariatur vel!',
-  angle: 0,
+  angle: 60,
   params: {
     fontFamily: 'Roboto',
     fontSize: 16,
