@@ -4,6 +4,7 @@ import SlideContent from '../SlideContent/SlideContent'
 import { Slide } from '../../types'
 import { editor1 } from '../../mock'
 import { useState } from 'react'
+import TopPanel from '../TopPanel/TopPanel'
 
 const App = () => {
   const slideList: Slide[] = editor1.document.slideList
@@ -24,7 +25,7 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <div className={styles.topPanel}>Top-panel</div>
+      <TopPanel />
       <SlidesPanel
         slideList={slideList.map((slide) => ({
           slide: slide,
@@ -32,7 +33,7 @@ const App = () => {
           isActive: slide.id === selectSlideId,
         }))}
       />
-      <SlideContent slide={selectSlide} />
+      <SlideContent {...selectSlide} />
     </div>
   )
 }

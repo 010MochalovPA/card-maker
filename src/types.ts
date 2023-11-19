@@ -67,7 +67,7 @@ type SlideObjectBase = {
   angle: number
 }
 
-type TextParam = {
+type TextStyle = {
   fontFamily: string
   fontSize: number
   bold: boolean
@@ -75,31 +75,41 @@ type TextParam = {
   fontColor: Color
 }
 
-type TextObject = SlideObjectBase & {
+type TextObjectType = SlideObjectBase & {
   type: SlideObjectType.TEXT
-  params: TextParam
+  style: TextStyle
   text: string
   borderColor: Color
   bgColor: Color
 }
 
-type PictureObject = SlideObjectBase & {
+type PictureObjectType = SlideObjectBase & {
   type: SlideObjectType.PICTURE
   pictureType: PictureType
   data: string
 }
 
-type ShapeObject = SlideObjectBase & {
+type ShapeObjectType = SlideObjectBase & {
   type: SlideObjectType.SHAPE
   shapeType: ShapeType
   backgroundColor: Color
   borderColor: Color
 }
 
+type SlideObject = TextObjectType | PictureObjectType | ShapeObjectType
+
+type ObjectStyle = {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+  transform: string;
+}
+
 type Slide = {
   id: string
   background: BackgroundSolid | BackgroundPicture
-  objects: (TextObject | PictureObject | ShapeObject)[]
+  objects: SlideObject[]
 }
 
 type Doc = {
@@ -115,18 +125,20 @@ type Editor = {
 }
 
 export {
+  ObjectStyle,
+  SlideObject,
   SlideObjectType,
   SlideBackgroundType,
   ShapeType,
   PictureType,
-  ShapeObject,
-  PictureObject,
-  TextObject,
+  ShapeObjectType,
+  PictureObjectType,
+  TextObjectType,
   Slide,
   Doc,
   Editor,
   Color,
   SlideObjectBase,
-  TextParam,
-  Position,
+  TextStyle,
+  Position, Size,
 }

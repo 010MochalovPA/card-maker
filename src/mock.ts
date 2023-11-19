@@ -3,15 +3,15 @@ import {
   SlideBackgroundType,
   ShapeType,
   PictureType,
-  ShapeObject,
-  PictureObject,
-  TextObject,
+  ShapeObjectType,
+  PictureObjectType,
+  TextObjectType,
   Slide,
   Doc,
   Editor,
 } from './types'
 
-const picture1: PictureObject = {
+const picture1: PictureObjectType = {
   id: 'a38883aff79d4daf8ce292a0a8353b7f',
   type: SlideObjectType.PICTURE,
   pictureType: PictureType.BASE64,
@@ -27,7 +27,7 @@ const picture1: PictureObject = {
   data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=',
 }
 
-const picture2: PictureObject = {
+const picture2: PictureObjectType = {
   id: '89bca59ceade4a5f92a3900fda5415e2',
   type: SlideObjectType.PICTURE,
   pictureType: PictureType.URL,
@@ -43,7 +43,7 @@ const picture2: PictureObject = {
   data: 'https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg',
 }
 
-const picture3: PictureObject = {
+const picture3: PictureObjectType = {
   id: '131b368770a44fb3ab74b5f2b2280d09',
   type: SlideObjectType.PICTURE,
   pictureType: PictureType.BASE64,
@@ -59,7 +59,7 @@ const picture3: PictureObject = {
   data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=',
 }
 
-const text1: TextObject = {
+const text1: TextObjectType = {
   id: '188014653ffb49cd898a60c63acfaaf7',
   type: SlideObjectType.TEXT,
   size: {
@@ -72,7 +72,7 @@ const text1: TextObject = {
   },
   angle: 0,
   text: 'Lorem ipsum dolor',
-  params: {
+  style: {
     fontFamily: 'Roboto',
     fontSize: 12,
     bold: true,
@@ -98,7 +98,7 @@ const text1: TextObject = {
   },
 }
 
-const text2: TextObject = {
+const text2: TextObjectType = {
   id: '83157e6a6fec4a5dbb27b95bcd68f3c2',
   type: SlideObjectType.TEXT,
   size: {
@@ -111,7 +111,7 @@ const text2: TextObject = {
   },
   angle: 0,
   text: 'Suspendisse et erat.',
-  params: {
+  style: {
     fontFamily: 'Arial',
     fontSize: 16,
     bold: false,
@@ -137,7 +137,7 @@ const text2: TextObject = {
   },
 }
 
-const text3: TextObject = {
+const text3: TextObjectType = {
   id: '6bf260cf55cf4dfcb4e5fb667e759f18',
   type: SlideObjectType.TEXT,
   size: {
@@ -150,7 +150,7 @@ const text3: TextObject = {
   },
   text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, modi repellendus esse dicta labore iusto expedita ab officia debitis, ullam temporibus. Sequi, ducimus. Natus, quidem! Facere eos obcaecati ipsa, fugit quod nihil voluptates nemo animi ullam blanditiis veritatis mollitia excepturi. Voluptatibus velit est nisi nesciunt neque autem dolores vero, quo, sed aliquid in natus? Nostrum repellendus earum corporis perspiciatis exercitationem! Quisquam saepe ex voluptas. Qui, quasi eaque. Nesciunt asperiores culpa impedit odio et animi corrupti tempore iste odit ipsa ullam nostrum ducimus nobis provident harum deserunt quo at, nulla iure, praesentium omnis magni. Incidunt iure saepe, quisquam veniam pariatur vel!',
   angle: 0,
-  params: {
+  style: {
     fontFamily: 'Roboto',
     fontSize: 16,
     bold: false,
@@ -176,7 +176,7 @@ const text3: TextObject = {
   },
 }
 
-const shape1: ShapeObject = {
+const shape1: ShapeObjectType = {
   id: 'f6ba95e407ab48db939aeed916d4fc31',
   type: SlideObjectType.SHAPE,
   shapeType: ShapeType.RECTANGLE,
@@ -203,7 +203,7 @@ const shape1: ShapeObject = {
   },
 }
 
-const shape2: ShapeObject = {
+const shape2: ShapeObjectType = {
   id: '73e2788497de4fd987696e79ccdd3977',
   type: SlideObjectType.SHAPE,
   shapeType: ShapeType.TRIANGLE,
@@ -230,7 +230,7 @@ const shape2: ShapeObject = {
   },
 }
 
-const shape3: ShapeObject = {
+const shape3: ShapeObjectType = {
   id: 'c1770501005b4c5297da47724fc361e1',
   type: SlideObjectType.SHAPE,
   shapeType: ShapeType.ELLIPSE,

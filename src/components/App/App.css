@@ -6,8 +6,3 @@
     'slides-panel slide slide' calc(100% - 120px) / 320px 1fr 1fr;
   height: 100vh;
 }
-
-.top-panel {
-  grid-area: top-panel;
-  background-color: #fdcb6e;
-}
