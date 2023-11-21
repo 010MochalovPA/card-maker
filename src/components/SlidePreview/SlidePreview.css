@@ -1,10 +1,13 @@
 .slide-preview {
   background-color: white;
   width: 100%;
-  height: 200px;
-  border: 2px solid transparent;
+  height: 192px;
 }
 
 .active {
-  border: 2px solid black;
+  box-shadow: 0px 0px 0px 6px #388087;
+}
+
+.slide {
+  position: relative;
 }

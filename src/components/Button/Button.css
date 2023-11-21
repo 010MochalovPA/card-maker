@@ -1,32 +1,15 @@
 .button {
+  padding: 5px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #388087;
+  color: #f6f6f2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font:
-    20px/24px Roboto,
+    14px/20px Roboto,
     Arial,
     sans-serif;
-  padding: 6px;
-  border-radius: 12px;
-  display: flex;
-  gap: 8px;
-  min-width: 40px;
-  min-height: 40px;
-  user-select: none;
-  border: 2px solid transparent;
-}
-
-.text {
-  padding: 6px 18px;
-}
-
-.primary {
-  color: #ffffff;
-  background-color: #4caf50;
-}
-
-.secondary {
-  color: #4caf50;
-  background-color: transparent;
-}
-
-.secondary:hover {
-  border: 2px solid #4caf50;
 }

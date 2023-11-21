@@ -1,29 +1,18 @@
-import { ReactNode } from 'react'
+import { ComponentType } from 'react'
 import styles from './Button.css'
 
-export enum ButtonType {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-}
-
 type ButtonProps = {
-  type?: ButtonType
-  icon?: ReactNode
+  icon: ComponentType
   text: string
-  onClick: () => void
+  onClick?: () => void
 }
 
-const Button = ({ type = ButtonType.PRIMARY, icon, text, onClick }: ButtonProps) => {
+const Button = ({ icon: IconComponent, text, onClick }: ButtonProps) => {
   return (
-    <div
-      className={`${styles.button} ${text ? styles.text : ''} ${
-        type === ButtonType.PRIMARY ? styles.primary : styles.secondary
-      }`}
-      onClick={onClick}
-    >
-      {icon}
+    <button className={styles.button} onClick={onClick}>
+      {IconComponent && <IconComponent />}
       {text}
-    </div>
+    </button>
   )
 }
 

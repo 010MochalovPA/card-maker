@@ -1,7 +1,7 @@
 import FileIcon24dp from '../../icons/FileIcon24dp'
 import LoadIcon24dp from '../../icons/LoadIcon24dp'
 import SaveIcon24dp from '../../icons/SaveIcon24dp'
-import IconButton from '../IconButton/IconButton'
+import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
 import PresentationTitle from '../PresentationTitle/PresentationTitle'
 import styles from './Header.css'
@@ -14,11 +14,11 @@ type HeaderProps = {
 const Header = ({ title, setTitle }: HeaderProps) => (
   <div className={styles.header}>
     <Logo />
-    <IconButton icon={SaveIcon24dp} onClick={() => console.log('save')} />
-    <IconButton icon={LoadIcon24dp} onClick={() => console.log('load')} />
     <PresentationTitle title={title} setTitle={setTitle} />
     <div className={styles.spacer}></div>
-    <IconButton icon={FileIcon24dp} onClick={() => console.log('file')} />
+    <Button icon={SaveIcon24dp} text={'Сохранить'} onClick={() => console.log('save')} />
+    <Button icon={LoadIcon24dp} text={'Загрузить'} onClick={() => console.log('load')} />
+    <Button icon={FileIcon24dp} text={'Экспорт в PDF'} onClick={() => console.log('file')} />
   </div>
 )
 

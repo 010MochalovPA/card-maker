@@ -88,7 +88,7 @@ const text1: TextObjectType = {
     r: 255,
     g: 255,
     b: 255,
-    a: 0,
+    a: 1,
   },
   backgroundColor: {
     r: 255,

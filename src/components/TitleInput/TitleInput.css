@@ -1,11 +1,11 @@
 .input {
   font:
-    20px/24px Roboto,
+    18px/24px Roboto,
     Arial,
     sans-serif;
   background-color: transparent;
   border-radius: 8px;
-  padding: 6px 12px;
+  padding: 2px 10px;
   border: 1px solid transparent;
   color: #2d2d2d;
 }

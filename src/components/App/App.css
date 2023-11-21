@@ -2,8 +2,8 @@
   position: relative;
   display: grid;
   grid-template:
-    'top-panel top-panel top-panel' 120px
-    'slides-panel slide slide' calc(100% - 120px) / 320px 1fr 1fr;
+    'top-panel top-panel top-panel' 80px
+    'slides-panel slide slide' calc(100% - 80px) / 293px 1fr 1fr;
   height: 100vh;
   background-color: #f6f6f2;
 }
