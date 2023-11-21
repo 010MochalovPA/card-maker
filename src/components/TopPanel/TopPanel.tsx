@@ -1,4 +1,5 @@
 import Header from '../Header/Header'
+import Toolbar from '../Toolbar/Toolbar'
 import styles from './TopPanel.css'
 
 type TopPanelProps = {
@@ -9,6 +10,7 @@ type TopPanelProps = {
 const TopPanel = ({ title, setTitle }: TopPanelProps) => (
   <div className={styles.topPanel}>
     <Header title={title} setTitle={setTitle} />
+    <Toolbar/>
   </div>
 )
 
