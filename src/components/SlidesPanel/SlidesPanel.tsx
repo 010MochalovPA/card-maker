@@ -3,7 +3,7 @@ import { Slide } from '../../types'
 import SlidePreview from '../SlidePreview/SlidePreview'
 
 type SlidesListType = {
-  slide: Slide
+  id: string
   onClick: () => void
   isActive: boolean
 }
@@ -17,8 +17,8 @@ const SlidesPanel = ({ slideList }: SlidesPanelPropsType) => (
     <div className={styles.slidesWrapper}>
       {slideList.map((slideItem) => (
         <SlidePreview
-          key={slideItem.slide.id}
-          slide={slideItem.slide}
+          key={slideItem.id}
+          slideId={slideItem.id}
           onClick={slideItem.onClick}
           isActive={slideItem.isActive}
         />

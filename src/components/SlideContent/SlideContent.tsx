@@ -1,20 +1,15 @@
 import styles from './SlideContent.css'
-import { Slide, SlideObjectType, SlideObject } from '../../types'
 import classNames from 'classnames'
-import TextObject from '../TextObject/TextObject'
-import PictureObject from '../PictureObject/PictureObject'
-import ShapeObject from '../ShapeObject/ShapeObject'
-import getSlideBackgroundString from '../../common/getSlideBackgroundString'
 import SlideView from '../Slide/SlideView'
 
+type SlideContentProps = {
+  slideId: string
+}
 
-
-const SlideContent = (slide: Slide) => {
-  const background = getSlideBackgroundString(slide)
-
+const SlideContent = ({slideId}: SlideContentProps) => {
   return (
     <div className={classNames(styles.slideContainer)}>
-      <SlideView slide={slide} scale={1}/>
+      <SlideView slideId={slideId} scale={1}/>
     </div>
   )
 }
