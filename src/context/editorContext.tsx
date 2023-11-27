@@ -6,12 +6,13 @@ export interface EditorContext {
     getTitle(): string
     getSlideById(id: string): Slide
     getSlides(): Slide[]
+    setEditor(editor: Editor): void
 }
 
 export const EditorContext = React.createContext<Editor>({} as Editor)
 
 export const useEditorContext = (): EditorContext => {
-    const editor = useContext(EditorContext)
+    let editor = useContext(EditorContext)
 
     return {
         getEditor: (): Editor => { return editor },
@@ -19,6 +20,7 @@ export const useEditorContext = (): EditorContext => {
         getSlideById: (id: string): Slide => {
             return editor.document.slideList.find(slide => slide.id === id) ?? editor.document.slideList[0]
         },
-        getSlides: (): Slide[] => { return editor.document.slideList }
+        getSlides: (): Slide[] => { return editor.document.slideList },
+        setEditor: (newEditor: Editor) => {editor = newEditor}
     }
 }
