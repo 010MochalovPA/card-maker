@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useEditorContext } from '../../context/editorContext'
 import FileIcon24dp from '../../icons/FileIcon24dp'
 import LoadIcon24dp from '../../icons/LoadIcon24dp'
@@ -8,13 +8,11 @@ import Logo from '../Logo/Logo'
 import PresentationTitle from '../PresentationTitle/PresentationTitle'
 import styles from './Header.css'
 
-
 const Header = () => {
   const aRef = useRef<HTMLAnchorElement>(null)
   const editor = useEditorContext()
   const [title, setTitle] = useState(editor.getTitle())
   
-
   const text = JSON.stringify(editor.getEditor());
   const file = new Blob([text], { type: "text/plain" });
 
