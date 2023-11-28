@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import styles from './TitleInput.css'
 
 type TitleInputProps = {
@@ -15,7 +15,7 @@ const TitleInput = ({ text, setText }: TitleInputProps) => {
         return
       }
 
-      inputRef.current.blur()
+      inputRef.current!.blur()
     }
   }
 

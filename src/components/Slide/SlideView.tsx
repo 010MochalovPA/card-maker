@@ -1,6 +1,6 @@
 import getSlideBackgroundString from "../../common/getSlideBackgroundString"
 import { useEditorContext } from "../../context/editorContext"
-import { Slide, SlideObject, SlideObjectType } from "../../types"
+import { SlideObject, SlideObjectType } from "../../types"
 import PictureObject from "../PictureObject/PictureObject"
 import ShapeObject from "../ShapeObject/ShapeObject"
 import TextObject from "../TextObject/TextObject"
