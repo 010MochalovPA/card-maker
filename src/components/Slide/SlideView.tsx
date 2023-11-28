@@ -1,6 +1,6 @@
 import getSlideBackgroundString from "../../common/getSlideBackgroundString"
 import { useEditorContext } from "../../context/editorContext"
-import { Slide, SlideObject, SlideObjectType } from "../../types"
+import { SlideObject, SlideObjectType } from "../../types"
 import PictureObject from "../PictureObject/PictureObject"
 import ShapeObject from "../ShapeObject/ShapeObject"
 import TextObject from "../TextObject/TextObject"
@@ -26,9 +26,12 @@ const SlideView = ({slideId, scale}: SlideViewProps) => {
   const editor = useEditorContext()
   const slide = editor.getSlideById(slideId)
   const background = getSlideBackgroundString(slide)
+  const id = scale === 1 ? {
+    id: 'slideView',
+  } : {}
 
   return (
-    <div className={styles.slide} style={{ background, transform: `scale(${scale})` }}>
+    <div {...id} className={styles.slide} style={{ background, transform: `scale(${scale})` }}>
       {slide.objects.map((slideObject) => getSlideObject(slideObject))}
     </div>
   )
