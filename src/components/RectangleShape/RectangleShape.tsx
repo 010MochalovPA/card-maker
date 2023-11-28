@@ -2,7 +2,7 @@ import styles from './RectangleShape.css'
 import { ShapeObjectType } from '../../types'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getRectangleShapeStyle from '../../common/getRectangleShapeStyle'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }: ShapeObjectType) => {
   const [selected, setSelected] = useState(false)
@@ -11,36 +11,24 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
     outline: selected ? '3px solid blue' : 'none',
   }
   const rectStyle = getRectangleShapeStyle(size, borderColor, backgroundColor)
-  const divRef = useRef<HTMLDivElement | null>(null)
-  const [x, setX] = useState(objectStyle.left);
-  const [y, setY] = useState(objectStyle.top);
+  const [pos, setPos] = useState({
+    left: objectStyle.left,
+    top: objectStyle.top,
+  })
   const [startPos, setStartPos] = useState({x: 0, y: 0,})
 
   const handleDragStart = ((event: React.DragEvent) => {
-    // This method runs when the dragging starts
-    console.log("Started")
     setStartPos({x: event.clientX, y: event.clientY})
   })
 
   const handleDrag = ((event: React.DragEvent) => {
-    // This method runs when the component is being dragged
-    console.log("Dragging...")
   })
 
   const handleDragEnd = ((event: React.DragEvent) => {
-    const {top: slideViewTop, left: slideViewLeft} = document.getElementById('slideView')!.getBoundingClientRect()
-
-    // This method runs when the dragging stops
-    console.log("Ended")
-    const eventX = event.clientX
-    const eventY = event.clientY
-    const rectLeft = divRef.current!.getBoundingClientRect().left
-    const rectTop = divRef.current!.getBoundingClientRect().top
-    console.log(`slideViewTop = ${slideViewTop} ; slideViewLeft = ${slideViewLeft}`)
-    console.log(`eventX = ${eventX} ; eventY = ${eventY}; rectLeft = ${rectLeft} ; rectTop = ${rectTop}`)
-    console.log(`startPosX = ${startPos.x} ; startPosY = ${startPos.y}`)
-    setX((prev) => (prev + eventX - startPos.x));
-    setY((prev) => (prev + eventY - startPos.y));
+    setPos((prev) => ({
+      left: prev.left + event.clientX - startPos.x,
+      top: prev.top + event.clientY - startPos.y,
+    }))
   })
 
   return (
@@ -49,9 +37,8 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
       onDragStart={handleDragStart}
       onDrag={handleDrag}
       onDragEnd={handleDragEnd}
-      ref={divRef}
       className={styles.shape}
-      style={{...objectStyle, top: y, left: x}}
+      style={{...objectStyle, top: pos.top, left: pos.left}}
       onClick={() =>
         setSelected((prev: boolean) => !prev)
       }
