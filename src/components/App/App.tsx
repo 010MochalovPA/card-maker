@@ -1,29 +1,15 @@
-import styles from './App.css'
-import SlidesPanel from '../SlidesPanel/SlidesPanel'
-import SlideContent from '../SlideContent/SlideContent'
-import { Slide } from '../../types'
-import { useState } from 'react'
-import TopPanel from '../TopPanel/TopPanel'
-import { useEditorContext } from '../../context/editorContext'
+import Layout from '../Layout/Layout'
+import { editor2 } from '../../mock'
+import { EditorContext } from '../../context/editorContext'
+import { useMemo, useState } from 'react';
 
 const App = () => {
-  const editorContext = useEditorContext()
-  const slideList = editorContext.getSlides()
-
-  const [selectSlideId, setSelectSlideId] = useState(slideList[0].id)
-
+  const [editor, setEditor] = useState(editor2);
+  const update = useMemo(() => {return {editor, setEditor}}, [editor])
   return (
-    <div className={styles.app}>
-      <TopPanel/>
-      <SlidesPanel
-        slideList={slideList.map((slide) => ({
-          id: slide.id,
-          onClick: () => setSelectSlideId(slide.id),
-          isActive: slide.id === selectSlideId,
-        }))}
-      />
-      <SlideContent slideId={selectSlideId} />
-    </div>
+      <EditorContext.Provider value={update}>
+        <Layout/>
+      </EditorContext.Provider>
   )
 }
 
