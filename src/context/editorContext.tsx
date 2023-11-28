@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useCallback, useContext, useMemo, useState} from 'react'
 import { Editor, Slide } from '../types'
 
 export interface EditorContext {
@@ -9,10 +9,10 @@ export interface EditorContext {
     setEditor(editor: Editor): void
 }
 
-export const EditorContext = React.createContext<Editor>({} as Editor)
+export const EditorContext = React.createContext<{editor: Editor, setEditor: React.Dispatch<React.SetStateAction<Editor>>}>({editor: {} as Editor, setEditor: () => {}})
 
 export const useEditorContext = (): EditorContext => {
-    let editor = useContext(EditorContext)
+    const {editor, setEditor} = useContext(EditorContext)
 
     return {
         getEditor: (): Editor => { return editor },
@@ -21,6 +21,8 @@ export const useEditorContext = (): EditorContext => {
             return editor.document.slideList.find(slide => slide.id === id) ?? editor.document.slideList[0]
         },
         getSlides: (): Slide[] => { return editor.document.slideList },
-        setEditor: (newEditor: Editor) => {editor = newEditor}
+        setEditor: (newEditor: Editor) => {
+            setEditor(newEditor)
+        }
     }
 }
