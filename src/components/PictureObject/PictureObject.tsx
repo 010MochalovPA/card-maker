@@ -1,11 +1,11 @@
 import styles from './PictureObject.css'
 import { PictureObjectType } from '../../types'
 import getPictureObjectStyle from '../../common/getPictureObjectStyle'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const PictureObject = ({ size, position, angle, data }: PictureObjectType) => {
   const style = getPictureObjectStyle(position, size, angle, data)
-
+  const divRef = useRef<HTMLDivElement | null>(null)
   const [posStart, setPosStart] = useState({
     left: position.left,
     top: position.top,
@@ -19,6 +19,7 @@ const PictureObject = ({ size, position, angle, data }: PictureObjectType) => {
 
   const handleDragStart = ((event: React.DragEvent) => {
     setStartPosMouse({x: event.clientX, y: event.clientY})
+    event.dataTransfer.setDragImage(divRef.current!, -9999, -9999)
   })
 
   const handleDrag = ((event: React.DragEvent) => {
@@ -41,6 +42,7 @@ const PictureObject = ({ size, position, angle, data }: PictureObjectType) => {
   })
 
   return <div
+    ref={divRef}
     draggable
     onDragStart={handleDragStart}
     onDrag={handleDrag}
