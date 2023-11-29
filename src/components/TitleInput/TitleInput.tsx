@@ -15,7 +15,7 @@ const TitleInput = ({ text, setText }: TitleInputProps) => {
         return
       }
 
-      inputRef.current.blur()
+      inputRef.current!.blur()
     }
   }
 

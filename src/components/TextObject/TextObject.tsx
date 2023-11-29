@@ -8,23 +8,37 @@ const TextObject = ({position, size, angle, style, text, borderColor, background
   const textStyle = getTextStyle(style)
   const objectStyle = getTextObjectStyle(position, size, angle, borderColor, backgroundColor)
 
+  const [posStart, setPosStart] = useState({
+    left: position.left,
+    top: position.top,
+  })
+
   const [pos, setPos] = useState({
     left: position.left,
     top: position.top,
   })
-  const [startPos, setStartPos] = useState({x: 0, y: 0,})
+  const [startPosMouse, setStartPosMouse] = useState({x: 0, y: 0,})
 
   const handleDragStart = ((event: React.DragEvent) => {
-    setStartPos({x: event.clientX, y: event.clientY})
+    setStartPosMouse({x: event.clientX, y: event.clientY})
   })
 
   const handleDrag = ((event: React.DragEvent) => {
+    event.preventDefault()
+    setPos((prev) => ({
+      left: posStart.left + event.clientX - startPosMouse.x,
+      top: posStart.top + event.clientY - startPosMouse.y,
+    }))
   })
 
   const handleDragEnd = ((event: React.DragEvent) => {
-    setPos((prev) => ({
-      left: prev.left + event.clientX - startPos.x,
-      top: prev.top + event.clientY - startPos.y,
+    setPos(() => ({
+      left: posStart.left + event.clientX - startPosMouse.x,
+      top: posStart.top + event.clientY - startPosMouse.y,
+    }))
+    setPosStart((prev) => ({
+      left: prev.left + event.clientX - startPosMouse.x,
+      top: prev.top + event.clientY - startPosMouse.y,
     }))
   })
 
