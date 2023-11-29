@@ -4,7 +4,7 @@ import { TextObjectType } from '../../types'
 import getTextObjectStyle from '../../common/getTextObjectStyle'
 import React, { useState } from 'react'
 
-const TextObject = ({position, size, angle, style, text, borderColor, backgroundColor}: TextObjectType) => {
+const TextObject = ({ position, size, angle, style, text, borderColor, backgroundColor }: TextObjectType) => {
   const textStyle = getTextStyle(style)
   const objectStyle = getTextObjectStyle(position, size, angle, borderColor, backgroundColor)
 
@@ -17,21 +17,22 @@ const TextObject = ({position, size, angle, style, text, borderColor, background
     left: position.left,
     top: position.top,
   })
-  const [startPosMouse, setStartPosMouse] = useState({x: 0, y: 0,})
+  const [startPosMouse, setStartPosMouse] = useState({ x: 0, y: 0 })
 
-  const handleDragStart = ((event: React.DragEvent) => {
-    setStartPosMouse({x: event.clientX, y: event.clientY})
-  })
+  const handleDragStart = (event: React.DragEvent) => {
+    setStartPosMouse({ x: event.clientX, y: event.clientY })
+  }
 
-  const handleDrag = ((event: React.DragEvent) => {
+  const handleDrag = (event: React.DragEvent) => {
+    event.stopPropagation()
     event.preventDefault()
-    setPos((prev) => ({
+    setPos(() => ({
       left: posStart.left + event.clientX - startPosMouse.x,
       top: posStart.top + event.clientY - startPosMouse.y,
     }))
-  })
+  }
 
-  const handleDragEnd = ((event: React.DragEvent) => {
+  const handleDragEnd = (event: React.DragEvent) => {
     setPos(() => ({
       left: posStart.left + event.clientX - startPosMouse.x,
       top: posStart.top + event.clientY - startPosMouse.y,
@@ -40,7 +41,7 @@ const TextObject = ({position, size, angle, style, text, borderColor, background
       left: prev.left + event.clientX - startPosMouse.x,
       top: prev.top + event.clientY - startPosMouse.y,
     }))
-  })
+  }
 
   return (
     <div
@@ -49,7 +50,7 @@ const TextObject = ({position, size, angle, style, text, borderColor, background
       onDrag={handleDrag}
       onDragEnd={handleDragEnd}
       className={styles.text}
-      style={{...objectStyle, top: `${pos.top}px`, left: `${pos.left}px`}}
+      style={{ ...objectStyle, top: `${pos.top}px`, left: `${pos.left}px` }}
     >
       <p style={textStyle}>{text}</p>
     </div>

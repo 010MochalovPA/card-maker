@@ -13,7 +13,7 @@ const Layout = () => {
 
   return (
     <div className={styles.layout}>
-      <TopPanel/>
+      <TopPanel />
       <SlidesPanel
         slideList={slideList.map((slide) => ({
           id: slide.id,

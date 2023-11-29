@@ -15,21 +15,21 @@ const PictureObject = ({ size, position, angle, data }: PictureObjectType) => {
     left: position.left,
     top: position.top,
   })
-  const [startPosMouse, setStartPosMouse] = useState({x: 0, y: 0,})
+  const [startPosMouse, setStartPosMouse] = useState({ x: 0, y: 0 })
 
-  const handleDragStart = ((event: React.DragEvent) => {
-    setStartPosMouse({x: event.clientX, y: event.clientY})
-  })
+  const handleDragStart = (event: React.DragEvent) => {
+    setStartPosMouse({ x: event.clientX, y: event.clientY })
+  }
 
-  const handleDrag = ((event: React.DragEvent) => {
+  const handleDrag = (event: React.DragEvent) => {
     event.preventDefault()
     setPos(() => ({
       left: posStart.left + event.clientX - startPosMouse.x,
       top: posStart.top + event.clientY - startPosMouse.y,
     }))
-  })
+  }
 
-  const handleDragEnd = ((event: React.DragEvent) => {
+  const handleDragEnd = (event: React.DragEvent) => {
     setPos(() => ({
       left: posStart.left + event.clientX - startPosMouse.x,
       top: posStart.top + event.clientY - startPosMouse.y,
@@ -38,16 +38,18 @@ const PictureObject = ({ size, position, angle, data }: PictureObjectType) => {
       left: prev.left + event.clientX - startPosMouse.x,
       top: prev.top + event.clientY - startPosMouse.y,
     }))
-  })
+  }
 
-  return <div
-    draggable
-    onDragStart={handleDragStart}
-    onDrag={handleDrag}
-    onDragEnd={handleDragEnd}
-    className={styles.picture}
-    style={{...style, top: `${pos.top}px`, left: `${pos.left}px`}}
-  ></div>
+  return (
+    <div
+      draggable
+      onDragStart={handleDragStart}
+      onDrag={handleDrag}
+      onDragEnd={handleDragEnd}
+      className={styles.picture}
+      style={{ ...style, top: `${pos.top}px`, left: `${pos.left}px` }}
+    ></div>
+  )
 }
 
 export default PictureObject

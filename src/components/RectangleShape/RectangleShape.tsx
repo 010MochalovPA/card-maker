@@ -21,21 +21,21 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
     left: objectStyle.left,
     top: objectStyle.top,
   })
-  const [startPosMouse, setStartPosMouse] = useState({x: 0, y: 0,})
+  const [startPosMouse, setStartPosMouse] = useState({ x: 0, y: 0 })
 
-  const handleDragStart = ((event: React.DragEvent) => {
-    setStartPosMouse({x: event.clientX, y: event.clientY})
-  })
+  const handleDragStart = (event: React.DragEvent) => {
+    setStartPosMouse({ x: event.clientX, y: event.clientY })
+  }
 
-  const handleDrag = ((event: React.DragEvent) => {
+  const handleDrag = (event: React.DragEvent) => {
     event.preventDefault()
     setPos(() => ({
       left: posStart.left + event.clientX - startPosMouse.x,
       top: posStart.top + event.clientY - startPosMouse.y,
     }))
-  })
+  }
 
-  const handleDragEnd = ((event: React.DragEvent) => {
+  const handleDragEnd = (event: React.DragEvent) => {
     setPos(() => ({
       left: posStart.left + event.clientX - startPosMouse.x,
       top: posStart.top + event.clientY - startPosMouse.y,
@@ -44,7 +44,7 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
       left: prev.left + event.clientX - startPosMouse.x,
       top: prev.top + event.clientY - startPosMouse.y,
     }))
-  })
+  }
 
   return (
     <div
@@ -53,10 +53,8 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
       onDrag={handleDrag}
       onDragEnd={handleDragEnd}
       className={styles.shape}
-      style={{...objectStyle, top: pos.top, left: pos.left}}
-      onClick={() =>
-        setSelected((prev: boolean) => !prev)
-      }
+      style={{ ...objectStyle, top: pos.top, left: pos.left }}
+      onClick={() => setSelected((prev: boolean) => !prev)}
     >
       <svg width={size.width} height={size.height} xmlns="http://www.w3.org/2000/svg">
         <rect {...rectStyle} />

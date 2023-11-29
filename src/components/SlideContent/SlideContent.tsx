@@ -6,10 +6,10 @@ type SlideContentProps = {
   slideId: string
 }
 
-const SlideContent = ({slideId}: SlideContentProps) => {
+const SlideContent = ({ slideId }: SlideContentProps) => {
   return (
     <div className={classNames(styles.slideContainer)}>
-      <SlideView slideId={slideId} scale={1}/>
+      <SlideView slideId={slideId} scale={1} />
     </div>
   )
 }

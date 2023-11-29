@@ -1,8 +1,7 @@
 .slide {
-    width: 1024px;
-    height: 768px;
-    position: relative;
-    overflow: hidden;
-    transform-origin: left top;
-  }
-  
+  width: 1024px;
+  height: 768px;
+  position: relative;
+  overflow: hidden;
+  transform-origin: left top;
+}

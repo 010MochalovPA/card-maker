@@ -6,33 +6,43 @@ import ElipseIcon20dp from '../../icons/ElipseIcon20dp'
 import ToolbarItem from '../ToolbarItem/ToolbarItem'
 
 export type OptionItemType = {
-    icon: ComponentType
-    onClick: () => void
-    tooltip: string
+  icon: ComponentType
+  onClick: () => void
+  tooltip: string
 }
 
 const options: OptionItemType[] = [
-    {
-        icon: RectangleIcon20dp,
-        onClick: () => {console.log('create rectangle')},
-        tooltip: 'Rectangle'
+  {
+    icon: RectangleIcon20dp,
+    onClick: () => {
+      console.log('create rectangle')
     },
-    {
-        icon: TriangleIcon20dp,
-        onClick: () => {console.log('create triangle')},
-        tooltip: 'Triangle'
+    tooltip: 'Rectangle',
+  },
+  {
+    icon: TriangleIcon20dp,
+    onClick: () => {
+      console.log('create triangle')
     },
-    {
-        icon: ElipseIcon20dp,
-        onClick: () => {console.log('create elipse')},
-        tooltip: 'Elipse'
-    }
+    tooltip: 'Triangle',
+  },
+  {
+    icon: ElipseIcon20dp,
+    onClick: () => {
+      console.log('create elipse')
+    },
+    tooltip: 'Elipse',
+  },
 ]
 
 const Toolbar = () => {
-    return <div className={styles.toolbar}>
-        {options.map((option, index) => <ToolbarItem key={index} {...option}/>)}
+  return (
+    <div className={styles.toolbar}>
+      {options.map((option, index) => (
+        <ToolbarItem key={index} {...option} />
+      ))}
     </div>
+  )
 }
 
 export default Toolbar

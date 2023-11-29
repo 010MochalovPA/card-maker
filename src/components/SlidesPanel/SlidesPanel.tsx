@@ -1,5 +1,4 @@
 import styles from './SlidesPanel.css'
-import { Slide } from '../../types'
 import SlidePreview from '../SlidePreview/SlidePreview'
 
 type SlidesListType = {
