@@ -5,11 +5,9 @@ import { useMemo, useState } from 'react'
 
 const App = () => {
   const [editor, setEditor] = useState(editor1)
-  const update = useMemo(() => {
-    return { editor, setEditor }
-  }, [editor])
+  const context = useMemo(() => ({ editor, setEditor }), [editor])
   return (
-    <EditorContext.Provider value={update}>
+    <EditorContext.Provider value={context}>
       <Layout />
     </EditorContext.Provider>
   )
