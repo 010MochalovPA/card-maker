@@ -8,7 +8,7 @@ import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 const TriangleShape = ({ position, size, angle, borderColor, backgroundColor }: ShapeObjectType) => {
   const ref = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState(position)
-  useDragAndDrop(ref, setPos, position)
+  useDragAndDrop(ref, setPos, pos)
 
   const objectStyle = getShapeObjectStyle(pos, size, angle)
   const triangleStyle = getTriangleShapeStyle(size, borderColor, backgroundColor)

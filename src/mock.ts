@@ -188,7 +188,7 @@ const shape1: ShapeObjectType = {
     left: 640,
     top: 410,
   },
-  angle: 0,
+  angle: 30,
   backgroundColor: {
     r: 0,
     g: 128,

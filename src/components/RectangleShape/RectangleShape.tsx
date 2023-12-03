@@ -2,7 +2,7 @@ import styles from './RectangleShape.css'
 import { ShapeObjectType } from '../../types'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getRectangleShapeStyle from '../../common/getRectangleShapeStyle'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }: ShapeObjectType) => {
   const [selected, setSelected] = useState(false)
@@ -11,6 +11,7 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
     outline: selected ? '3px solid blue' : 'none',
   }
   const rectStyle = getRectangleShapeStyle(size, borderColor, backgroundColor)
+  const divRef = useRef<HTMLDivElement | null>(null)
 
   const [posStart, setPosStart] = useState({
     left: position.left,
@@ -25,6 +26,7 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
 
   const handleDragStart = (event: React.DragEvent) => {
     setStartPosMouse({ x: event.clientX, y: event.clientY })
+    event.dataTransfer.setDragImage(divRef.current!, -9999, -9999)
   }
 
   const handleDrag = (event: React.DragEvent) => {
@@ -48,6 +50,7 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
 
   return (
     <div
+      ref={divRef}
       draggable
       onDragStart={handleDragStart}
       onDrag={handleDrag}

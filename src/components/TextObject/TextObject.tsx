@@ -2,11 +2,12 @@ import styles from './TextObject.css'
 import { getTextStyle } from '../../common/getTextStyle'
 import { TextObjectType } from '../../types'
 import getTextObjectStyle from '../../common/getTextObjectStyle'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const TextObject = ({ position, size, angle, style, text, borderColor, backgroundColor }: TextObjectType) => {
   const textStyle = getTextStyle(style)
   const objectStyle = getTextObjectStyle(position, size, angle, borderColor, backgroundColor)
+  const divRef = useRef<HTMLDivElement>(null)
 
   const [posStart, setPosStart] = useState({
     left: position.left,
@@ -21,6 +22,7 @@ const TextObject = ({ position, size, angle, style, text, borderColor, backgroun
 
   const handleDragStart = (event: React.DragEvent) => {
     setStartPosMouse({ x: event.clientX, y: event.clientY })
+    event.dataTransfer.setDragImage(divRef.current!, -9999, -9999)
   }
 
   const handleDrag = (event: React.DragEvent) => {
@@ -45,6 +47,7 @@ const TextObject = ({ position, size, angle, style, text, borderColor, backgroun
 
   return (
     <div
+      ref={divRef}
       draggable
       onDragStart={handleDragStart}
       onDrag={handleDrag}

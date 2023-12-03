@@ -25,6 +25,10 @@ const useDragAndDrop = (ref: RefObject<HTMLDivElement>, setPos: (pos: Position) 
     }
 
     ref.current!.addEventListener('mousedown', onMouseDown)
+
+    return () => {
+      ref.current!.removeEventListener('mousedown', onMouseDown)
+    }
   }, [])
 }
 
