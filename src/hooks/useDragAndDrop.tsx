@@ -15,6 +15,9 @@ const useDragAndDrop = (ref: RefObject<HTMLDivElement>, setPos: (pos: Position) 
     const onMouseUp = () => {
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseup', onMouseUp)
+      if (ref.current) {
+        ref.current.style.opacity = 'inherit'
+      }
     }
 
     const onMouseDown = (e: MouseEvent) => {
@@ -22,14 +25,17 @@ const useDragAndDrop = (ref: RefObject<HTMLDivElement>, setPos: (pos: Position) 
       PosY = e.pageY
       window.addEventListener('mousemove', onMouseMove)
       window.addEventListener('mouseup', onMouseUp)
+      if (ref.current) {
+        ref.current.style.opacity = '.5'
+      }
     }
 
     ref.current!.addEventListener('mousedown', onMouseDown)
 
     return () => {
-      ref.current!.removeEventListener('mousedown', onMouseDown)
+      ref.current && ref.current.removeEventListener('mousedown', onMouseDown)
     }
-  }, [])
+  })
 }
 
 export { useDragAndDrop }
