@@ -3,6 +3,7 @@ import { ShapeObjectType } from '../../types'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getRectangleShapeStyle from '../../common/getRectangleShapeStyle'
 import React, { useRef, useState } from 'react'
+import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 
 const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }: ShapeObjectType) => {
   const [selected, setSelected] = useState(false)
@@ -11,50 +12,13 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
     outline: selected ? '3px solid blue' : 'none',
   }
   const rectStyle = getRectangleShapeStyle(size, borderColor, backgroundColor)
-  const divRef = useRef<HTMLDivElement | null>(null)
-
-  const [posStart, setPosStart] = useState({
-    left: position.left,
-    top: position.top,
-  })
-
-  const [pos, setPos] = useState({
-    left: objectStyle.left,
-    top: objectStyle.top,
-  })
-  const [startPosMouse, setStartPosMouse] = useState({ x: 0, y: 0 })
-
-  const handleDragStart = (event: React.DragEvent) => {
-    setStartPosMouse({ x: event.clientX, y: event.clientY })
-    event.dataTransfer.setDragImage(divRef.current!, -9999, -9999)
-  }
-
-  const handleDrag = (event: React.DragEvent) => {
-    event.preventDefault()
-    setPos(() => ({
-      left: posStart.left + event.clientX - startPosMouse.x,
-      top: posStart.top + event.clientY - startPosMouse.y,
-    }))
-  }
-
-  const handleDragEnd = (event: React.DragEvent) => {
-    setPos(() => ({
-      left: posStart.left + event.clientX - startPosMouse.x,
-      top: posStart.top + event.clientY - startPosMouse.y,
-    }))
-    setPosStart((prev) => ({
-      left: prev.left + event.clientX - startPosMouse.x,
-      top: prev.top + event.clientY - startPosMouse.y,
-    }))
-  }
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [pos, setPos] = useState(position)
+  useDragAndDrop(ref, setPos, pos)
 
   return (
     <div
-      ref={divRef}
-      draggable
-      onDragStart={handleDragStart}
-      onDrag={handleDrag}
-      onDragEnd={handleDragEnd}
+      ref={ref}
       className={styles.shape}
       style={{ ...objectStyle, top: pos.top, left: pos.left }}
       onClick={() => setSelected((prev: boolean) => !prev)}
