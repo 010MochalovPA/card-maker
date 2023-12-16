@@ -39,7 +39,7 @@ const picture2: PictureObjectType = {
     left: 250,
     top: 100,
   },
-  angle: 5,
+  angle: 0,
   data: 'https://i.pinimg.com/736x/c8/92/f8/c892f8559ff2bef1990cb170f83b6bc0.jpg',
 }
 
@@ -55,7 +55,7 @@ const picture3: PictureObjectType = {
     left: 360,
     top: 240,
   },
-  angle: 90,
+  angle: 0,
   data: 'https://freesvg.org/img/tikigiki_simple-beach-ball-01.png',
 }
 
@@ -70,7 +70,7 @@ const text1: TextObjectType = {
     left: 390,
     top: 85,
   },
-  angle: 355,
+  angle: 0,
   text: 'Lorem Ipsum',
   style: {
     fontFamily: 'Roboto',
@@ -109,7 +109,7 @@ const text2: TextObjectType = {
     left: 600,
     top: 260,
   },
-  angle: 15,
+  angle: 0,
   text: 'Suspendisse et erat.',
   style: {
     fontFamily: 'Arial',
@@ -149,7 +149,7 @@ const text3: TextObjectType = {
     top: 0,
   },
   text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, modi repellendus esse dicta labore iusto expedita ab officia debitis, ullam temporibus. Sequi, ducimus. Natus, quidem! Facere eos obcaecati ipsa, fugit quod nihil voluptates nemo animi ullam blanditiis veritatis mollitia excepturi. Voluptatibus velit est nisi nesciunt neque autem dolores vero, quo, sed aliquid in natus? Nostrum repellendus earum corporis perspiciatis exercitationem!',
-  angle: 25,
+  angle: 0,
   style: {
     fontFamily: 'Roboto',
     fontSize: 16,
@@ -188,7 +188,7 @@ const shape1: ShapeObjectType = {
     left: 640,
     top: 410,
   },
-  angle: 30,
+  angle: 0,
   backgroundColor: {
     r: 0,
     g: 128,
@@ -215,7 +215,7 @@ const shape2: ShapeObjectType = {
     left: 220,
     top: 200,
   },
-  angle: 15,
+  angle: 0,
   backgroundColor: {
     r: 255,
     g: 255,
@@ -242,7 +242,7 @@ const shape3: ShapeObjectType = {
     left: 250,
     top: 380,
   },
-  angle: 135,
+  angle: 0,
   backgroundColor: {
     r: 255,
     g: 86,

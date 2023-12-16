@@ -8,7 +8,7 @@ import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 const EllipseShape = ({ position, size, angle, borderColor, backgroundColor }: ShapeObjectType) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [pos, setPos] = useState(position)
-  useDragAndDrop(ref, setPos, pos)
+  // useDragAndDrop(ref, setPos, pos)
 
   const objectStyle = getShapeObjectStyle(pos, size, angle)
   const ellipseStyle = getEllipseShapeStyle(size, borderColor, backgroundColor)

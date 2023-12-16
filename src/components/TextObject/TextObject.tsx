@@ -10,7 +10,7 @@ const TextObject = ({ position, size, angle, style, text, borderColor, backgroun
   const objectStyle = getTextObjectStyle(position, size, angle, borderColor, backgroundColor)
   const ref = useRef<HTMLDivElement | null>(null)
   const [pos, setPos] = useState(position)
-  useDragAndDrop(ref, setPos, pos)
+  // useDragAndDrop(ref, setPos, pos)
   return (
     <div ref={ref} className={styles.text} style={{ ...objectStyle, top: `${pos.top}px`, left: `${pos.left}px` }}>
       <p style={textStyle}>{text}</p>

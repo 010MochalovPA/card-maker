@@ -9,21 +9,25 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }:
   const [selected, setSelected] = useState(false)
   const objectStyle = {
     ...getShapeObjectStyle(position, size, angle),
-    outline: selected ? '3px solid blue' : 'none',
+    outline: selected ? '10px dashed blue' : 'none',
+    outlineOffset: '-10px',
   }
-  const rectStyle = getRectangleShapeStyle(size, borderColor, backgroundColor)
   const ref = useRef<HTMLDivElement | null>(null)
   const [pos, setPos] = useState(position)
-  useDragAndDrop(ref, setPos, pos)
+  const [wh, setWh] = useState(size)
+
+  useDragAndDrop(ref, pos, setPos, selected, setSelected, wh, setWh)
+
+  const rectStyle = getRectangleShapeStyle(wh, borderColor, backgroundColor)
 
   return (
     <div
       ref={ref}
       className={styles.shape}
-      style={{ ...objectStyle, top: pos.top, left: pos.left }}
+      style={{ ...objectStyle, top: pos.top, left: pos.left, width: wh.width, height: wh.height }}
       onClick={() => setSelected((prev: boolean) => !prev)}
     >
-      <svg width={size.width} height={size.height} xmlns="http://www.w3.org/2000/svg">
+      <svg width={wh.width} height={wh.height} xmlns="http://www.w3.org/2000/svg">
         <rect {...rectStyle} />
       </svg>
     </div>
