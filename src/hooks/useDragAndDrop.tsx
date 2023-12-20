@@ -5,10 +5,20 @@ const useDragAndDrop = (
   ref: RefObject<HTMLDivElement>,
   position: Position,
   size: Size,
-  fn: (e: MouseEvent, deltaX: number, deltaY: number, startPosLeft: number, startPosTop: number, posX: number, posY: number, startWidth: number, startHeight: number) => void
+  fn: (
+    e: MouseEvent,
+    deltaX: number,
+    deltaY: number,
+    startPosLeft: number,
+    startPosTop: number,
+    posX: number,
+    posY: number,
+    startWidth: number,
+    startHeight: number,
+  ) => void,
 ) => {
   let posX: number, posY: number
-  const delta: {x: number, y: number} = {x: 0, y: 0}
+  const delta: { x: number; y: number } = { x: 0, y: 0 }
 
   useEffect(() => {
     const onMouseMove = (e: MouseEvent) => {

@@ -21,7 +21,18 @@ const SelectedItem = ({ position, size, setPosition, setSize }: SelectedItemProp
   const bottomRef = useRef<HTMLDivElement>(null)
   const leftBottomRef = useRef<HTMLDivElement>(null)
 
-  const [_, leftResize, leftTopResize, topResize, rightTopResize, rightResize, rightBottomResize, bottomResize, leftBottomResize] = getDNDFunctions(setPosition, setSize)
+  const [
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _,
+    leftResize,
+    leftTopResize,
+    topResize,
+    rightTopResize,
+    rightResize,
+    rightBottomResize,
+    bottomResize,
+    leftBottomResize,
+  ] = getDNDFunctions(setPosition, setSize)
 
   useDragAndDrop(leftRef, position, size, leftResize)
   useDragAndDrop(leftTopRef, position, size, leftTopResize)
@@ -34,42 +45,128 @@ const SelectedItem = ({ position, size, setPosition, setSize }: SelectedItemProp
 
   return (
     <>
-      <div ref={leftRef} className={styles.selected} style={{ top: position.top - 3, left: position.left - 3, width: 6, height: size.height + 6, cursor: "ew-resize" }}>
+      <div
+        ref={leftRef}
+        className={styles.selected}
+        style={{
+          top: position.top - 3,
+          left: position.left - 3,
+          width: 6,
+          height: size.height + 6,
+          cursor: 'ew-resize',
+        }}
+      >
         <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: size.height + 6 }}>
-          <path d={`m 3,3 0,${size.height}`} style={{ fill: "none", stroke: "#000000", strokeWidth: "2", strokeDasharray: "3,3" }} />
+          <path
+            d={`m 3,3 0,${size.height}`}
+            style={{ fill: 'none', stroke: '#000000', strokeWidth: '2', strokeDasharray: '3,3' }}
+          />
         </svg>
       </div>
-      <div ref={topRef} className={styles.selected} style={{ top: position.top - 3, left: position.left - 3, width: size.width + 6, height: 6, cursor: "ns-resize" }}>
+      <div
+        ref={topRef}
+        className={styles.selected}
+        style={{
+          top: position.top - 3,
+          left: position.left - 3,
+          width: size.width + 6,
+          height: 6,
+          cursor: 'ns-resize',
+        }}
+      >
         <svg className={styles.selected} style={{ top: 0, left: 0, width: size.width + 6, height: 6 }}>
-          <path d={`m 3,3 ${size.width}, 0`} style={{ fill: "none", stroke: "#000000", strokeWidth: "2", strokeDasharray: "3,3" }} />
+          <path
+            d={`m 3,3 ${size.width}, 0`}
+            style={{ fill: 'none', stroke: '#000000', strokeWidth: '2', strokeDasharray: '3,3' }}
+          />
         </svg>
       </div>
-      <div ref={bottomRef} className={styles.selected} style={{ top: position.top + size.height - 3, left: position.left - 3, width: size.width + 6, height: 6, cursor: "ns-resize" }}>
+      <div
+        ref={bottomRef}
+        className={styles.selected}
+        style={{
+          top: position.top + size.height - 3,
+          left: position.left - 3,
+          width: size.width + 6,
+          height: 6,
+          cursor: 'ns-resize',
+        }}
+      >
         <svg className={styles.selected} style={{ top: 0, left: 0, width: size.width + 6, height: 6 }}>
-          <path d={`m 3,3 ${size.width}, 0`} style={{ fill: "none", stroke: "#000000", strokeWidth: "2", strokeDasharray: "3,3"}} />
+          <path
+            d={`m 3,3 ${size.width}, 0`}
+            style={{ fill: 'none', stroke: '#000000', strokeWidth: '2', strokeDasharray: '3,3' }}
+          />
         </svg>
       </div>
-      <div ref={rightRef} className={styles.selected} style={{ top: position.top - 3, left: position.left + size.width - 3, width: 6, height: size.height + 6, cursor: "ew-resize"}}>
-        <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: size.height + 6}}>
-          <path d={`m 3,3 0,${size.height}`} style={{ fill: "none", stroke: "#000000", strokeWidth: "2", strokeDasharray: "3,3"}} />
+      <div
+        ref={rightRef}
+        className={styles.selected}
+        style={{
+          top: position.top - 3,
+          left: position.left + size.width - 3,
+          width: 6,
+          height: size.height + 6,
+          cursor: 'ew-resize',
+        }}
+      >
+        <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: size.height + 6 }}>
+          <path
+            d={`m 3,3 0,${size.height}`}
+            style={{ fill: 'none', stroke: '#000000', strokeWidth: '2', strokeDasharray: '3,3' }}
+          />
         </svg>
       </div>
-      <div ref={leftTopRef} className={styles.selected} style={{ top: position.top - 3, left: position.left - 3, width: 6, height: 6, cursor: "nwse-resize"}}>
+      <div
+        ref={leftTopRef}
+        className={styles.selected}
+        style={{ top: position.top - 3, left: position.left - 3, width: 6, height: 6, cursor: 'nwse-resize' }}
+      >
         <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: 6 }}>
           <circle r="3" cx="3" cy="3" fill="yellow" stroke="black" strokeWidth="1" />
         </svg>
       </div>
-      <div ref={leftBottomRef} className={styles.selected} style={{ top: position.top + size.height - 3, left: position.left - 3, width: 6, height: 6, cursor: "nesw-resize"}}>
-        <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: 6}}>
+      <div
+        ref={leftBottomRef}
+        className={styles.selected}
+        style={{
+          top: position.top + size.height - 3,
+          left: position.left - 3,
+          width: 6,
+          height: 6,
+          cursor: 'nesw-resize',
+        }}
+      >
+        <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: 6 }}>
           <circle r="3" cx="3" cy="3" fill="yellow" stroke="black" strokeWidth="1" />
         </svg>
       </div>
-      <div ref={rightBottomRef} className={styles.selected} style={{ top: position.top + size.height - 3, left: position.left + size.width - 3, width: 6, height: 6, cursor: "nwse-resize"}}>
-        <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: 6}}>
+      <div
+        ref={rightBottomRef}
+        className={styles.selected}
+        style={{
+          top: position.top + size.height - 3,
+          left: position.left + size.width - 3,
+          width: 6,
+          height: 6,
+          cursor: 'nwse-resize',
+        }}
+      >
+        <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: 6 }}>
           <circle r="3" cx="3" cy="3" fill="yellow" stroke="black" strokeWidth="1" />
         </svg>
       </div>
-      <div ref={rightTopRef} className={styles.selected} style={{ top: position.top - 3, left: position.left + size.width - 3, width: 6, height: 6, cursor: "nesw-resize"}}>
+      <div
+        ref={rightTopRef}
+        className={styles.selected}
+        style={{
+          top: position.top - 3,
+          left: position.left + size.width - 3,
+          width: 6,
+          height: 6,
+          cursor: 'nesw-resize',
+        }}
+      >
         <svg className={styles.selected} style={{ top: 0, left: 0, width: 6, height: 6 }}>
           <circle r="3" cx="3" cy="3" fill="yellow" stroke="black" strokeWidth="1" />
         </svg>

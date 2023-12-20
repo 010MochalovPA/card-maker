@@ -12,8 +12,18 @@ type TextObjectProps = TextObjectType & {
   onClick: () => void
 }
 
-const TextObject = ({ position, size, angle, style, text, borderColor, backgroundColor, isSelected, onClick }: TextObjectProps) => {
-  const ref = useRef<HTMLDivElement | null>(null)
+const TextObject = ({
+  position,
+  size,
+  angle,
+  style,
+  text,
+  borderColor,
+  backgroundColor,
+  isSelected,
+  onClick,
+}: TextObjectProps) => {
+  const ref = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState(position)
   const [newSize, setNewSize] = useState(size)
 
@@ -26,17 +36,15 @@ const TextObject = ({ position, size, angle, style, text, borderColor, backgroun
 
   return (
     <>
-    <div ref={ref} className={styles.text} style={{ ...objectStyle, top: `${pos.top}px`, left: `${pos.left}px` }} onMouseDown={onClick}>
-      <p style={textStyle}>{text}</p>
-    </div>
-    {
-      isSelected && <SelectedItem
-        position={pos}
-        size={newSize}  
-        setPosition={setPos}
-        setSize={setNewSize}
-      />
-    }
+      <div
+        ref={ref}
+        className={styles.text}
+        style={{ ...objectStyle, top: `${pos.top}px`, left: `${pos.left}px` }}
+        onMouseDown={onClick}
+      >
+        <p style={textStyle}>{text}</p>
+      </div>
+      {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
     </>
   )
 }

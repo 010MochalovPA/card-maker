@@ -7,7 +7,15 @@ import { ShapeObjectProps } from '../ShapeObject/ShapeObject'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
 
-const RectangleShape = ({ position, size, angle, borderColor, backgroundColor, isSelected, onClick }: ShapeObjectProps) => {
+const RectangleShape = ({
+  position,
+  size,
+  angle,
+  borderColor,
+  backgroundColor,
+  isSelected,
+  onClick,
+}: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [pos, setPos] = useState(position)
   const [newSize, setNewSize] = useState(size)
@@ -23,24 +31,17 @@ const RectangleShape = ({ position, size, angle, borderColor, backgroundColor, i
 
   return (
     <>
-    <div
-      ref={ref}
-      className={styles.shape}
-      style={{ ...objectStyle, top: pos.top, left: pos.left, width: newSize.width, height: newSize.height }}
-      onMouseDown={onClick}
-    >
-      <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
-        <rect {...rectStyle} />
-      </svg>
-    </div>
-    {
-      isSelected && <SelectedItem
-        position={pos}
-        size={newSize}  
-        setPosition={setPos}
-        setSize={setNewSize}
-      />
-    }
+      <div
+        ref={ref}
+        className={styles.shape}
+        style={{ ...objectStyle, top: pos.top, left: pos.left, width: newSize.width, height: newSize.height }}
+        onMouseDown={onClick}
+      >
+        <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
+          <rect {...rectStyle} />
+        </svg>
+      </div>
+      {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
     </>
   )
 }

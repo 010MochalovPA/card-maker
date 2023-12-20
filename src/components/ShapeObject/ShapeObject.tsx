@@ -21,7 +21,4 @@ const ShapeObject = (shapeObjectProps: ShapeObjectProps) => {
   }
 }
 
-export {
-  ShapeObject,
-  ShapeObjectProps
-}
+export { ShapeObject, ShapeObjectProps }

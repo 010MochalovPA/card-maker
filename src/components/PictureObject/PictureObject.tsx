@@ -23,15 +23,13 @@ const PictureObject = ({ size, position, angle, data, isSelected, onClick }: Pic
   const style = getPictureObjectStyle(pos, newSize, angle, data)
   return (
     <>
-    <div ref={ref} className={styles.picture} style={{ ...style, top: `${pos.top}px`, left: `${pos.left}px` }} onMouseDown={onClick}></div>
-    {
-      isSelected && <SelectedItem
-        position={pos}
-        size={newSize}  
-        setPosition={setPos}
-        setSize={setNewSize}
-      />
-    }
+      <div
+        ref={ref}
+        className={styles.picture}
+        style={{ ...style, top: `${pos.top}px`, left: `${pos.left}px` }}
+        onMouseDown={onClick}
+      ></div>
+      {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
     </>
   )
 }

@@ -37,10 +37,10 @@ export const useEditorContext = (): EditorContext => {
     },
     getSelectedObjects: () => {
       const isSelectedObjects = editor.selected.selectedType === SelectedType.OBJECT
-      return isSelectedObjects ? editor.selected.selectedList : [];
+      return isSelectedObjects ? editor.selected.selectedList : []
     },
     setSelectedObject: (id) => {
-      setEditor({...editor, selected: {selectedType: SelectedType.OBJECT, selectedList: [id]}})
+      setEditor({ ...editor, selected: { selectedType: SelectedType.OBJECT, selectedList: [id] } })
     },
   }
 }

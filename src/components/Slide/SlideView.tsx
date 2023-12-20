@@ -2,7 +2,7 @@ import getSlideBackgroundString from '../../common/getSlideBackgroundString'
 import { useEditorContext } from '../../context/editorContext'
 import { SlideObject, SlideObjectType } from '../../types'
 import PictureObject from '../PictureObject/PictureObject'
-import {ShapeObject} from '../ShapeObject/ShapeObject'
+import { ShapeObject } from '../ShapeObject/ShapeObject'
 import TextObject from '../TextObject/TextObject'
 import styles from './SlideView.css'
 
@@ -11,11 +11,32 @@ function getSlideObject(slideObject: SlideObject) {
   const isSelected = editor.getSelectedObjects().includes(slideObject.id)
   switch (slideObject.type) {
     case SlideObjectType.TEXT:
-      return <TextObject key={slideObject.id} {...slideObject} isSelected={isSelected} onClick={() => editor.setSelectedObject(slideObject.id)}/>
+      return (
+        <TextObject
+          key={slideObject.id}
+          {...slideObject}
+          isSelected={isSelected}
+          onClick={() => editor.setSelectedObject(slideObject.id)}
+        />
+      )
     case SlideObjectType.PICTURE:
-      return <PictureObject key={slideObject.id} {...slideObject} isSelected={isSelected} onClick={() => editor.setSelectedObject(slideObject.id)}/>
+      return (
+        <PictureObject
+          key={slideObject.id}
+          {...slideObject}
+          isSelected={isSelected}
+          onClick={() => editor.setSelectedObject(slideObject.id)}
+        />
+      )
     case SlideObjectType.SHAPE:
-      return <ShapeObject key={slideObject.id} {...slideObject} isSelected={isSelected} onClick={() => editor.setSelectedObject(slideObject.id)}/>
+      return (
+        <ShapeObject
+          key={slideObject.id}
+          {...slideObject}
+          isSelected={isSelected}
+          onClick={() => editor.setSelectedObject(slideObject.id)}
+        />
+      )
   }
 }
 

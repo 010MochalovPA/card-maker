@@ -23,7 +23,7 @@ enum PictureType {
 
 enum SelectedType {
   OBJECT,
-  SLIDE
+  SLIDE,
 }
 
 type SelectedObjects = {
