@@ -1,36 +1,47 @@
 import styles from './RectangleShape.css'
-import { ShapeObjectType } from '../../types'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getRectangleShapeStyle from '../../common/getRectangleShapeStyle'
 import React, { useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
+import { ShapeObjectProps } from '../ShapeObject/ShapeObject'
+import SelectedItem from '../SelectedItem/SelectedItem'
+import getDNDFunctions from '../../common/getDNDFunctions'
 
-const RectangleShape = ({ position, size, angle, borderColor, backgroundColor }: ShapeObjectType) => {
-  const [selected, setSelected] = useState(false)
-  const objectStyle = {
-    ...getShapeObjectStyle(position, size, angle),
-    outline: selected ? '10px dashed blue' : 'none',
-    outlineOffset: '-10px',
-  }
+const RectangleShape = ({ position, size, angle, borderColor, backgroundColor, isSelected, onClick }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [pos, setPos] = useState(position)
-  const [wh, setWh] = useState(size)
+  const [newSize, setNewSize] = useState(size)
 
-  useDragAndDrop(ref, pos, setPos, selected, setSelected, wh, setWh)
+  const [moveFn] = getDNDFunctions(setPos, setNewSize)
 
-  const rectStyle = getRectangleShapeStyle(wh, borderColor, backgroundColor)
+  useDragAndDrop(ref, pos, newSize, moveFn)
+
+  const objectStyle = {
+    ...getShapeObjectStyle(position, newSize, angle),
+  }
+  const rectStyle = getRectangleShapeStyle(newSize, borderColor, backgroundColor)
 
   return (
+    <>
     <div
       ref={ref}
       className={styles.shape}
-      style={{ ...objectStyle, top: pos.top, left: pos.left, width: wh.width, height: wh.height }}
-      onClick={() => setSelected((prev: boolean) => !prev)}
+      style={{ ...objectStyle, top: pos.top, left: pos.left, width: newSize.width, height: newSize.height }}
+      onMouseDown={onClick}
     >
-      <svg width={wh.width} height={wh.height} xmlns="http://www.w3.org/2000/svg">
+      <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
         <rect {...rectStyle} />
       </svg>
     </div>
+    {
+      isSelected && <SelectedItem
+        position={pos}
+        size={newSize}  
+        setPosition={setPos}
+        setSize={setNewSize}
+      />
+    }
+    </>
   )
 }
 

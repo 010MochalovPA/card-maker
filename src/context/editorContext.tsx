@@ -7,7 +7,8 @@ export interface EditorContext {
   getSlideById(id: string): Slide
   getSlides(): Slide[]
   setEditor(editor: Editor): void
-  getSelectedSlides(): string[]
+  getSelectedObjects(): string[]
+  setSelectedObject(id: string): void
 }
 
 export const EditorContext = React.createContext<{
@@ -34,15 +35,12 @@ export const useEditorContext = (): EditorContext => {
     setEditor: (newEditor: Editor) => {
       setEditor(newEditor)
     },
-    getSelectedSlides: () => {
+    getSelectedObjects: () => {
       const isSelectedObjects = editor.selected.selectedType === SelectedType.OBJECT
-
-      if (!isSelectedObjects)
-      {
-        return []
-      }
-
-      return editor.selected.selectedList;
-    }
+      return isSelectedObjects ? editor.selected.selectedList : [];
+    },
+    setSelectedObject: (id) => {
+      setEditor({...editor, selected: {selectedType: SelectedType.OBJECT, selectedList: [id]}})
+    },
   }
 }

@@ -408,7 +408,7 @@ const editor1: Editor = {
   currentSlide: 'c932d26bcf6946618042e9852163c642',
   selected: {
     selectedType: SelectedType.OBJECT,
-    selectedList: ['188014653ffb49cd898a60c63acfaaf7'],
+    selectedList: ['f6ba95e407ab48db939aeed916d4fc31'],
   },
 }
 

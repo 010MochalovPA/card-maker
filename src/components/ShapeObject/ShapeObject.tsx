@@ -3,17 +3,25 @@ import RectangleShape from '../RectangleShape/RectangleShape'
 import EllipseShape from '../EllipseShape/EllipseShape'
 import TriangleShape from '../TriangleShape/TriangleShape'
 
-const ShapeObject = (shapeObject: ShapeObjectType) => {
-  switch (shapeObject.shapeType) {
+type ShapeObjectProps = ShapeObjectType & {
+  isSelected: boolean
+  onClick: () => void
+}
+
+const ShapeObject = (shapeObjectProps: ShapeObjectProps) => {
+  switch (shapeObjectProps.shapeType) {
     case ShapeType.ELLIPSE:
-      return <EllipseShape {...shapeObject} />
+      return <EllipseShape {...shapeObjectProps} />
     case ShapeType.RECTANGLE:
-      return <RectangleShape {...shapeObject} />
+      return <RectangleShape {...shapeObjectProps} />
     case ShapeType.TRIANGLE:
-      return <TriangleShape {...shapeObject} />
+      return <TriangleShape {...shapeObjectProps} />
     default:
       throw Error('unknown shape type')
   }
 }
 
-export default ShapeObject
+export {
+  ShapeObject,
+  ShapeObjectProps
+}
