@@ -27,7 +27,10 @@ const PictureObject = ({ size, position, angle, data, isSelected, onClick }: Pic
         ref={ref}
         className={styles.picture}
         style={{ ...style, top: `${pos.top}px`, left: `${pos.left}px` }}
-        onMouseDown={onClick}
+        onMouseDown={(e) => {
+          onClick()
+          e.stopPropagation()
+        }}
       ></div>
       {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
     </>

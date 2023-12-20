@@ -40,7 +40,10 @@ const TextObject = ({
         ref={ref}
         className={styles.text}
         style={{ ...objectStyle, top: `${pos.top}px`, left: `${pos.left}px` }}
-        onMouseDown={onClick}
+        onMouseDown={(e) => {
+          onClick()
+          e.stopPropagation()
+        }}
       >
         <p style={textStyle}>{text}</p>
       </div>

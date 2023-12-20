@@ -1,6 +1,7 @@
 import styles from './SlideContent.css'
 import classNames from 'classnames'
 import SlideView from '../Slide/SlideView'
+import Toolbar from '../Toolbar/Toolbar'
 
 type SlideContentProps = {
   slideId: string
@@ -9,6 +10,7 @@ type SlideContentProps = {
 const SlideContent = ({ slideId }: SlideContentProps) => {
   return (
     <div className={classNames(styles.slideContainer)}>
+      <Toolbar />
       <SlideView slideId={slideId} scale={1} />
     </div>
   )

@@ -9,34 +9,14 @@ import styles from './SlideView.css'
 function getSlideObject(slideObject: SlideObject) {
   const editor = useEditorContext()
   const isSelected = editor.getSelectedObjects().includes(slideObject.id)
+  const mouseClick = () => editor.setSelectedObject([slideObject.id])
   switch (slideObject.type) {
     case SlideObjectType.TEXT:
-      return (
-        <TextObject
-          key={slideObject.id}
-          {...slideObject}
-          isSelected={isSelected}
-          onClick={() => editor.setSelectedObject(slideObject.id)}
-        />
-      )
+      return <TextObject key={slideObject.id} {...slideObject} isSelected={isSelected} onClick={mouseClick} />
     case SlideObjectType.PICTURE:
-      return (
-        <PictureObject
-          key={slideObject.id}
-          {...slideObject}
-          isSelected={isSelected}
-          onClick={() => editor.setSelectedObject(slideObject.id)}
-        />
-      )
+      return <PictureObject key={slideObject.id} {...slideObject} isSelected={isSelected} onClick={mouseClick} />
     case SlideObjectType.SHAPE:
-      return (
-        <ShapeObject
-          key={slideObject.id}
-          {...slideObject}
-          isSelected={isSelected}
-          onClick={() => editor.setSelectedObject(slideObject.id)}
-        />
-      )
+      return <ShapeObject key={slideObject.id} {...slideObject} isSelected={isSelected} onClick={mouseClick} />
   }
 }
 
@@ -49,9 +29,11 @@ const SlideView = ({ slideId, scale }: SlideViewProps) => {
   const editor = useEditorContext()
   const slide = editor.getSlideById(slideId)
   const background = getSlideBackgroundString(slide)
-
+  const onClick = () => {
+    editor.setSelectedObject([])
+  }
   return (
-    <div className={styles.slide} style={{ background, transform: `scale(${scale})` }}>
+    <div className={styles.slide} style={{ background, transform: `scale(${scale})` }} onMouseDown={onClick}>
       {slide.objects.map((slideObject) => getSlideObject(slideObject))}
     </div>
   )

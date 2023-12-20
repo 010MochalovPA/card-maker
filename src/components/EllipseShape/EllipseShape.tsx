@@ -29,7 +29,15 @@ const EllipseShape = ({
 
   return (
     <>
-      <div ref={ref} className={styles.shape} style={objectStyle} onMouseDown={onClick}>
+      <div
+        ref={ref}
+        className={styles.shape}
+        style={objectStyle}
+        onMouseDown={(e) => {
+          onClick()
+          e.stopPropagation()
+        }}
+      >
         <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
           <ellipse {...ellipseStyle} />
         </svg>

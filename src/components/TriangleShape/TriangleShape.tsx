@@ -25,7 +25,10 @@ const TriangleShape = ({ position, size, angle, borderColor, backgroundColor, is
 
   return (
     <>
-      <div ref={ref} className={styles.shape} style={objectStyle} onClick={onClick}>
+      <div ref={ref} className={styles.shape} style={objectStyle} onClick={(e) => {
+          onClick()
+          e.stopPropagation()
+      }}>
         <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
           <polygon {...triangleStyle} />
         </svg>

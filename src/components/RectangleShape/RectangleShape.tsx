@@ -35,7 +35,10 @@ const RectangleShape = ({
         ref={ref}
         className={styles.shape}
         style={{ ...objectStyle, top: pos.top, left: pos.left, width: newSize.width, height: newSize.height }}
-        onMouseDown={onClick}
+        onMouseDown={(e) => {
+          onClick()
+          e.stopPropagation()
+        }}
       >
         <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
           <rect {...rectStyle} />
