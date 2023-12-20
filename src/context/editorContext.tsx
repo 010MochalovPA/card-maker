@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Editor, Slide } from '../types'
+import { Editor, SelectedType, Slide } from '../types'
 
 export interface EditorContext {
   getEditor(): Editor
@@ -7,6 +7,7 @@ export interface EditorContext {
   getSlideById(id: string): Slide
   getSlides(): Slide[]
   setEditor(editor: Editor): void
+  getSelectedSlides(): string[]
 }
 
 export const EditorContext = React.createContext<{
@@ -33,5 +34,15 @@ export const useEditorContext = (): EditorContext => {
     setEditor: (newEditor: Editor) => {
       setEditor(newEditor)
     },
+    getSelectedSlides: () => {
+      const isSelectedObjects = editor.selected.selectedType === SelectedType.OBJECT
+
+      if (!isSelectedObjects)
+      {
+        return []
+      }
+
+      return editor.selected.selectedList;
+    }
   }
 }

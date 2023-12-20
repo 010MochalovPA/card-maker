@@ -21,12 +21,19 @@ enum PictureType {
   URL,
 }
 
+enum SelectedType {
+  OBJECT,
+  SLIDE
+}
+
 type SelectedObjects = {
-  slideObjectIds: string[]
+  selectedType: SelectedType.OBJECT
+  selectedList: string[]
 }
 
 type SelectedSlides = {
-  slideIds: string[]
+  selectedType: SelectedType.SLIDE
+  selectedList: string[]
 }
 
 type HistoryItem = {
@@ -125,6 +132,7 @@ type Editor = {
 }
 
 export {
+  SelectedType,
   ObjectStyle,
   SlideObject,
   SlideObjectType,

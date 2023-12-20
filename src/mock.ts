@@ -9,6 +9,7 @@ import {
   Slide,
   Doc,
   Editor,
+  SelectedType,
 } from './types'
 
 const picture1: PictureObjectType = {
@@ -404,9 +405,10 @@ const document3: Doc = {
 const editor1: Editor = {
   document: document1,
   history: [],
-  currentSlide: 'c1d4b504d20a44b9a104709adfd29839',
+  currentSlide: 'c932d26bcf6946618042e9852163c642',
   selected: {
-    slideIds: ['c932d26bcf6946618042e9852163c642', 'c1d4b504d20a44b9a104709adfd29839'],
+    selectedType: SelectedType.OBJECT,
+    selectedList: ['188014653ffb49cd898a60c63acfaaf7'],
   },
 }
 
@@ -415,7 +417,8 @@ const editor2: Editor = {
   history: [],
   currentSlide: 'c932d26bcf6946618042e9852163c642',
   selected: {
-    slideObjectIds: ['188014653ffb49cd898a60c63acfaaf7'],
+    selectedType: SelectedType.OBJECT,
+    selectedList: ['188014653ffb49cd898a60c63acfaaf7'],
   },
 }
 
@@ -424,7 +427,8 @@ const editor3: Editor = {
   history: [],
   currentSlide: 'c1d4b504d20a44b9a104709adfd29839',
   selected: {
-    slideObjectIds: [],
+    selectedType: SelectedType.OBJECT,
+    selectedList: [],
   },
 }
 
