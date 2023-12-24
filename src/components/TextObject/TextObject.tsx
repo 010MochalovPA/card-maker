@@ -26,6 +26,7 @@ const TextObject = ({
   const ref = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState(position)
   const [newSize, setNewSize] = useState(size)
+  const [value, setValue] = useState(text);
 
   const [moveFn] = getDNDFunctions(setPos, setNewSize)
 
@@ -42,7 +43,7 @@ const TextObject = ({
         style={{ ...objectStyle, top: `${pos.top}px`, left: `${pos.left}px` }}
         onMouseDown={onClick}
       >
-        <p style={textStyle}>{text}</p>
+        <textarea style={{width: objectStyle.width, height: objectStyle.height, ...textStyle}} className={styles.input} onChange={(e) => setValue(e.target.value)} value={value}/>
       </div>
       {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
     </>

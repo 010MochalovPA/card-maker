@@ -4,4 +4,5 @@
   position: relative;
   overflow: hidden;
   transform-origin: left top;
+  border: 1px solid #388087;
 }
