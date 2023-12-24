@@ -6,7 +6,6 @@ const getPictureObjectStyle = (position: Position, size: Size, angle: number, pi
   const { width, height } = size
 
   const background = `transparent url('${pictureData}') center/cover`
-  const backgroundSize = `${width}px ${height}px`
 
   return {
     width,
@@ -14,7 +13,6 @@ const getPictureObjectStyle = (position: Position, size: Size, angle: number, pi
     left: `${left}px`,
     top: `${top}px`,
     transform: getRotateString(angle),
-    backgroundSize,
     background,
   }
 }

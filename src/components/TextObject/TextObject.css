@@ -2,5 +2,16 @@
   position: absolute;
   overflow: hidden;
   user-select: none;
-  border: 1px solid;
+}
+
+.input {
+  overflow: hidden;
+  resize: none;
+	display: block;
+  background: transparent;
+  border: none;
+}
+
+.input:focus {
+  outline: none;
 }
