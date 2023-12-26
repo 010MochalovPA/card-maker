@@ -3,7 +3,8 @@
   display: grid;
   grid-template:
     'top-panel top-panel top-panel' 80px
-    'slides-panel slide slide' calc(100% - 80px) / 293px 1fr 1fr;
+    'slides-panel slide option-panel' calc(100% - 80px) / 293px 1fr 480px;
   height: 100vh;
   background-color: #f6f6f2;
+  user-select: none;
 }

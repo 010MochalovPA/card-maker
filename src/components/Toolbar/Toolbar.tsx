@@ -40,7 +40,7 @@ const Toolbar = () => {
     {
       icon: TextIcon20dp,
       onClick: () => {
-        editor.createTextObject('c932d26bcf6946618042e9852163c642')
+        //editor.createTextObject('c932d26bcf6946618042e9852163c642')
       },
       tooltip: 'Text',
     },

@@ -1,38 +1,45 @@
 import styles from './PictureObject.css'
-import { PictureObjectType } from '../../types'
+import { PictureObjectType, Position, Size } from '../../types'
 import getPictureObjectStyle from '../../common/getPictureObjectStyle'
-import React, { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
+import { useAppActions } from '../../redux/hooks'
 
 type PictureObjectProps = PictureObjectType & {
   isSelected: boolean
-  onClick: () => void
 }
 
-const PictureObject = ({ size, position, angle, data, isSelected, onClick }: PictureObjectProps) => {
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [pos, setPos] = useState(position)
-  const [newSize, setNewSize] = useState(size)
+const PictureObject = ({id, size, position, angle, data, isSelected, borderColor, backgroundColor }: PictureObjectProps) => {
+  const ref = useRef<HTMLDivElement>(null)
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
 
-  const [moveFn] = getDNDFunctions(setPos, setNewSize)
+  const setPosition = (newPosition: Position) => {
+    createChangeObjectPositionAction(id, newPosition)
+  }
+  
+  const setSize = (newSize: Size) => {
+    createChangeObjectSizeAction(id, newSize)
+  }
 
-  useDragAndDrop(ref, pos, newSize, moveFn)
+  const [moveFn] = getDNDFunctions(setPosition, setSize)
 
-  const style = getPictureObjectStyle(pos, newSize, angle, data)
+  useDragAndDrop(ref, position, size, moveFn)
+
+  const style = getPictureObjectStyle(position, size, angle, data, borderColor, backgroundColor )
   return (
     <>
       <div
         ref={ref}
         className={styles.picture}
-        style={{ ...style, top: `${pos.top}px`, left: `${pos.left}px` }}
+        style={{ ...style, top: `${position.top}px`, left: `${position.left}px` }}
         onMouseDown={(e) => {
-          onClick()
+          createChangeSelectedObjectIdAction(id)
           e.stopPropagation()
         }}
-      ></div>
-      {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
+      />
+      {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>
   )
 }

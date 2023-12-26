@@ -26,14 +26,9 @@ enum SelectedType {
   SLIDE,
 }
 
-type SelectedObjects = {
+type SelectedObject = {
   selectedType: SelectedType.OBJECT
-  selectedList: string[]
-}
-
-type SelectedSlides = {
-  selectedType: SelectedType.SLIDE
-  selectedList: string[]
+  selected: string
 }
 
 type HistoryItem = {
@@ -72,6 +67,8 @@ type SlideObjectBase = {
   size: Size
   position: Position
   angle: number
+  backgroundColor: Color
+  borderColor: Color
 }
 
 type TextStyle = {
@@ -86,8 +83,6 @@ type TextObjectType = SlideObjectBase & {
   type: SlideObjectType.TEXT
   style: TextStyle
   text: string
-  borderColor: Color
-  backgroundColor: Color
 }
 
 type PictureObjectType = SlideObjectBase & {
@@ -99,8 +94,6 @@ type PictureObjectType = SlideObjectBase & {
 type ShapeObjectType = SlideObjectBase & {
   type: SlideObjectType.SHAPE
   shapeType: ShapeType
-  backgroundColor: Color
-  borderColor: Color
 }
 
 type SlideObject = TextObjectType | PictureObjectType | ShapeObjectType
@@ -119,16 +112,16 @@ type Slide = {
   objects: SlideObject[]
 }
 
-type Doc = {
+type Document = {
   title: string
   slideList: Slide[]
 }
 
 type Editor = {
-  document: Doc
+  document: Document
   history: HistoryItem[]
   currentSlide: string
-  selected: SelectedObjects | SelectedSlides
+  selected: SelectedObject
 }
 
 export {
@@ -143,7 +136,7 @@ export {
   PictureObjectType,
   TextObjectType,
   Slide,
-  Doc,
+  Document,
   Editor,
   Color,
   SlideObjectBase,

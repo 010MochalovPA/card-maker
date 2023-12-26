@@ -1,39 +1,46 @@
 import styles from './TriangleShape.css'
-import { ShapeObjectType } from '../../types'
+import { Position, ShapeObjectType, Size } from '../../types'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getTriangleShapeStyle from '../../common/getTriangleShapeStyle'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import getDNDFunctions from '../../common/getDNDFunctions'
 import SelectedItem from '../SelectedItem/SelectedItem'
+import { useAppActions } from '../../redux/hooks'
 
 type ShapeProps = ShapeObjectType & {
   isSelected: boolean
-  onClick: () => void
 }
 
-const TriangleShape = ({ position, size, angle, borderColor, backgroundColor, isSelected, onClick }: ShapeProps) => {
+const TriangleShape = ({id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [pos, setPos] = useState(position)
-  const [newSize, setNewSize] = useState(size)
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
 
-  const [moveFn] = getDNDFunctions(setPos, setNewSize)
+  const setPos = (newPosition: Position) => {
+    createChangeObjectPositionAction(id, newPosition)
+  }
 
-  useDragAndDrop(ref, pos, newSize, moveFn)
-  const objectStyle = getShapeObjectStyle(pos, newSize, angle)
-  const triangleStyle = getTriangleShapeStyle(newSize, borderColor, backgroundColor)
+  const setSize = (newSize: Size) => {
+    createChangeObjectSizeAction(id, newSize)
+  }
+
+  const [moveFn] = getDNDFunctions(setPos, setSize)
+
+  useDragAndDrop(ref, position, size, moveFn)
+  const objectStyle = getShapeObjectStyle(position, size, angle)
+  const triangleStyle = getTriangleShapeStyle(size, borderColor, backgroundColor)
 
   return (
     <>
-      <div ref={ref} className={styles.shape} style={objectStyle} onClick={(e) => {
-          onClick()
+      <div ref={ref} className={styles.shape} style={objectStyle} onMouseDown={(e) => {
+          createChangeSelectedObjectIdAction(id)
           e.stopPropagation()
       }}>
-        <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
+        <svg width={size.width} height={size.height}>
           <polygon {...triangleStyle} />
         </svg>
       </div>
-      {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
+      {isSelected && <SelectedItem position={position} size={size} setPosition={setPos} setSize={setSize} />}
     </>
   )
 }

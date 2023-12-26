@@ -1,18 +1,19 @@
 import styles from './TextObject.css'
 import { getTextStyle } from '../../common/getTextStyle'
-import { TextObjectType } from '../../types'
+import { Position, Size, TextObjectType } from '../../types'
 import getTextObjectStyle from '../../common/getTextObjectStyle'
 import { useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import getDNDFunctions from '../../common/getDNDFunctions'
 import SelectedItem from '../SelectedItem/SelectedItem'
+import { useAppActions } from '../../redux/hooks'
 
 type TextObjectProps = TextObjectType & {
   isSelected: boolean
-  onClick: () => void
 }
 
 const TextObject = ({
+  id,
   position,
   size,
   angle,
@@ -21,34 +22,40 @@ const TextObject = ({
   borderColor,
   backgroundColor,
   isSelected,
-  onClick,
 }: TextObjectProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [pos, setPos] = useState(position)
-  const [newSize, setNewSize] = useState(size)
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
+
+  const setPosition = (newPosition: Position) => {
+    createChangeObjectPositionAction(id, newPosition)
+  }
+
+  const setSize = (newSize: Size) => {
+    createChangeObjectSizeAction(id, newSize)
+  }
+
   const [value, setValue] = useState(text);
 
-  const [moveFn] = getDNDFunctions(setPos, setNewSize)
+  const [moveFn] = getDNDFunctions(setPosition, setSize)
 
-  useDragAndDrop(ref, pos, newSize, moveFn)
+  useDragAndDrop(ref, position, size, moveFn)
 
   const textStyle = getTextStyle(style)
-  const objectStyle = getTextObjectStyle(pos, newSize, angle, borderColor, backgroundColor)
+  const objectStyle = getTextObjectStyle(position, size, angle, borderColor, backgroundColor)
 
   return (
     <>
       <div
         ref={ref}
         className={styles.text}
-        style={{ ...objectStyle, top: `${pos.top}px`, left: `${pos.left}px` }}
-        onMouseDown={(e) => {
-          onClick()
-          e.stopPropagation()
+        style={{ ...objectStyle, top: `${position.top}px`, left: `${position.left}px` }}
+        onMouseDown={() => {
+          createChangeSelectedObjectIdAction(id)
         }}
       >
-        <textarea style={{width: objectStyle.width, height: objectStyle.height, ...textStyle}} className={styles.input} onChange={(e) => setValue(e.target.value)} value={value}/>
+        <textarea style={textStyle} className={styles.input} onClick={(e) => e.stopPropagation()} onChange={(e) => setValue(e.target.value)} value={value}/>
       </div>
-      {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
+      {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>
   )
 }

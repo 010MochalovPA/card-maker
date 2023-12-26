@@ -1,6 +1,6 @@
 import styles from './SlideContent.css'
 import classNames from 'classnames'
-import SlideView from '../Slide/SlideView'
+import SlideView from '../SlideView/SlideView'
 import Toolbar from '../Toolbar/Toolbar'
 
 type SlideContentProps = {

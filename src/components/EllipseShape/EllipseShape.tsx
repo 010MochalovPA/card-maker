@@ -6,26 +6,30 @@ import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import { ShapeObjectProps } from '../ShapeObject/ShapeObject'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
+import { Position, Size } from '../../types'
+import { useAppActions } from '../../redux/hooks'
 
 const EllipseShape = ({
+  id,
   position,
   size,
   angle,
   borderColor,
   backgroundColor,
   isSelected,
-  onClick,
 }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [pos, setPos] = useState(position)
-  const [newSize, setNewSize] = useState(size)
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
 
-  const [moveFn] = getDNDFunctions(setPos, setNewSize)
+  const setPosition = (newPosition: Position) => createChangeObjectPositionAction(id, newPosition)
+  const setSize = (newSize: Size) => createChangeObjectSizeAction(id, newSize)
 
-  useDragAndDrop(ref, pos, newSize, moveFn)
+  const [moveFn] = getDNDFunctions(setPosition, setSize)
 
-  const objectStyle = getShapeObjectStyle(pos, newSize, angle)
-  const ellipseStyle = getEllipseShapeStyle(newSize, borderColor, backgroundColor)
+  useDragAndDrop(ref, position, size, moveFn)
+
+  const objectStyle = getShapeObjectStyle(position, size, angle)
+  const ellipseStyle = getEllipseShapeStyle(size, borderColor, backgroundColor)
 
   return (
     <>
@@ -34,15 +38,15 @@ const EllipseShape = ({
         className={styles.shape}
         style={objectStyle}
         onMouseDown={(e) => {
-          onClick()
+          createChangeSelectedObjectIdAction(id)
           e.stopPropagation()
         }}
       >
-        <svg width={newSize.width} height={newSize.height} xmlns="http://www.w3.org/2000/svg">
+        <svg width={size.width} height={size.height}>
           <ellipse {...ellipseStyle} />
         </svg>
       </div>
-      {isSelected && <SelectedItem position={pos} size={newSize} setPosition={setPos} setSize={setNewSize} />}
+      {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>
   )
 }

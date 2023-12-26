@@ -16,7 +16,7 @@ const getEllipseShapeStyle = (
   const rx: string = `${width / 2}`
   const ry: string = `${height / 2}`
 
-  return { cx, cy, rx, ry, fill, strokeWidth: '1', stroke }
+  return { cx, cy, rx, ry, fill, strokeWidth: '3', stroke }
 }
 
 export default getEllipseShapeStyle

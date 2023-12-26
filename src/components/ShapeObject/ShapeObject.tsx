@@ -5,7 +5,6 @@ import TriangleShape from '../TriangleShape/TriangleShape'
 
 type ShapeObjectProps = ShapeObjectType & {
   isSelected: boolean
-  onClick: () => void
 }
 
 const ShapeObject = (shapeObjectProps: ShapeObjectProps) => {

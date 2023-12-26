@@ -7,7 +7,7 @@ import {
   PictureObjectType,
   TextObjectType,
   Slide,
-  Doc,
+  Document,
   Editor,
   SelectedType,
 } from './types'
@@ -26,6 +26,18 @@ const picture1: PictureObjectType = {
   },
   angle: 0,
   data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=',
+  borderColor: {
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 1,
+  },
+  backgroundColor: {
+    r: 255,
+    g: 128,
+    b: 0,
+    a: 1,
+  },
 }
 
 const picture2: PictureObjectType = {
@@ -42,6 +54,18 @@ const picture2: PictureObjectType = {
   },
   angle: 0,
   data: 'https://i.pinimg.com/736x/c8/92/f8/c892f8559ff2bef1990cb170f83b6bc0.jpg',
+  borderColor: {
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 1,
+  },
+  backgroundColor: {
+    r: 255,
+    g: 128,
+    b: 0,
+    a: 1,
+  },
 }
 
 const picture3: PictureObjectType = {
@@ -58,6 +82,18 @@ const picture3: PictureObjectType = {
   },
   angle: 0,
   data: 'https://freesvg.org/img/tikigiki_simple-beach-ball-01.png',
+  borderColor: {
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 1,
+  },
+  backgroundColor: {
+    r: 255,
+    g: 128,
+    b: 0,
+    a: 1,
+  },
 }
 
 const text1: TextObjectType = {
@@ -387,17 +423,17 @@ const slide10: Slide = {
   objects: [picture1, picture2, picture3, text1, text2, text3, shape1, shape2, shape3],
 }
 
-const document1: Doc = {
+const document1: Document = {
   title: 'Presentation 1',
   slideList: [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10],
 }
 
-const document2: Doc = {
+const document2: Document = {
   title: 'presentation2',
   slideList: [slide1, slide0],
 }
 
-const document3: Doc = {
+const document3: Document = {
   title: 'presentation3',
   slideList: [slide0],
 }
@@ -408,7 +444,7 @@ const editor1: Editor = {
   currentSlide: 'c932d26bcf6946618042e9852163c642',
   selected: {
     selectedType: SelectedType.OBJECT,
-    selectedList: ['f6ba95e407ab48db939aeed916d4fc31'],
+    selected: 'f6ba95e407ab48db939aeed916d4fc31',
   },
 }
 
@@ -418,7 +454,7 @@ const editor2: Editor = {
   currentSlide: 'c932d26bcf6946618042e9852163c642',
   selected: {
     selectedType: SelectedType.OBJECT,
-    selectedList: ['188014653ffb49cd898a60c63acfaaf7'],
+    selected: '188014653ffb49cd898a60c63acfaaf7',
   },
 }
 
@@ -428,7 +464,7 @@ const editor3: Editor = {
   currentSlide: 'c1d4b504d20a44b9a104709adfd29839',
   selected: {
     selectedType: SelectedType.OBJECT,
-    selectedList: [],
+    selected: '',
   },
 }
 
