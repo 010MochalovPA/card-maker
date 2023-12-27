@@ -10,6 +10,13 @@ enum EditorActions {
     CHANGE_OBJECT_BORDER_COLOR = 'CHANGE_OBJECT_BORDER_COLOR',
     CHANGE_TEXT_FONT_STYLES = 'CHANGE_TEXT_FONT_STYLES',
     CHANGE_TEXT = 'CHANGE_TEXT',
+    INSERT_IMAGE = 'INSERT_IMAGE',
+    INSERT_RECTANGLE = 'INSERT_RECTANGLE',
+    INSERT_TRIANGLE = 'INSERT_TRIANGLE',
+    INSERT_ELLIPSE = 'INSERT_ELLIPSE',
+    INSERT_TEXT = 'INSERT_TEXT',
+    CHANGE_IMAGE_DATA = 'CHANGE_IMAGE_DATA',
+    DELETE_OBJECT = 'DELETE_OBJECT',
 }
 
 type ChangeTitleAction = {
@@ -81,6 +88,44 @@ type ChangeSelectedObject = {
     },
 }
 
+type InsertImage = {
+    type: EditorActions.INSERT_IMAGE,
+    payload: {
+        data: string,
+    },
+}
+
+type InsertRectangle = {
+    type: EditorActions.INSERT_RECTANGLE,
+}
+
+type InsertTriangle = {
+    type: EditorActions.INSERT_TRIANGLE,
+}
+
+type InsertEllipse = {
+    type: EditorActions.INSERT_ELLIPSE,
+}
+
+type InsertText = {
+    type: EditorActions.INSERT_TEXT,
+}
+
+type ChangeImageData = {
+    type: EditorActions.CHANGE_IMAGE_DATA,
+    payload: {
+        objectId: string,
+        data: string,
+    },
+}
+
+type DeleteObject = {
+    type: EditorActions.DELETE_OBJECT,
+    payload: {
+        objectId: string,
+    },
+}
+
 type Action =
     ChangeTitleAction |
     ChangeObjectPosition |
@@ -90,7 +135,14 @@ type Action =
     ChangeTextFontStyles |
     ChangeText |
     ChangeCurrentSlideId |
-    ChangeSelectedObject 
+    ChangeSelectedObject |
+    InsertImage |
+    ChangeImageData |
+    InsertRectangle |
+    InsertTriangle |
+    InsertEllipse |
+    InsertText |
+    DeleteObject
 
 export {
     EditorActions,

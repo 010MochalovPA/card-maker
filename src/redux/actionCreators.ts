@@ -70,6 +70,16 @@ function createChangeTextAction(objectId: string, text: string) {
 	}
 }
 
+function createChangeImageDataAction(objectId: string, data: string) {
+	return {
+		type: EditorActions.CHANGE_IMAGE_DATA,
+		payload: {
+			objectId,
+            data,
+		},
+	}
+}
+
 function createChangeCurrentSlideIdAction(slideId: string) {
 	return {
 		type: EditorActions.CHANGE_CURRENT_SLIDE_ID,
@@ -88,6 +98,48 @@ function createChangeSelectedObjectIdAction(objectId: string) {
 	}
 }
 
+function createInsertImageAction(data: string) {
+	return {
+		type: EditorActions.INSERT_IMAGE,
+		payload: {
+			data,
+		},
+	}
+}
+
+function createInsertRectangleAction() {
+	return {
+		type: EditorActions.INSERT_RECTANGLE,
+	}
+}
+
+function createInsertTriangleAction() {
+	return {
+		type: EditorActions.INSERT_TRIANGLE,
+	}
+}
+
+function createInsertEllipseAction() {
+	return {
+		type: EditorActions.INSERT_ELLIPSE,
+	}
+}
+
+function createInsertTextAction() {
+	return {
+		type: EditorActions.INSERT_TEXT,
+	}
+}
+
+function createDeleteObjectAction(objectId: string) {
+	return {
+		type: EditorActions.DELETE_OBJECT,
+		payload: {
+			objectId,
+		},
+	}
+}
+
 export {
 	createChangeTitleAction,
     createChangeObjectPositionAction,
@@ -98,4 +150,11 @@ export {
     createChangeObjectBorderColorAction,
 	createChangeTextFontStylesAction,
 	createChangeTextAction,
+	createInsertImageAction,
+	createChangeImageDataAction,
+	createInsertRectangleAction,
+	createInsertTriangleAction,
+	createInsertEllipseAction,
+	createInsertTextAction,
+	createDeleteObjectAction,
 }

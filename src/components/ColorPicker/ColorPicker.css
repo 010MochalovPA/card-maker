@@ -2,6 +2,9 @@
     width: 40px;
     height: 20px;
     border: 2px solid black;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
 }
 
 .layout {
@@ -13,7 +16,15 @@
     left: 0;
 }
 
+.substrate {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background-color: aliceblue;
+    z-index: 1;
+}
+
 .sketch-picker {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
 }

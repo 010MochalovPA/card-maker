@@ -1,7 +1,8 @@
 import { Action, EditorActions } from './actions'
 import { combineReducers } from 'redux'
 import { editor1 } from '../mock'
-import { Editor, SlideObjectType } from '../types'
+import { Editor, PictureObjectType, PictureType, ShapeObjectType, ShapeType, SlideObjectType, TextObjectType } from '../types'
+import generateUUID from '../common/generateUUID'
 
 const editorReducer = (state: Editor = editor1, action: Action) => {
     switch (action.type) {
@@ -129,6 +130,193 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
             }
         }
 
+        case EditorActions.CHANGE_IMAGE_DATA: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            slide.objects = slide.objects.map(object => {
+                                if (object.id === action.payload.objectId && object.type === SlideObjectType.PICTURE) {
+                                    object.data = action.payload.data
+                                }
+
+                                return object
+                            })
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
+        case EditorActions.INSERT_IMAGE: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            const newImage: PictureObjectType = {
+                                id: generateUUID(),
+                                size: { width: 100, height: 100 },
+                                position: { top: 0, left: 0 },
+                                angle: 0,
+                                backgroundColor: { r: 255, g: 255, b: 255, a: 0 },
+                                borderColor: { r: 255, g: 255, b: 255, a: 0 },
+                                type: SlideObjectType.PICTURE,
+                                pictureType: PictureType.URL,
+                                data: action.payload.data,
+                            }
+                            slide.objects = [
+                                ...slide.objects, newImage
+                            ]
+
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
+        case EditorActions.INSERT_RECTANGLE: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            const rect: ShapeObjectType = {
+                                id: generateUUID(),
+                                size: { width: 100, height: 100 },
+                                position: { top: 0, left: 0 },
+                                angle: 0,
+                                backgroundColor: { r: 255, g: 255, b: 255, a: 1 },
+                                borderColor: { r: 0, g: 0, b: 0, a: 1 },
+                                type: SlideObjectType.SHAPE,
+                                shapeType: ShapeType.RECTANGLE
+                            }
+                            slide.objects = [
+                                ...slide.objects, rect
+                            ]
+
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
+        case EditorActions.INSERT_TRIANGLE: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            const rect: ShapeObjectType = {
+                                id: generateUUID(),
+                                size: { width: 100, height: 100 },
+                                position: { top: 0, left: 0 },
+                                angle: 0,
+                                backgroundColor: { r: 255, g: 255, b: 255, a: 1 },
+                                borderColor: { r: 0, g: 0, b: 0, a: 1 },
+                                type: SlideObjectType.SHAPE,
+                                shapeType: ShapeType.TRIANGLE
+                            }
+                            slide.objects = [
+                                ...slide.objects, rect
+                            ]
+
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
+        case EditorActions.INSERT_ELLIPSE: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            const rect: ShapeObjectType = {
+                                id: generateUUID(),
+                                size: { width: 100, height: 100 },
+                                position: { top: 0, left: 0 },
+                                angle: 0,
+                                backgroundColor: { r: 255, g: 255, b: 255, a: 1 },
+                                borderColor: { r: 0, g: 0, b: 0, a: 1 },
+                                type: SlideObjectType.SHAPE,
+                                shapeType: ShapeType.ELLIPSE
+                            }
+                            slide.objects = [
+                                ...slide.objects, rect
+                            ]
+
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
+        case EditorActions.INSERT_TEXT: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            const textObject: TextObjectType = {
+                                id: generateUUID(),
+                                size: { width: 100, height: 100 },
+                                position: { top: 0, left: 0 },
+                                angle: 0,
+                                backgroundColor: { r: 255, g: 255, b: 255, a: 1 },
+                                borderColor: { r: 0, g: 0, b: 0, a: 1 },
+                                type: SlideObjectType.TEXT,
+                                style: {
+                                    fontFamily: 'Arial',
+                                    fontSize: 18,
+                                    bold: false,
+                                    cursive: false,
+                                    fontColor: { r: 0, g: 0, b: 0, a: 1 },
+                                },
+                                text: 'Text'
+                            }
+                            slide.objects = [
+                                ...slide.objects, textObject
+                            ]
+
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
         case EditorActions.CHANGE_TEXT: {
             const currentSlide = state.currentSlide;
             const slideList = state.document.slideList;
@@ -153,12 +341,30 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
             }
         }
 
+        case EditorActions.DELETE_OBJECT: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            slide.objects = slide.objects.filter(object => object.id !== action.payload.objectId)
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
         case EditorActions.CHANGE_CURRENT_SLIDE_ID: {
             return { ...state, currentSlide: action.payload.slideId }
         }
 
         case EditorActions.CHANGE_SELECTED_OBJECT_ID: {
-           return { ...state, selected: { ...state.selected, selected: action.payload.objectId } }
+            return { ...state, selected: { ...state.selected, selected: action.payload.objectId } }
         }
 
         default:

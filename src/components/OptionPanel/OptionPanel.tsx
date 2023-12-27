@@ -1,6 +1,7 @@
 import { useAppActions, useAppSelector } from '../../redux/hooks';
 import { SlideObjectType } from '../../types';
 import ColorOptions from '../ColorOptions/ColorOptions';
+import DeleteOptions from '../DeleteOptions/DeleteOptions';
 import PictureOptions from '../PictureOptions/PictureOptions';
 import PositionOptions from '../PositionOptions/PositionOptions';
 import SizeOptions from '../SizeOptions/SizeOptions';
@@ -32,6 +33,7 @@ const OptionPanel = () => {
           <SizeOptions {...object.size} id={object.id}/>
           <PositionOptions {...object.position} id={object.id}/>
           <TextOptions {...object.style} text={object.text} id={object.id}/>
+          <DeleteOptions id={object.id}/>
         </div>
       )
     case  SlideObjectType.SHAPE:
@@ -40,6 +42,7 @@ const OptionPanel = () => {
           <ColorOptions {...object}/>
           <SizeOptions {...object.size} id={object.id}/>
           <PositionOptions {...object.position} id={object.id}/>
+          <DeleteOptions id={object.id}/>
         </div>
       )
     case  SlideObjectType.PICTURE:
@@ -48,7 +51,8 @@ const OptionPanel = () => {
           <ColorOptions {...object}/>
           <SizeOptions {...object.size} id={object.id}/>
           <PositionOptions {...object.position} id={object.id}/>
-          <PictureOptions/>
+          <PictureOptions id={object.id}/>
+          <DeleteOptions id={object.id}/>
         </div>
       )
   } 

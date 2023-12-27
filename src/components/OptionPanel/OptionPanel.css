@@ -2,6 +2,5 @@
   padding: 10px;
   grid-area: option-panel;
   overflow-y: auto;
-  background-color: aqua;
   position: relative;
 }

@@ -3,6 +3,7 @@
   overflow: hidden;
   user-select: none;
   z-index: 1;
+  border: 2px solid transparent;
 }
 
 .input {
