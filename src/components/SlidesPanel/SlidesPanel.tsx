@@ -1,5 +1,6 @@
 import styles from './SlidesPanel.css'
 import SlidePreview from '../SlidePreview/SlidePreview'
+import { SlidesToolbar } from '../SlidesToolbar/SlidesToolbar'
 
 type SlidesListType = {
   id: string
@@ -13,6 +14,7 @@ type SlidesPanelPropsType = {
 
 const SlidesPanel = ({ slideList }: SlidesPanelPropsType) => (
   <div className={styles.slidesPanel}>
+    <SlidesToolbar />
     <div className={styles.slidesWrapper}>
       {slideList.map((slideItem) => (
         <SlidePreview

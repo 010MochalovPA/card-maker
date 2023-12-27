@@ -140,6 +140,18 @@ function createDeleteObjectAction(objectId: string) {
 	}
 }
 
+function createAddSlideAction() {
+	return {
+		type: EditorActions.ADD_SLIDE,
+	}
+}
+
+function createDeleteSlideAction() {
+	return {
+		type: EditorActions.DELETE_SLIDE,
+	}
+}
+
 export {
 	createChangeTitleAction,
     createChangeObjectPositionAction,
@@ -157,4 +169,6 @@ export {
 	createInsertEllipseAction,
 	createInsertTextAction,
 	createDeleteObjectAction,
+	createAddSlideAction,
+	createDeleteSlideAction,
 }

@@ -1,7 +1,7 @@
 import { Action, EditorActions } from './actions'
 import { combineReducers } from 'redux'
 import { editor1 } from '../mock'
-import { Editor, PictureObjectType, PictureType, ShapeObjectType, ShapeType, SlideObjectType, TextObjectType } from '../types'
+import { Editor, PictureObjectType, PictureType, ShapeObjectType, ShapeType, Slide, SlideBackgroundType, SlideObjectType, TextObjectType } from '../types'
 import generateUUID from '../common/generateUUID'
 
 const editorReducer = (state: Editor = editor1, action: Action) => {
@@ -355,6 +355,39 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
                         }
                         return slide
                     })
+                }
+            }
+        }
+
+        case EditorActions.ADD_SLIDE: {
+            const slideList = state.document.slideList;
+
+            const newSlide : Slide = {
+                id: generateUUID(),
+                background: {
+                    type: SlideBackgroundType.SOLID_COLOR,
+                    color: { r: 255, g: 255, b: 255, a: 1 },
+                },
+                objects: []   
+            }
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: [ ...slideList, newSlide]
+                }
+            }
+        }
+
+        case EditorActions.DELETE_SLIDE: {
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.filter(slide => slide.id !== state.currentSlide)
                 }
             }
         }
