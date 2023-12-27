@@ -1,4 +1,4 @@
-import { Color, Position, Size } from '../types'
+import { Color, FontStyles, Position, Size } from '../types'
 import {EditorActions} from './actions'
 
 function createChangeTitleAction(newTitle: string) {
@@ -50,6 +50,26 @@ function createChangeObjectBorderColorAction(objectId: string, borderColor: Colo
 	}
 }
 
+function createChangeTextFontStylesAction(objectId: string, fontStyles: FontStyles) {
+	return {
+		type: EditorActions.CHANGE_TEXT_FONT_STYLES,
+		payload: {
+			objectId,
+            fontStyles,
+		},
+	}
+}
+
+function createChangeTextAction(objectId: string, text: string) {
+	return {
+		type: EditorActions.CHANGE_TEXT,
+		payload: {
+			objectId,
+            text,
+		},
+	}
+}
+
 function createChangeCurrentSlideIdAction(slideId: string) {
 	return {
 		type: EditorActions.CHANGE_CURRENT_SLIDE_ID,
@@ -76,4 +96,6 @@ export {
     createChangeObjectSizeAction,
     createChangeObjectBackgroundColorAction,
     createChangeObjectBorderColorAction,
+	createChangeTextFontStylesAction,
+	createChangeTextAction,
 }

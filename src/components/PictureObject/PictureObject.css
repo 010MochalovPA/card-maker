@@ -1,4 +1,5 @@
 .picture {
   position: absolute;
   border: 1px solid transparent;
+  z-index: 1;
 }

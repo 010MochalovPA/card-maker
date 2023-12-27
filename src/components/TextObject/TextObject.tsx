@@ -24,7 +24,7 @@ const TextObject = ({
   isSelected,
 }: TextObjectProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction, createChangeTextAction } = useAppActions()
 
   const setPosition = (newPosition: Position) => {
     createChangeObjectPositionAction(id, newPosition)
@@ -34,7 +34,9 @@ const TextObject = ({
     createChangeObjectSizeAction(id, newSize)
   }
 
-  const [value, setValue] = useState(text);
+  const setText = (text: string) => {
+    createChangeTextAction(id, text)
+  }
 
   const [moveFn] = getDNDFunctions(setPosition, setSize)
 
@@ -53,7 +55,7 @@ const TextObject = ({
           createChangeSelectedObjectIdAction(id)
         }}
       >
-        <textarea style={textStyle} className={styles.input} onClick={(e) => e.stopPropagation()} onChange={(e) => setValue(e.target.value)} value={value}/>
+        <textarea style={textStyle} className={styles.input} onClick={(e) => e.stopPropagation()} onChange={(e) => setText(e.target.value)} value={text}/>
       </div>
       {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>

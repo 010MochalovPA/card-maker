@@ -2,6 +2,7 @@
   position: absolute;
   overflow: hidden;
   user-select: none;
+  z-index: 1;
 }
 
 .input {

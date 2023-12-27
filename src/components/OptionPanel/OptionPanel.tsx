@@ -31,7 +31,7 @@ const OptionPanel = () => {
           <ColorOptions {...object}/>
           <SizeOptions {...object.size} id={object.id}/>
           <PositionOptions {...object.position} id={object.id}/>
-          <TextOptions {...object.style} text={object.text}/>
+          <TextOptions {...object.style} text={object.text} id={object.id}/>
         </div>
       )
     case  SlideObjectType.SHAPE:

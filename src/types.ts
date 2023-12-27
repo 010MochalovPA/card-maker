@@ -71,7 +71,7 @@ type SlideObjectBase = {
   borderColor: Color
 }
 
-type TextStyle = {
+type FontStyles = {
   fontFamily: string
   fontSize: number
   bold: boolean
@@ -81,7 +81,7 @@ type TextStyle = {
 
 type TextObjectType = SlideObjectBase & {
   type: SlideObjectType.TEXT
-  style: TextStyle
+  style: FontStyles
   text: string
 }
 
@@ -140,7 +140,7 @@ export {
   Editor,
   Color,
   SlideObjectBase,
-  TextStyle,
+  FontStyles,
   Position,
   Size,
 }

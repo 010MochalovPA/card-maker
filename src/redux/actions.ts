@@ -1,4 +1,4 @@
-import { Color, Position, Size } from "../types"
+import { Color, FontStyles, Position, Size } from "../types"
 
 enum EditorActions {
     CHANGE_TITLE = 'CHANGE_TITLE',
@@ -8,6 +8,8 @@ enum EditorActions {
     CHANGE_CURRENT_SLIDE_ID = 'CHANGE_CURRENT_SLIDE_ID',
     CHANGE_SELECTED_OBJECT_ID = 'CHANGE_SELECTED_OBJECT_ID',
     CHANGE_OBJECT_BORDER_COLOR = 'CHANGE_OBJECT_BORDER_COLOR',
+    CHANGE_TEXT_FONT_STYLES = 'CHANGE_TEXT_FONT_STYLES',
+    CHANGE_TEXT = 'CHANGE_TEXT',
 }
 
 type ChangeTitleAction = {
@@ -49,6 +51,22 @@ type ChangeObjectBorderColor = {
     },
 }
 
+type ChangeText = {
+    type: EditorActions.CHANGE_TEXT,
+    payload: {
+        objectId: string,
+        text: string,
+    },
+}
+
+type ChangeTextFontStyles = {
+    type: EditorActions.CHANGE_TEXT_FONT_STYLES,
+    payload: {
+        objectId: string,
+        fontStyles: FontStyles,
+    },
+}
+
 type ChangeCurrentSlideId = {
     type: EditorActions.CHANGE_CURRENT_SLIDE_ID,
     payload: {
@@ -69,6 +87,8 @@ type Action =
     ChangeObjectSize |
     ChangeObjectBackgroundColor |
     ChangeObjectBorderColor |
+    ChangeTextFontStyles |
+    ChangeText |
     ChangeCurrentSlideId |
     ChangeSelectedObject 
 

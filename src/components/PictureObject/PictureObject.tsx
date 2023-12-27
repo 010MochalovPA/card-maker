@@ -35,8 +35,9 @@ const PictureObject = ({id, size, position, angle, data, isSelected, borderColor
         className={styles.picture}
         style={{ ...style, top: `${position.top}px`, left: `${position.left}px` }}
         onMouseDown={(e) => {
-          createChangeSelectedObjectIdAction(id)
           e.stopPropagation()
+          e.preventDefault()
+          createChangeSelectedObjectIdAction(id)
         }}
       />
       {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}

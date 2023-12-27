@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import getSlideBackgroundString from '../../common/getSlideBackgroundString'
-import { useEditorContext } from '../../context/editorContext'
 import { useAppActions, useAppSelector } from '../../redux/hooks'
 import { SlideObject, SlideObjectType } from '../../types'
 import PictureObject from '../PictureObject/PictureObject'
@@ -29,6 +27,8 @@ const SlideView = ({ slideId, scale }: SlideViewProps) => {
   const objects = useAppSelector(state => state.editor.document.slideList.find(slide => slide.id === slideId)?.objects)
   const selectedId = useAppSelector(state => state.editor.selected.selected)
   
+  const {createChangeSelectedObjectIdAction} = useAppActions()
+
   if (!objects || !slide) {
     return;
   }
@@ -37,6 +37,7 @@ const SlideView = ({ slideId, scale }: SlideViewProps) => {
   return (
     <div className={styles.slide} style={{background, transform: `scale(${scale})` }}>
       {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId))}
+      <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')}/>
     </div>
   )
 }

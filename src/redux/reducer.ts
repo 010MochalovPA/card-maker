@@ -2,7 +2,6 @@ import { Action, EditorActions } from './actions'
 import { combineReducers } from 'redux'
 import { editor1 } from '../mock'
 import { Editor, SlideObjectType } from '../types'
-import PictureObject from '../components/PictureObject/PictureObject'
 
 const editorReducer = (state: Editor = editor1, action: Action) => {
     switch (action.type) {
@@ -95,6 +94,54 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
                             slide.objects = slide.objects.map(object => {
                                 if (object.id === action.payload.objectId) {
                                     object.borderColor = action.payload.borderColor
+                                }
+
+                                return object
+                            })
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
+        case EditorActions.CHANGE_TEXT_FONT_STYLES: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            slide.objects = slide.objects.map(object => {
+                                if (object.id === action.payload.objectId && object.type === SlideObjectType.TEXT) {
+                                    object.style = action.payload.fontStyles
+                                }
+
+                                return object
+                            })
+                        }
+                        return slide
+                    })
+                }
+            }
+        }
+
+        case EditorActions.CHANGE_TEXT: {
+            const currentSlide = state.currentSlide;
+            const slideList = state.document.slideList;
+
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: slideList.map(slide => {
+                        if (slide.id === currentSlide) {
+                            slide.objects = slide.objects.map(object => {
+                                if (object.id === action.payload.objectId && object.type === SlideObjectType.TEXT) {
+                                    object.text = action.payload.text
                                 }
 
                                 return object

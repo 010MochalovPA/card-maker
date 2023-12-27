@@ -1,7 +1,7 @@
-import { TextStyle } from '../types'
+import { FontStyles } from '../types'
 import colorToString from './colorToString'
 
-export const getTextStyle = ({ fontFamily, fontSize, bold, cursive, fontColor }: TextStyle) => {
+export const getTextStyle = ({ fontFamily, fontSize, bold, cursive, fontColor }: FontStyles) => {
   return {
     fontFamily: fontFamily,
     fontSize: fontSize,
