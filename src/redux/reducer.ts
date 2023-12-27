@@ -375,14 +375,24 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       }
     }
 
+    case EditorActions.DELETE_SLIDE: {
+      const slideList = state.document.slideList
+
+      return {
+        ...state,
+        document: {
+          ...document,
+          slideList: slideList.filter((slide) => slide.id !== state.currentSlide),
+        },
+      }
+    }
+
     case EditorActions.MOVE_DOWN_SLIDE: {
       const slideList = state.document.slideList
 
       const newIndex = slideList.findIndex((slide) => slide.id === state.currentSlide) + 1
 
       const MoveSlide = slideList.find((slide) => slide.id === state.currentSlide)
-
-      console.log(newIndex)
 
       if (newIndex <= 0 || newIndex >= slideList.length || !MoveSlide) {
         return state
@@ -406,8 +416,6 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newIndex = slideList.findIndex((slide) => slide.id === state.currentSlide) - 1
 
       const MoveSlide = slideList.find((slide) => slide.id === state.currentSlide)
-
-      console.log(newIndex)
 
       if (newIndex < 0 || newIndex >= slideList.length || !MoveSlide) {
         return state
