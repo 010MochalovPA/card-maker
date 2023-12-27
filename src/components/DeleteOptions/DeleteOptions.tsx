@@ -5,9 +5,8 @@ type DeleteOptionsProps = {
   id: string
 }
 
-const DeleteOptions = ({id}: DeleteOptionsProps) => {
-  
-  const {createDeleteObjectAction} = useAppActions()
+const DeleteOptions = ({ id }: DeleteOptionsProps) => {
+  const { createDeleteObjectAction } = useAppActions()
 
   return (
     <div className={styles.deleteOptions}>

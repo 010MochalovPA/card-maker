@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react'
-import { useEditorContext } from '../../context/editorContext'
+import { useRef } from 'react'
 import FileIcon24dp from '../../icons/FileIcon24dp'
 import LoadIcon24dp from '../../icons/LoadIcon24dp'
 import SaveIcon24dp from '../../icons/SaveIcon24dp'
@@ -7,16 +6,18 @@ import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
 import PresentationTitle from '../PresentationTitle/PresentationTitle'
 import styles from './Header.css'
-import { Editor } from '../../types'
+import { useAppActions, useAppSelector } from '../../redux/hooks'
 
 const Header = () => {
   const anchorRef = useRef<HTMLAnchorElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const editor = useEditorContext()
-  const [title, setTitle] = useState(editor.getTitle())
 
-  const text = JSON.stringify(editor.getEditor())
+  const title = useAppSelector((state) => state.editor.document.title)
+  const editor = useAppSelector((state) => state.editor)
+  const text = JSON.stringify(editor)
   const file = new Blob([text], { type: 'text/plain' })
+
+  const { createChangeTitleAction } = useAppActions()
 
   const readJsonFile = (file: Blob) =>
     new Promise((resolve, reject) => {
@@ -35,14 +36,14 @@ const Header = () => {
   const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const parsedData = await readJsonFile(event.target.files[0])
-      editor.setEditor(parsedData as Editor)
+      console.log(parsedData)
     }
   }
 
   return (
     <div className={styles.header}>
       <Logo />
-      <PresentationTitle title={title} setTitle={setTitle} />
+      <PresentationTitle title={title} setTitle={createChangeTitleAction} />
       <div className={styles.spacer}></div>
       <input ref={inputRef} className={styles.hidden} type="file" accept=".json,application/json" onChange={onChange} />
       <a ref={anchorRef} className={styles.hidden} download={`${title}.json`} href={URL.createObjectURL(file)}>

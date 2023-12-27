@@ -11,14 +11,24 @@ type PictureObjectProps = PictureObjectType & {
   isSelected: boolean
 }
 
-const PictureObject = ({id, size, position, angle, data, isSelected, borderColor, backgroundColor }: PictureObjectProps) => {
+const PictureObject = ({
+  id,
+  size,
+  position,
+  angle,
+  data,
+  isSelected,
+  borderColor,
+  backgroundColor,
+}: PictureObjectProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
+    useAppActions()
 
   const setPosition = (newPosition: Position) => {
     createChangeObjectPositionAction(id, newPosition)
   }
-  
+
   const setSize = (newSize: Size) => {
     createChangeObjectSizeAction(id, newSize)
   }
@@ -27,7 +37,7 @@ const PictureObject = ({id, size, position, angle, data, isSelected, borderColor
 
   useDragAndDrop(ref, position, size, moveFn)
 
-  const style = getPictureObjectStyle(position, size, angle, data, borderColor, backgroundColor )
+  const style = getPictureObjectStyle(position, size, angle, data, borderColor, backgroundColor)
   return (
     <>
       <div

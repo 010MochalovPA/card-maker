@@ -1,7 +1,7 @@
 import getEllipseShapeStyle from '../../common/getEllipseShapeStyle'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import styles from './EllipseShape.css'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import { ShapeObjectProps } from '../ShapeObject/ShapeObject'
 import SelectedItem from '../SelectedItem/SelectedItem'
@@ -9,17 +9,10 @@ import getDNDFunctions from '../../common/getDNDFunctions'
 import { Position, Size } from '../../types'
 import { useAppActions } from '../../redux/hooks'
 
-const EllipseShape = ({
-  id,
-  position,
-  size,
-  angle,
-  borderColor,
-  backgroundColor,
-  isSelected,
-}: ShapeObjectProps) => {
+const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
+    useAppActions()
 
   const setPosition = (newPosition: Position) => createChangeObjectPositionAction(id, newPosition)
   const setSize = (newSize: Size) => createChangeObjectSizeAction(id, newSize)

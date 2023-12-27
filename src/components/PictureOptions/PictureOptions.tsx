@@ -8,20 +8,24 @@ type PictureOptionsProps = {
   id: string
 }
 
-const PictureOptions = ({id}: PictureOptionsProps) => {
+const PictureOptions = ({ id }: PictureOptionsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  
-  const {createChangeImageDataAction} = useAppActions()
+
+  const { createChangeImageDataAction } = useAppActions()
 
   const onSave = (url: string) => {
     createChangeImageDataAction(id, url)
-    setIsModalOpen(false);
+    setIsModalOpen(false)
   }
 
   return (
     <div className={styles.pictureOptions}>
       <button onClick={() => setIsModalOpen(true)}>Изменить</button>
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}><AddImage onSave={onSave}/></Modal>}
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <AddImage onSave={onSave} />
+        </Modal>
+      )}
     </div>
   )
 }

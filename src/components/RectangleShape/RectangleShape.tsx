@@ -1,25 +1,18 @@
 import styles from './RectangleShape.css'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getRectangleShapeStyle from '../../common/getRectangleShapeStyle'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import { ShapeObjectProps } from '../ShapeObject/ShapeObject'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
-import { useAppActions, useAppSelector } from '../../redux/hooks'
+import { useAppActions } from '../../redux/hooks'
 import { Position, Size } from '../../types'
 
-const RectangleShape = ({
-  id,
-  position,
-  size,
-  angle,
-  borderColor,
-  backgroundColor,
-  isSelected,
-}: ShapeObjectProps) => {
+const RectangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
-  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
+    useAppActions()
 
   const setPosition = (newPosition: Position) => {
     createChangeObjectPositionAction(id, newPosition)
@@ -28,7 +21,7 @@ const RectangleShape = ({
   const setSize = (newSize: Size) => {
     createChangeObjectSizeAction(id, newSize)
   }
-  
+
   const [moveFn] = getDNDFunctions(setPosition, setSize)
 
   useDragAndDrop(ref, position, size, moveFn)

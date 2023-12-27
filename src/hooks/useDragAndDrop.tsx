@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from 'react'
+import { RefObject, useEffect } from 'react'
 import { Position, Size } from '../types'
 
 const useDragAndDrop = (

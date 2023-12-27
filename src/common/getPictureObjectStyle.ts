@@ -2,7 +2,14 @@ import { Color, Position, Size } from '../types'
 import colorToString from './colorToString'
 import getRotateString from './getRotateString'
 
-const getPictureObjectStyle = (position: Position, size: Size, angle: number, pictureData: string, borderColor: Color, backgroundColor: Color) => {
+const getPictureObjectStyle = (
+  position: Position,
+  size: Size,
+  angle: number,
+  pictureData: string,
+  borderColor: Color,
+  backgroundColor: Color,
+) => {
   const { left, top } = position
   const { width, height } = size
 

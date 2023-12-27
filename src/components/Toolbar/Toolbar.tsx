@@ -18,7 +18,13 @@ export type OptionItemType = {
 const Toolbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const { createInsertImageAction, createInsertRectangleAction, createInsertTriangleAction, createInsertEllipseAction, createInsertTextAction } = useAppActions()
+  const {
+    createInsertImageAction,
+    createInsertRectangleAction,
+    createInsertTriangleAction,
+    createInsertEllipseAction,
+    createInsertTextAction,
+  } = useAppActions()
 
   const options: OptionItemType[] = [
     {
@@ -52,7 +58,7 @@ const Toolbar = () => {
     {
       icon: TextIcon20dp,
       onClick: () => {
-        setIsModalOpen(true);
+        setIsModalOpen(true)
       },
       tooltip: 'Image',
     },
@@ -60,7 +66,7 @@ const Toolbar = () => {
 
   const onSave = (url: string) => {
     createInsertImageAction(url)
-    setIsModalOpen(false);
+    setIsModalOpen(false)
   }
 
   return (
@@ -69,7 +75,11 @@ const Toolbar = () => {
         <ToolbarItem key={index} {...option} />
       ))}
 
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}><AddImage onSave={onSave} /></Modal>}
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <AddImage onSave={onSave} />
+        </Modal>
+      )}
     </div>
   )
 }

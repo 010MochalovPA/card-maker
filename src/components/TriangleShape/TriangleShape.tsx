@@ -12,9 +12,10 @@ type ShapeProps = ShapeObjectType & {
   isSelected: boolean
 }
 
-const TriangleShape = ({id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeProps) => {
+const TriangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } = useAppActions()
+  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
+    useAppActions()
 
   const setPos = (newPosition: Position) => {
     createChangeObjectPositionAction(id, newPosition)
@@ -32,10 +33,15 @@ const TriangleShape = ({id, position, size, angle, borderColor, backgroundColor,
 
   return (
     <>
-      <div ref={ref} className={styles.shape} style={objectStyle} onMouseDown={(e) => {
+      <div
+        ref={ref}
+        className={styles.shape}
+        style={objectStyle}
+        onMouseDown={(e) => {
           createChangeSelectedObjectIdAction(id)
           e.stopPropagation()
-      }}>
+        }}
+      >
         <svg width={size.width} height={size.height}>
           <polygon {...triangleStyle} />
         </svg>

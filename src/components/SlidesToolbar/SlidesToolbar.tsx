@@ -11,8 +11,8 @@ export type OptionItemType = {
 }
 
 const SlidesToolbar = () => {
-
-  const {createAddSlideAction, createDeleteSlideAction, createMoveDownSlideAction, createMoveUpSlideAction} = useAppActions()
+  const { createAddSlideAction, createDeleteSlideAction, createMoveDownSlideAction, createMoveUpSlideAction } =
+    useAppActions()
 
   const options: OptionItemType[] = [
     {
@@ -42,7 +42,7 @@ const SlidesToolbar = () => {
         createMoveUpSlideAction()
       },
       tooltip: 'Move up slide',
-    }
+    },
   ]
 
   return (
