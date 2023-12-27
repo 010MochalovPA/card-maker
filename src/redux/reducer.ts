@@ -362,32 +362,70 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
         case EditorActions.ADD_SLIDE: {
             const slideList = state.document.slideList;
 
-            const newSlide : Slide = {
+            const newSlide: Slide = {
                 id: generateUUID(),
                 background: {
                     type: SlideBackgroundType.SOLID_COLOR,
                     color: { r: 255, g: 255, b: 255, a: 1 },
                 },
-                objects: []   
+                objects: []
             }
 
             return {
                 ...state,
                 document: {
                     ...document,
-                    slideList: [ ...slideList, newSlide]
+                    slideList: [...slideList, newSlide]
                 }
             }
         }
 
-        case EditorActions.DELETE_SLIDE: {
+        case EditorActions.MOVE_DOWN_SLIDE: {
             const slideList = state.document.slideList;
 
+            const newIndex = slideList.findIndex(slide => slide.id === state.currentSlide) + 1
+
+            const MoveSlide = slideList.find(slide => slide.id === state.currentSlide)
+
+            console.log(newIndex)
+
+            if (newIndex <= 0 || newIndex >= slideList.length || !MoveSlide) {
+                return state
+            }
+
+            const newSlideList = slideList.filter(slide => slide.id !== state.currentSlide)
+
+            newSlideList.splice(newIndex, 0, { ...MoveSlide })
             return {
                 ...state,
                 document: {
                     ...document,
-                    slideList: slideList.filter(slide => slide.id !== state.currentSlide)
+                    slideList: [...newSlideList]
+                }
+            }
+        }
+
+        case EditorActions.MOVE_UP_SLIDE: {
+            const slideList = state.document.slideList;
+
+            const newIndex = slideList.findIndex(slide => slide.id === state.currentSlide) - 1
+
+            const MoveSlide = slideList.find(slide => slide.id === state.currentSlide)
+
+            console.log(newIndex)
+
+            if (newIndex < 0 || newIndex >= slideList.length || !MoveSlide) {
+                return state
+            }
+
+            const newSlideList = slideList.filter(slide => slide.id !== state.currentSlide)
+
+            newSlideList.splice(newIndex, 0, { ...MoveSlide })
+            return {
+                ...state,
+                document: {
+                    ...document,
+                    slideList: [...newSlideList]
                 }
             }
         }

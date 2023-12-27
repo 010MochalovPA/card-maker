@@ -19,6 +19,8 @@ enum EditorActions {
     DELETE_OBJECT = 'DELETE_OBJECT',
     ADD_SLIDE = 'ADD_SLIDE',
     DELETE_SLIDE = 'DELETE_SLIDE',
+    MOVE_UP_SLIDE = 'MOVE_UP_SLIDE',
+    MOVE_DOWN_SLIDE = 'MOVE_DOWN_SLIDE',
 }
 
 type ChangeTitleAction = {
@@ -121,6 +123,14 @@ type DeleteSlide = {
     type: EditorActions.DELETE_SLIDE,
 }
 
+type MoveDownSlide = {
+    type: EditorActions.MOVE_DOWN_SLIDE,
+}
+
+type MoveUpSlide = {
+    type: EditorActions.MOVE_UP_SLIDE,
+}
+
 type ChangeImageData = {
     type: EditorActions.CHANGE_IMAGE_DATA,
     payload: {
@@ -154,7 +164,9 @@ type Action =
     InsertText |
     DeleteObject |
     AddSlide |
-    DeleteSlide
+    DeleteSlide |
+    MoveUpSlide |
+    MoveDownSlide
 
 export {
     EditorActions,

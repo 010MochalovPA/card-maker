@@ -152,6 +152,18 @@ function createDeleteSlideAction() {
 	}
 }
 
+function createMoveDownSlideAction() {
+	return {
+		type: EditorActions.MOVE_DOWN_SLIDE,
+	}
+}
+
+function createMoveUpSlideAction() {
+	return {
+		type: EditorActions.MOVE_UP_SLIDE,
+	}
+}
+
 export {
 	createChangeTitleAction,
     createChangeObjectPositionAction,
@@ -171,4 +183,6 @@ export {
 	createDeleteObjectAction,
 	createAddSlideAction,
 	createDeleteSlideAction,
+	createMoveDownSlideAction,
+	createMoveUpSlideAction,
 }
