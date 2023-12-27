@@ -1,6 +1,8 @@
 import { Position, Size } from '../types'
 
 const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size: Size) => void) => {
+  const MIN_SIZE = 6
+
   const moveFn = (
     e: MouseEvent,
     deltaX: number,
@@ -37,8 +39,9 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     let newPos = { left: startPosLeft, top: startPosTop }
     const objectSize = { width: startWidth, height: startHeight }
     deltaX = e.pageX - posX
+    deltaX = deltaX > objectSize.width - MIN_SIZE ? objectSize.width - MIN_SIZE : deltaX
 
-    newPos = { left: newPos.left + deltaX, top: newPos.top }
+    newPos = { left: (newPos.left + deltaX), top: newPos.top }
     objectSize.width -= deltaX
 
     setNewSize(objectSize)
@@ -60,6 +63,8 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     let objectSize = { width: startWidth, height: startHeight }
     deltaX = e.pageX - posX
     deltaY = e.pageY - posY
+    deltaX = deltaX > objectSize.width - MIN_SIZE ? objectSize.width - MIN_SIZE : deltaX
+    deltaY = deltaY > objectSize.height - MIN_SIZE ? objectSize.height - MIN_SIZE : deltaY
 
     objectSize = { width: objectSize.width - deltaX, height: objectSize.height - deltaY }
     newPos = { left: newPos.left + deltaX, top: newPos.top + deltaY }
@@ -82,6 +87,7 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     let newPos = { left: startPosLeft, top: startPosTop }
     const objectSize = { width: startWidth, height: startHeight }
     deltaY = e.pageY - posY
+    deltaY = deltaY > objectSize.height - MIN_SIZE ? objectSize.height - MIN_SIZE : deltaY
 
     objectSize.height -= deltaY
     newPos = { left: newPos.left, top: newPos.top + deltaY }
@@ -105,6 +111,8 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     let objectSize = { width: startWidth, height: startHeight }
     deltaX = e.pageX - posX
     deltaY = e.pageY - posY
+    deltaX = deltaX < MIN_SIZE - objectSize.width ? MIN_SIZE - objectSize.width : deltaX
+    deltaY = deltaY > objectSize.height - MIN_SIZE ? objectSize.height - MIN_SIZE : deltaY
 
     newPos.top += deltaY
     objectSize = { width: objectSize.width + deltaX, height: objectSize.height - deltaY }
@@ -127,7 +135,7 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     const newPos = { left: startPosLeft, top: startPosTop }
     const objectSize = { width: startWidth, height: startHeight }
     deltaX = e.pageX - posX
-    deltaY = e.pageY - posY
+    deltaX = deltaX < MIN_SIZE - objectSize.width ? MIN_SIZE - objectSize.width : deltaX
 
     objectSize.width += deltaX
 
@@ -150,6 +158,8 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     let objectSize = { width: startWidth, height: startHeight }
     deltaX = e.pageX - posX
     deltaY = e.pageY - posY
+    deltaX = deltaX < MIN_SIZE - objectSize.width ? MIN_SIZE - objectSize.width : deltaX
+    deltaY = deltaY < MIN_SIZE - objectSize.height ? MIN_SIZE - objectSize.height : deltaY
 
     objectSize = { width: objectSize.width + deltaX, height: objectSize.height + deltaY }
 
@@ -170,8 +180,8 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
   ) => {
     const newPos = { left: startPosLeft, top: startPosTop }
     const objectSize = { width: startWidth, height: startHeight }
-    deltaX = e.pageX - posX
     deltaY = e.pageY - posY
+    deltaY = deltaY < MIN_SIZE - objectSize.height ? MIN_SIZE - objectSize.height : deltaY
 
     objectSize.height += deltaY
 
@@ -194,6 +204,8 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     let objectSize = { width: startWidth, height: startHeight }
     deltaX = e.pageX - posX
     deltaY = e.pageY - posY
+    deltaX = deltaX > objectSize.width - MIN_SIZE ? objectSize.width - MIN_SIZE : deltaX
+    deltaY = deltaY < MIN_SIZE - objectSize.height ? MIN_SIZE - objectSize.height : deltaY
 
     objectSize = { width: objectSize.width - deltaX, height: objectSize.height + deltaY }
     newPos.left += deltaX
