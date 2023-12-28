@@ -10,7 +10,7 @@ import { Position, Size } from '../../types'
 import { useAppActions } from '../../redux/hooks'
 
 const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeObjectProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
   const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
     useAppActions()
 
@@ -23,7 +23,6 @@ const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor,
 
   const objectStyle = getShapeObjectStyle(position, size, angle)
   const ellipseStyle = getEllipseShapeStyle(size, borderColor, backgroundColor)
-
   return (
     <>
       <div

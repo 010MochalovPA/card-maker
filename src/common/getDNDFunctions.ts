@@ -1,7 +1,7 @@
 import { Position, Size } from '../types'
 
 const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size: Size) => void) => {
-  const MIN_SIZE = 6
+  const MIN_SIZE = 15
 
   const moveFn = (
     e: MouseEvent,

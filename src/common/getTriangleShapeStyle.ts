@@ -7,7 +7,7 @@ const getRectangleShapeStyle = (size: Size, borderColor: Color, backgroundColor:
   const fill: string = colorToString(backgroundColor)
   const stroke: string = borderColor.a === 0 ? colorToString(backgroundColor) : colorToString(borderColor)
 
-  const points = `0 ${height}, ${width / 2} 0, ${width} ${height}`
+  const points = `3 ${height - 3}, ${(width) / 2} 3, ${width - 3} ${height - 3}`
 
   return { points, fill, strokeWidth: '3', stroke }
 }
