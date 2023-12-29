@@ -6,7 +6,7 @@ import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
 import PresentationTitle from '../PresentationTitle/PresentationTitle'
 import styles from './Header.css'
-import { useAppActions, useAppSelector } from '../../redux/hooks'
+import { useAppSelector } from '../../redux/hooks'
 
 const Header = () => {
   const anchorRef = useRef<HTMLAnchorElement>(null)
@@ -16,8 +16,6 @@ const Header = () => {
   const editor = useAppSelector((state) => state.editor)
   const text = JSON.stringify(editor)
   const file = new Blob([text], { type: 'text/plain' })
-
-  const { createChangeTitleAction } = useAppActions()
 
   const readJsonFile = (file: Blob) =>
     new Promise((resolve, reject) => {
@@ -35,7 +33,7 @@ const Header = () => {
 
   const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
-      const parsedData = await readJsonFile(event.target.files[0])
+      const parsedData = await readJsonFile(event.target.files![0])
       console.log(parsedData)
     }
   }
@@ -43,7 +41,7 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <Logo />
-      <PresentationTitle title={title} setTitle={createChangeTitleAction} />
+      <PresentationTitle />
       <div className={styles.spacer}></div>
       <input ref={inputRef} className={styles.hidden} type="file" accept=".json,application/json" onChange={onChange} />
       <a ref={anchorRef} className={styles.hidden} download={`${title}.json`} href={URL.createObjectURL(file)}>
