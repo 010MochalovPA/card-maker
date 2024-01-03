@@ -10,8 +10,8 @@ type SlidePreviewProps = {
 
 const SlidePreview = ({ slideId, onClick, isActive }: SlidePreviewProps) => {
   return (
-    <div className={classNames(styles.slidePreview, isActive && styles.active)} onClick={onClick}>
-      <SlideView slideId={slideId} scale={0.25} />
+    <div className={classNames(styles.slidePreview, isActive && styles.active)} onClick={onClick} >
+      <SlideView slideId={slideId} scale={0.25} isPreview={true}/>
     </div>
   )
 }

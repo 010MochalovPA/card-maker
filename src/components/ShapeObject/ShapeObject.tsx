@@ -5,6 +5,7 @@ import TriangleShape from '../TriangleShape/TriangleShape'
 
 type ShapeObjectProps = ShapeObjectType & {
   isSelected: boolean
+  isPreview: boolean
 }
 
 const ShapeObject = (shapeObjectProps: ShapeObjectProps) => {

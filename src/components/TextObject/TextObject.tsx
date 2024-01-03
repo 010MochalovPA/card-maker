@@ -10,6 +10,7 @@ import { useAppActions } from '../../redux/hooks'
 
 type TextObjectProps = TextObjectType & {
   isSelected: boolean
+  isPreview: boolean
 }
 
 const TextObject = ({
@@ -22,8 +23,9 @@ const TextObject = ({
   borderColor,
   backgroundColor,
   isSelected,
+  isPreview
 }: TextObjectProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
   const {
     createChangeObjectPositionAction,
     createChangeSelectedObjectIdAction,
@@ -68,7 +70,7 @@ const TextObject = ({
           value={text}
         />
       </div>
-      {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
+      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>
   )
 }

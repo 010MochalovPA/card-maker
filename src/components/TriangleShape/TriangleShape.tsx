@@ -10,10 +10,11 @@ import { useAppActions } from '../../redux/hooks'
 
 type ShapeProps = ShapeObjectType & {
   isSelected: boolean
+  isPreview: boolean
 }
 
-const TriangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+const TriangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeProps) => {
+  const ref = useRef<HTMLDivElement | null>(null)
   const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
     useAppActions()
 
@@ -46,7 +47,7 @@ const TriangleShape = ({ id, position, size, angle, borderColor, backgroundColor
           <polygon {...triangleStyle} />
         </svg>
       </div>
-      {isSelected && <SelectedItem position={position} size={size} setPosition={setPos} setSize={setSize} />}
+      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPos} setSize={setSize} />}
     </>
   )
 }

@@ -9,7 +9,7 @@ import getDNDFunctions from '../../common/getDNDFunctions'
 import { Position, Size } from '../../types'
 import { useAppActions } from '../../redux/hooks'
 
-const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeObjectProps) => {
+const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
     useAppActions()
@@ -38,7 +38,7 @@ const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor,
           <ellipse {...ellipseStyle} />
         </svg>
       </div>
-      {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
+      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>
   )
 }

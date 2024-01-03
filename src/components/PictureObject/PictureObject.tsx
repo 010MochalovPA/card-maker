@@ -9,6 +9,7 @@ import { useAppActions } from '../../redux/hooks'
 
 type PictureObjectProps = PictureObjectType & {
   isSelected: boolean
+  isPreview: boolean
 }
 
 const PictureObject = ({
@@ -20,8 +21,9 @@ const PictureObject = ({
   isSelected,
   borderColor,
   backgroundColor,
+  isPreview,
 }: PictureObjectProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
   const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
     useAppActions()
 
@@ -50,7 +52,7 @@ const PictureObject = ({
           createChangeSelectedObjectIdAction(id)
         }}
       />
-      {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
+      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>
   )
 }

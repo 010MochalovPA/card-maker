@@ -9,7 +9,7 @@ import getDNDFunctions from '../../common/getDNDFunctions'
 import { useAppActions } from '../../redux/hooks'
 import { Position, Size } from '../../types'
 
-const RectangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected }: ShapeObjectProps) => {
+const RectangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
     useAppActions()
@@ -44,7 +44,7 @@ const RectangleShape = ({ id, position, size, angle, borderColor, backgroundColo
           <rect {...rectStyle} />
         </svg>
       </div>
-      {isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
+      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
     </>
   )
 }
