@@ -1,10 +1,20 @@
 .toolbar-item {
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
+  width: 50px;
+  height: 34px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #388087;
+  align-items: center;
+  background: #F9F9F9;
+  outline: 1px solid #D4D4D4;
+  outline-offset: -1px;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.toolbar-item:hover {
+  background: #E9E9E9;
+}
+
+.toolbar-item:active {
+  background: #D9D9D9;
 }

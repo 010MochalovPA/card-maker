@@ -1,10 +1,11 @@
 import { ComponentType, useState } from 'react'
 import styles from './Toolbar.css'
-import RectangleIcon20dp from '../../icons/RectangleIcon20dp'
-import TriangleIcon20dp from '../../icons/TriangleIcon20dp'
-import ElipseIcon20dp from '../../icons/ElipseIcon20dp'
+import InsertRectangle from '../../icons/InsertRectangle'
+import InsertTriangle from '../../icons/InsertTriangle'
+import InsertEllipse from '../../icons/InsertEllipse'
+import InsertText from '../../icons/InsertText'
+import InsertImage from '../../icons/InsertImage'
 import ToolbarItem from '../ToolbarItem/ToolbarItem'
-import TextIcon20dp from '../../icons/TextIcon20dp'
 import { Modal } from '../Modal/Modal'
 import { AddImage } from '../AddImage/AddImage'
 import { useAppActions } from '../../redux/hooks'
@@ -28,35 +29,35 @@ const Toolbar = () => {
 
   const options: OptionItemType[] = [
     {
-      icon: RectangleIcon20dp,
+      icon: InsertRectangle,
       onClick: () => {
         createInsertRectangleAction()
       },
       tooltip: 'Rectangle',
     },
     {
-      icon: TriangleIcon20dp,
+      icon: InsertTriangle,
       onClick: () => {
         createInsertTriangleAction()
       },
       tooltip: 'Triangle',
     },
     {
-      icon: ElipseIcon20dp,
+      icon: InsertEllipse,
       onClick: () => {
         createInsertEllipseAction()
       },
       tooltip: 'Ellipse',
     },
     {
-      icon: TextIcon20dp,
+      icon: InsertText,
       onClick: () => {
         createInsertTextAction()
       },
       tooltip: 'Text',
     },
     {
-      icon: TextIcon20dp,
+      icon: InsertImage,
       onClick: () => {
         setIsModalOpen(true)
       },

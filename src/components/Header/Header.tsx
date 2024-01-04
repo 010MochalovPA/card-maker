@@ -40,7 +40,9 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <Logo />
+      <div className={styles.logo}>
+        <Logo />
+      </div>
       <PresentationTitle />
       <div className={styles.spacer}></div>
       <input ref={inputRef} className={styles.hidden} type="file" accept=".json,application/json" onChange={onChange} />

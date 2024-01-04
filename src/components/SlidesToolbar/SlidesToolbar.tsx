@@ -1,6 +1,10 @@
 import { ComponentType } from 'react'
 import styles from './SlidesToolbar.css'
-import PlusIcon20dp from '../../icons/PlusIcon20dp'
+import SlideNew from '../../icons/SlideNew'
+import SlideDelete from '../../icons/SlideDelete'
+import SlideMoveUp from '../../icons/SlideMoveUp'
+import SlideMoveDown from '../../icons/SlideMoveDown'
+import SlideEditBackground from '../../icons/SlideEditBackground'
 import ToolbarItem from '../ToolbarItem/ToolbarItem'
 import { useAppActions } from '../../redux/hooks'
 
@@ -16,32 +20,39 @@ const SlidesToolbar = () => {
 
   const options: OptionItemType[] = [
     {
-      icon: PlusIcon20dp,
+      icon: SlideNew,
       onClick: () => {
         createAddSlideAction()
       },
       tooltip: 'Add slide',
     },
     {
-      icon: PlusIcon20dp,
+      icon: SlideDelete,
       onClick: () => {
         createDeleteSlideAction()
       },
       tooltip: 'Delete slide',
     },
     {
-      icon: PlusIcon20dp,
+      icon: SlideMoveUp,
+      onClick: () => {
+        createMoveUpSlideAction()
+      },
+      tooltip: 'Move up slide',
+    },
+    {
+      icon: SlideMoveDown,
       onClick: () => {
         createMoveDownSlideAction()
       },
       tooltip: 'Move down slide',
     },
     {
-      icon: PlusIcon20dp,
+      icon: SlideEditBackground,
       onClick: () => {
-        createMoveUpSlideAction()
+        console.log('change background')
       },
-      tooltip: 'Move up slide',
+      tooltip: 'Change background',
     },
   ]
 

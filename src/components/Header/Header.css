@@ -1,10 +1,9 @@
 .header {
-  padding: 6px;
+  padding: 13px 8px 13px 0;
   display: flex;
   align-items: center;
-  gap: 8px;
   position: relative;
-  background-color: #badfe7;
+  background: linear-gradient(90deg, #0DF 0%, #B352FF 100%);
 }
 
 .spacer {
@@ -13,4 +12,8 @@
 
 .hidden {
   display: none;
+}
+
+.logo {
+  padding: 0 20px;
 }

@@ -2,8 +2,8 @@
   position: relative;
   display: grid;
   grid-template:
-    'top-panel top-panel top-panel' 80px
-    'slides-panel slide option-panel' calc(100% - 80px) / 293px 1fr 480px;
+    'top-panel top-panel top-panel' 104px
+    'slides-panel slide option-panel' calc(100% - 104px) / 320px 1fr 320px;
   height: 100vh;
   background-color: #f6f6f2;
   user-select: none;

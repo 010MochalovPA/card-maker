@@ -1,3 +1,7 @@
 .top-panel {
   grid-area: top-panel;
 }
+
+.toolbars {
+  display: flex;
+}
