@@ -164,6 +164,16 @@ function createMoveUpSlideAction() {
   }
 }
 
+function createChangeOrderSlides(slideId: string, newIndex: number) {
+  return {
+    type: EditorActions.CHANGE_ORDER_SLIDES,
+    payload: {
+      slideId,
+      newIndex,
+    },
+  }
+}
+
 export {
   createChangeTitleAction,
   createChangeObjectPositionAction,
@@ -185,4 +195,5 @@ export {
   createDeleteSlideAction,
   createMoveDownSlideAction,
   createMoveUpSlideAction,
+  createChangeOrderSlides,
 }

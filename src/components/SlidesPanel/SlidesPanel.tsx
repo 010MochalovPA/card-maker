@@ -16,9 +16,10 @@ const SlidesPanel = ({ slideList }: SlidesPanelPropsType) => (
   <div className={styles.slidesPanel}>
     <SlidesToolbar />
     <div className={styles.slidesWrapper}>
-      {slideList.map((slideItem) => (
+      {slideList.map((slideItem, index) => (
         <SlidePreview
           key={slideItem.id}
+          index={index}
           slideId={slideItem.id}
           onClick={slideItem.onClick}
           isActive={slideItem.isActive}

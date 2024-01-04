@@ -25,6 +25,28 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     setNewSize(objectSize)
   }
 
+  const moveVerticalFn = (
+    e: MouseEvent,
+    deltaX: number,
+    deltaY: number,
+    startPosLeft: number,
+    startPosTop: number,
+    posX: number,
+    posY: number,
+    startWidth: number,
+    startHeight: number,
+  ) => {
+    let newPos = { left: startPosLeft, top: startPosTop }
+    const objectSize = { width: startWidth, height: startHeight }
+
+    deltaY = e.pageY - posY
+
+    newPos = { left: newPos.left, top: newPos.top + deltaY }
+
+    setPos(newPos)
+    setNewSize(objectSize)
+  }
+
   const leftResizeFn = (
     e: MouseEvent,
     deltaX: number,
@@ -224,6 +246,7 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     rightBottomResizeFn,
     bottomResizeFn,
     leftBottomResizeFn,
+    moveVerticalFn,
   ]
 }
 

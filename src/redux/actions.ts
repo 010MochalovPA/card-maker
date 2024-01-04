@@ -21,6 +21,7 @@ enum EditorActions {
   DELETE_SLIDE = 'DELETE_SLIDE',
   MOVE_UP_SLIDE = 'MOVE_UP_SLIDE',
   MOVE_DOWN_SLIDE = 'MOVE_DOWN_SLIDE',
+  CHANGE_ORDER_SLIDES = 'CHANGE_ORDER_SLIDES',
 }
 
 type ChangeTitleAction = {
@@ -139,6 +140,15 @@ type ChangeImageData = {
   }
 }
 
+type ChangeOrderSlides = {
+  type: EditorActions.CHANGE_ORDER_SLIDES
+  payload: {
+    slideId: string
+    newIndex: number
+  }
+}
+
+
 type DeleteObject = {
   type: EditorActions.DELETE_OBJECT
   payload: {
@@ -167,5 +177,6 @@ type Action =
   | DeleteSlide
   | MoveUpSlide
   | MoveDownSlide
+  | ChangeOrderSlides
 
 export { EditorActions, type Action }

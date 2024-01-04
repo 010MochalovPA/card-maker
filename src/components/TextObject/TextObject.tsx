@@ -25,7 +25,7 @@ const TextObject = ({
   isSelected,
   isPreview
 }: TextObjectProps) => {
-  const ref = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const {
     createChangeObjectPositionAction,
     createChangeSelectedObjectIdAction,

@@ -27,7 +27,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
@@ -51,7 +51,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
@@ -75,7 +75,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
@@ -99,7 +99,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
@@ -123,7 +123,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
@@ -147,7 +147,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
@@ -171,7 +171,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               const newImage: PictureObjectType = {
@@ -200,7 +200,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               const rect: ShapeObjectType = {
@@ -228,7 +228,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               const rect: ShapeObjectType = {
@@ -256,7 +256,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               const rect: ShapeObjectType = {
@@ -284,7 +284,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               const textObject: TextObjectType = {
@@ -319,7 +319,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
@@ -343,7 +343,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.filter((object) => object.id !== action.payload.objectId)
@@ -369,7 +369,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: [...slideList, newSlide],
         },
       }
@@ -381,7 +381,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: slideList.filter((slide) => slide.id !== state.currentSlide),
         },
       }
@@ -404,7 +404,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: [...newSlideList],
         },
       }
@@ -427,7 +427,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return {
         ...state,
         document: {
-          ...document,
+          ...state.document,
           slideList: [...newSlideList],
         },
       }
@@ -439,6 +439,27 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
 
     case EditorActions.CHANGE_SELECTED_OBJECT_ID: {
       return { ...state, selected: { ...state.selected, selected: action.payload.objectId } }
+    }
+
+    case EditorActions.CHANGE_ORDER_SLIDES: {
+      const slideList = state.document.slideList
+      const newIndex = slideList.findIndex((slide) => slide.id === state.currentSlide) + action.payload.newIndex
+      const MoveSlide = slideList.find((slide) => slide.id === state.currentSlide)
+
+      if (newIndex < 0 || newIndex >= slideList.length || !MoveSlide) {
+        return state
+      }
+
+      const newSlideList = slideList.filter((slide) => slide.id !== state.currentSlide)
+
+      newSlideList.splice(newIndex, 0, { ...MoveSlide })
+      return {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: [...newSlideList],
+        },
+      }
     }
 
     default:
