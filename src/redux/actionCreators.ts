@@ -158,17 +158,45 @@ function createMoveDownSlideAction() {
   }
 }
 
+function createMoveUpObjectAction(objectId: string) {
+  return {
+    type: EditorActions.MOVE_UP_OBJECT,
+    payload: {
+      objectId
+    }
+  }
+}
+
+function createMoveDownObjectAction(objectId: string) {
+  return {
+    type: EditorActions.MOVE_DOWN_OBJECT,
+    payload: {
+      objectId
+    }
+  }
+}
+
 function createMoveUpSlideAction() {
   return {
     type: EditorActions.MOVE_UP_SLIDE,
   }
 }
 
-function createChangeOrderSlides(slideId: string, newIndex: number) {
+function createChangeOrderSlidesAction(slideId: string, newIndex: number) {
   return {
     type: EditorActions.CHANGE_ORDER_SLIDES,
     payload: {
       slideId,
+      newIndex,
+    },
+  }
+}
+
+function createChangeOrderObjectsAction(objectId: string, newIndex: number) {
+  return {
+    type: EditorActions.CHANGE_ORDER_OBJECTS,
+    payload: {
+      objectId,
       newIndex,
     },
   }
@@ -195,5 +223,8 @@ export {
   createDeleteSlideAction,
   createMoveDownSlideAction,
   createMoveUpSlideAction,
-  createChangeOrderSlides,
+  createChangeOrderSlidesAction,
+  createChangeOrderObjectsAction,
+  createMoveUpObjectAction,
+  createMoveDownObjectAction
 }

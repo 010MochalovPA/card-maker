@@ -6,7 +6,8 @@ import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
 import { useAppActions } from '../../redux/hooks'
-import ContextMenu from '../ContextMenu/ContextMenu'
+import { ContextMenu } from '../ContextMenu/ContextMenu'
+import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
 
 type PictureObjectProps = PictureObjectType & {
   isSelected: boolean
@@ -36,45 +37,11 @@ const PictureObject = ({
     createChangeObjectSizeAction(id, newSize)
   }
 
-  const [contextMenuState, setContextMenuState] = useState(false)
-  const [contextMenuPosition, setContextMenuPosition] = useState({top: 0, left: 0})
-
   const [moveFn] = getDNDFunctions(setPosition, setSize)
 
-  const objectPlaceTopHandler = () => {
-    console.log('объект на самый верх')
-    setContextMenuState(false)
-  }
-
-  const objectPlaceUpHandler = () => {
-    console.log('объект повыше')
-    setContextMenuState(false)
-  }
-
-  const objectPlaceDownHandler = () => {
-    console.log('объект пониже')
-    setContextMenuState(false)
-  }
-
-  const objectPlaceBottomHandler = () => {
-    console.log('объект в самый низ')
-    setContextMenuState(false)
-  }
-
-  const objectDeleteHandler = () => {
-    console.log('удаление объекта')
-    setContextMenuState(false)
-  }
-
-  const menuItems = [
-    {text: 'Переместить вверх', handler: objectPlaceTopHandler},
-    {text: 'Переместить выше', handler: objectPlaceUpHandler},
-    {text: 'Переместить ниже', handler: objectPlaceDownHandler},
-    {text: 'Переместить вниз', handler: objectPlaceBottomHandler},
-    {text: 'Удалить', handler: objectDeleteHandler},
-  ]
 
   useDragAndDrop(ref, position, size, moveFn)
+  const {contextMenuPosition, isShowContextMenu, items} = useContextMenu(id, ref, ContextMenuType.OBJECT)
 
   const style = getPictureObjectStyle(position, size, angle, data, borderColor, backgroundColor)
   return (
@@ -83,21 +50,10 @@ const PictureObject = ({
         ref={ref}
         className={styles.picture}
         style={{ ...style, top: `${position.top}px`, left: `${position.left}px` }}
-        onMouseDown={(e) => {
-          e.stopPropagation()
-          e.preventDefault()
-          createChangeSelectedObjectIdAction(id)
-        }}
-        onContextMenu={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          setContextMenuState(true)
-          const {x: slideViewRectX, y: slideViewRectY} = document.querySelector('#slideView')!.getBoundingClientRect()
-          setContextMenuPosition({top: e.clientY - slideViewRectY, left: e.clientX - slideViewRectX})
-        }}
+        onMouseDown={() => createChangeSelectedObjectIdAction(id)}
       />
       {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
-      {!isPreview && contextMenuState && <ContextMenu position={contextMenuPosition} items={menuItems} />}
+      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
     </>
   )
 }

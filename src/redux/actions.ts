@@ -22,6 +22,9 @@ enum EditorActions {
   MOVE_UP_SLIDE = 'MOVE_UP_SLIDE',
   MOVE_DOWN_SLIDE = 'MOVE_DOWN_SLIDE',
   CHANGE_ORDER_SLIDES = 'CHANGE_ORDER_SLIDES',
+  CHANGE_ORDER_OBJECTS = 'CHANGE_ORDER_OBJECTS',
+  MOVE_UP_OBJECT = 'MOVE_UP_OBJECT',
+  MOVE_DOWN_OBJECT = 'MOVE_DOWN_OBJECT',
 }
 
 type ChangeTitleAction = {
@@ -132,6 +135,20 @@ type MoveUpSlide = {
   type: EditorActions.MOVE_UP_SLIDE
 }
 
+type MoveDownObject = {
+  type: EditorActions.MOVE_DOWN_OBJECT
+  payload: {
+    objectId: string
+  }
+}
+
+type MoveUpObject = {
+  type: EditorActions.MOVE_UP_OBJECT
+  payload: {
+    objectId: string
+  }
+}
+
 type ChangeImageData = {
   type: EditorActions.CHANGE_IMAGE_DATA
   payload: {
@@ -148,6 +165,13 @@ type ChangeOrderSlides = {
   }
 }
 
+type ChangeOrderObjects = {
+  type: EditorActions.CHANGE_ORDER_OBJECTS
+  payload: {
+    objectId: string
+    newIndex: number
+  }
+}
 
 type DeleteObject = {
   type: EditorActions.DELETE_OBJECT
@@ -178,5 +202,8 @@ type Action =
   | MoveUpSlide
   | MoveDownSlide
   | ChangeOrderSlides
+  | ChangeOrderObjects
+  | MoveDownObject
+  | MoveUpObject
 
 export { EditorActions, type Action }

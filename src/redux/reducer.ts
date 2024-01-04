@@ -462,6 +462,101 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       }
     }
 
+    case EditorActions.CHANGE_ORDER_OBJECTS: {
+      const currentSlide = state.currentSlide
+      const slideList = state.document.slideList
+
+      const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
+      const moveObject = objects?.find((object) => object.id === action.payload.objectId)
+      
+      
+      if (!objects || !moveObject ) {
+        return state
+      }
+
+      const index = objects.findIndex((object) => object.id === action.payload.objectId)
+
+      if (index === -1 || index + action.payload.newIndex < 0 || index + action.payload.newIndex >= slideList.length) {
+        return state
+      }
+
+      
+      const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
+      newObjects.splice(index + action.payload.newIndex, 0, {...moveObject})
+
+      return {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: state.document.slideList.map((slide) => {
+            return slide.id === currentSlide ? {...slide, objects: newObjects} : {...slide}
+          }),
+        },
+      }
+    }
+
+    case EditorActions.MOVE_UP_OBJECT: {
+      const currentSlide = state.currentSlide
+      const slideList = state.document.slideList
+
+      const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
+      const moveObject = objects?.find((object) => object.id === action.payload.objectId)
+      
+      if (!objects || !moveObject ) {
+        return state
+      }
+
+      const index = objects.findIndex((object) => object.id === action.payload.objectId)
+
+      if (index < 0 || index >= slideList.length) {
+        return state
+      }
+
+      const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
+      newObjects.splice(newObjects.length, 0, {...moveObject})
+
+      return {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: state.document.slideList.map((slide) => {
+            return slide.id === currentSlide ? {...slide, objects: newObjects} : {...slide}
+          }),
+        },
+      }
+    }
+
+    case EditorActions.MOVE_DOWN_OBJECT: {
+      const currentSlide = state.currentSlide
+      const slideList = state.document.slideList
+
+      const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
+      const moveObject = objects?.find((object) => object.id === action.payload.objectId)
+      
+      if (!objects || !moveObject ) {
+        return state
+      }
+
+      const index = objects.findIndex((object) => object.id === action.payload.objectId)
+
+      if (index < 0 || index >= slideList.length) {
+        return state
+      }
+
+      const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
+      newObjects.splice(0, 0, {...moveObject})
+
+      return {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: state.document.slideList.map((slide) => {
+            return slide.id === currentSlide ? {...slide, objects: newObjects} : {...slide}
+          }),
+        },
+      }
+    }
+
     default:
       return state
   }

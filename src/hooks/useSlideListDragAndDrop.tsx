@@ -5,7 +5,7 @@ const useSlideListDragAndDrop = (slideId: string, ref: RefObject<HTMLDivElement>
   let posY: number
   let deltaY = 0
   
-  const {createChangeOrderSlides} = useAppActions()
+  const {createChangeOrderSlidesAction} = useAppActions()
 
   useEffect(() => {
     const height = ref.current!.clientHeight;
@@ -16,11 +16,11 @@ const useSlideListDragAndDrop = (slideId: string, ref: RefObject<HTMLDivElement>
 
     const onMouseUp = () => {
       if (deltaY < 0 && deltaY < -height) {
-        createChangeOrderSlides(slideId, Math.ceil(deltaY/height))
+        createChangeOrderSlidesAction(slideId, Math.ceil(deltaY/height))
       }
 
       if (deltaY > 0 && deltaY > height) {
-        createChangeOrderSlides(slideId, Math.floor(deltaY/height))
+        createChangeOrderSlidesAction(slideId, Math.floor(deltaY/height))
       }
 
       setPos(0)
