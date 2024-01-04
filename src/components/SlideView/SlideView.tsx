@@ -39,12 +39,21 @@ const SlideView = ({ slideId, scale, isPreview }: SlideViewProps) => {
   const background = getSlideBackgroundString(slide)
   const pointerEvents = isPreview ? 'none' : 'auto'
 
-  return (
-    <div className={styles.slide} style={{ background, transform: `scale(${scale})`, pointerEvents }}>
-      {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId, isPreview))}
-      <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')} />
-    </div>
-  )
+  if (isPreview) {
+    return (
+      <div className={styles.slide} style={{ background, transform: `scale(${scale})`, pointerEvents }}>
+        {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId, isPreview))}
+        <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')} />
+      </div>
+    )
+  } else {
+    return (
+      <div className={styles.slide} style={{ background, transform: `scale(${scale})`, pointerEvents }} id={'slideView'}>
+        {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId, isPreview))}
+        <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')} />
+      </div>
+    )
+  }
 }
 
 export default SlideView

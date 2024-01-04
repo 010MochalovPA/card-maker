@@ -1,0 +1,13 @@
+.menu-button {
+  color: #676767;
+  background: #cdcdcd;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  outline: 1px solid #bbbbbb;
+  outline-offset: -1px;
+  background: #ffffff;
+  color: #121212;
+}

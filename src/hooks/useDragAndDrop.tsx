@@ -31,10 +31,14 @@ const useDragAndDrop = (
     }
 
     const onMouseDown = (e: MouseEvent) => {
-      posX = e.pageX
-      posY = e.pageY
-      window.addEventListener('mousemove', onMouseMove)
-      window.addEventListener('mouseup', onMouseUp)
+      if (e.button === 0) {
+        posX = e.pageX
+        posY = e.pageY
+        window.addEventListener('mousemove', onMouseMove)
+        window.addEventListener('mouseup', onMouseUp)
+      } else {
+        e.preventDefault()
+      }
     }
 
     ref.current!.addEventListener('mousedown', onMouseDown)
