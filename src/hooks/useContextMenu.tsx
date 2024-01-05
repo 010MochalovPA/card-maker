@@ -8,8 +8,6 @@ enum ContextMenuType {
     OBJECT,
 }
 
-const root = document.getElementById('root') as Element
-
 const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: ContextMenuType): { contextMenuPosition: Position, isShowContextMenu: boolean, items: ContextMenuItem[], onClose: () => void } => {
     const [contextMenuPosition, setContextMenuPosition] = useState<Position>({ top: 0, left: 0 })
     const [isShowContextMenu, setShowContextMenu] = useState(false)
