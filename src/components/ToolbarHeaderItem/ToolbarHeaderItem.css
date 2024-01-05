@@ -14,5 +14,6 @@
 }
 
 .toolbar-item:active {
+  transition: none;
   background: rgba(255, 255, 255, 0.3);
 }
