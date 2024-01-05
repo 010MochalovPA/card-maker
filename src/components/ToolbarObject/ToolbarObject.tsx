@@ -1,5 +1,5 @@
 import { ComponentType, useState } from 'react'
-import styles from './Toolbar.css'
+import styles from './ToolbarObject.css'
 import InsertRectangle from '../../icons/InsertRectangle'
 import InsertTriangle from '../../icons/InsertTriangle'
 import InsertEllipse from '../../icons/InsertEllipse'
@@ -16,7 +16,7 @@ export type OptionItemType = {
   tooltip: string
 }
 
-const Toolbar = () => {
+const ToolbarObject = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const {
@@ -85,4 +85,4 @@ const Toolbar = () => {
   )
 }
 
-export { Toolbar }
+export { ToolbarObject }

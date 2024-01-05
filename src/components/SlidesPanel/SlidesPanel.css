@@ -1,11 +1,13 @@
 .slides-panel {
   grid-area: slides-panel;
   overflow-y: auto;
+  border-right: 1px solid #D4D4D4;
+  padding: 20px 0;
 }
 
 .slides-wrapper {
   width: 100%;
-  padding: 10px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;

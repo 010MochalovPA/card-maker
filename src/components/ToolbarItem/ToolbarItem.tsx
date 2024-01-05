@@ -1,4 +1,4 @@
-import { OptionItemType } from '../Toolbar/Toolbar'
+import { OptionItemType } from '../ToolbarObject/ToolbarObject'
 import styles from './ToolbarItem.css'
 
 const ToolbarItem = ({ icon: Icon, onClick, tooltip }: OptionItemType) => {

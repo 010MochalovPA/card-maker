@@ -1,5 +1,5 @@
 import { ComponentType } from 'react'
-import styles from './SlidesToolbar.css'
+import styles from './ToolbarSlides.css'
 import SlideNew from '../../icons/SlideNew'
 import SlideDelete from '../../icons/SlideDelete'
 import SlideMoveUp from '../../icons/SlideMoveUp'
@@ -14,7 +14,7 @@ export type OptionItemType = {
   tooltip: string
 }
 
-const SlidesToolbar = () => {
+const ToolbarSlides = () => {
   const { createAddSlideAction, createDeleteSlideAction, createMoveDownSlideAction, createMoveUpSlideAction } =
     useAppActions()
 
@@ -65,4 +65,4 @@ const SlidesToolbar = () => {
   )
 }
 
-export { SlidesToolbar }
+export { ToolbarSlides }

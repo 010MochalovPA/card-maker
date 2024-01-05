@@ -1,5 +1,6 @@
 .top-panel {
   grid-area: top-panel;
+  border-bottom: 1px solid #D4D4D4;
 }
 
 .toolbars {

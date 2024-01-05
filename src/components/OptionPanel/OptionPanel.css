@@ -3,4 +3,5 @@
   grid-area: option-panel;
   overflow-y: auto;
   position: relative;
+  border-left: 1px solid #D4D4D4;
 }
