@@ -8,6 +8,7 @@ import getDNDFunctions from '../../common/getDNDFunctions'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import { useAppActions } from '../../redux/hooks'
 import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
+import { ContextMenu } from '../ContextMenu/ContextMenu'
 
 type TextObjectProps = TextObjectType & {
   isSelected: boolean
@@ -66,6 +67,7 @@ const TextObject = ({
         />
       </div>
       {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
+      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
     </>
   )
 }
