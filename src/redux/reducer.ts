@@ -372,6 +372,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           ...state.document,
           slideList: [...slideList, newSlide],
         },
+        currentSlide: newSlide.id,
       }
     }
 
