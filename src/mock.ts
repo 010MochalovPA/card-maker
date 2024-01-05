@@ -1308,7 +1308,7 @@ const slide1: Slide = {
   id: 'c932d26bcf6946618042e9852163c642',
   background: {
     type: SlideBackgroundType.PICTURE_URL,
-    data: 'https://live.staticflickr.com/65535/51624967801_8e3859f34a_b.jpg',
+    data: 'https://img.freepik.com/free-photo/young-adult-enjoying-yoga-nature_23-2149573175.jpg?w=1380&t=st=1704474168~exp=1704474768~hmac=362dc03931b56d53bbae7daaa5ac35c5928c061476e6a5d30f2c8e5e72578f0a',
   },
   objects: [picture1, text1, shape1, picture10],
 }
@@ -1316,13 +1316,8 @@ const slide1: Slide = {
 const slide2: Slide = {
   id: '4713d4539004469d8ac1bb0afd408f25',
   background: {
-    type: SlideBackgroundType.SOLID_COLOR,
-    color: {
-      r: 0,
-      g: 35,
-      b: 150,
-      a: 0.8,
-    },
+    type: SlideBackgroundType.PICTURE_URL,
+    data: 'https://live.staticflickr.com/65535/51624967801_8e3859f34a_b.jpg',
   },
   objects: [picture2, text2, shape2],
 }
@@ -1367,7 +1362,7 @@ const slide5: Slide = {
 const slide6: Slide = {
   id: '18e8ae4602194c5ea369749e464d2f28',
   background: {
-    type: SlideBackgroundType.PICTURE_BASE64,
+    type: SlideBackgroundType.PICTURE_URL,
     data: 'https://www.theviennablog.com/wp-content/uploads/2022/10/hallstatt-austria-winter-landscape-2021-08-28-15-08-14-utc-1024x683.jpg',
   },
   objects: [shape4, shape6, shape8],
