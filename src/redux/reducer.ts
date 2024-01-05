@@ -15,20 +15,19 @@ import {
 import generateUUID from '../common/generateUUID'
 import { createHistory } from '../history/History'
 
-const history = createHistory<Editor>(editor1)
+const history = createHistory<Editor>(structuredClone(editor1))
 
 const editorReducer = (state: Editor = editor1, action: Action) => {
   switch (action.type) {
     case EditorActions.CHANGE_TITLE: {
       const newState = { ...state, document: { ...state.document, title: action.payload.newTitle } }
       history.addHistoryItem(newState)
-      console.log(history.history())
       return newState
     }
 
     case EditorActions.CHANGE_OBJECT_POSITION: {
       const currentSlide = state.currentSlide
-      const slideList = [...state.document.slideList]
+      const slideList = state.document.slideList
 
       const newState = {
         ...state,
@@ -36,43 +35,42 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
-              slide.objects = [...slide.objects.map((object) => {
+              slide.objects = slide.objects.map((object) => {
                 if (object.id === action.payload.objectId) {
                   object.position = action.payload.position
                 }
-                return {...object}
-              })]
+                return object
+              })
             }
-            return {...slide}
+            return slide
           }),
         },
       }
       
       history.addHistoryItem(newState)
-      console.log(history.history())
       return newState
     }
 
     case EditorActions.CHANGE_OBJECT_SIZE: {
       const currentSlide = state.currentSlide
-      const slideList = [...state.document.slideList]
+      const slideList = state.document.slideList
 
       const newState = {
         ...state,
         document: {
           ...state.document,
-          slideList: [...slideList.map((slide) => {
+          slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
                 if (object.id === action.payload.objectId) {
                   object.size = action.payload.size
                 }
 
-                return {...object}
+                return object
               })
             }
-            return {...slide}
-          })],
+            return slide
+          }),
         },
       }
 
