@@ -5,6 +5,7 @@
   overflow: hidden;
   transform-origin: left top;
   border: 1px solid #388087;
+  flex-shrink: 0;
 }
 
 .slide-preview {
