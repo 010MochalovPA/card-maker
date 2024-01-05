@@ -39,7 +39,7 @@ const ObjectPicture = ({
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
 
-  const {contextMenuPosition, isShowContextMenu, items} = useContextMenu(id, ref, ContextMenuType.OBJECT)
+  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT)
 
   const style = getPictureObjectStyle(objectPosition, objectSize, angle, borderColor, backgroundColor)
   
@@ -54,7 +54,7 @@ const ObjectPicture = ({
         <img className={styles.image} src={data} alt={'picture'}></img>
       </div>
       {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
-      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
+      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} onClose={onClose}/>}
     </>
   )
 }

@@ -4,7 +4,7 @@ import FileNew from '../../icons/FileNew'
 import FileOpen from '../../icons/FileOpen'
 import FileSave from '../../icons/FileSave'
 import ToolbarHeaderItem from '../ToolbarHeaderItem/ToolbarHeaderItem'
-import { useAppSelector } from '../../redux/hooks'
+import { useAppActions, useAppSelector } from '../../redux/hooks'
 
 export type OptionItemType = {
   icon: ComponentType
@@ -15,17 +15,21 @@ export type OptionItemType = {
 const ToolbarFile = () => {
   const anchorRef = useRef<HTMLAnchorElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
   const title = useAppSelector((state) => state.editor.document.title)
   const editor = useAppSelector((state) => state.editor)
   const text = JSON.stringify(editor)
+
+  const {createNewEditorAction} = useAppActions()
+
   const file = new Blob([text], { type: 'text/plain' })
 
   const options: OptionItemType[] = [
     {
       icon: FileNew,
       onClick: () => {
-        console.log('New file')
+        if (confirm("Создать новый документ?")) {
+          createNewEditorAction()
+        }
       },
       tooltip: 'New',
     },

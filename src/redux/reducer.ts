@@ -5,6 +5,7 @@ import {
   Editor,
   PictureObjectType,
   PictureType,
+  SelectedType,
   ShapeObjectType,
   ShapeType,
   Slide,
@@ -46,7 +47,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
-      
+
       history.addHistoryItem(newState)
       return newState
     }
@@ -530,9 +531,9 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
 
       const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
       const moveObject = objects?.find((object) => object.id === action.payload.objectId)
-      
-      
-      if (!objects || !moveObject ) {
+
+
+      if (!objects || !moveObject) {
         return state
       }
 
@@ -542,16 +543,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
         return state
       }
 
-      
+
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
-      newObjects.splice(index + action.payload.newIndex, 0, {...moveObject})
+      newObjects.splice(index + action.payload.newIndex, 0, { ...moveObject })
 
       const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: state.document.slideList.map((slide) => {
-            return slide.id === currentSlide ? {...slide, objects: newObjects} : {...slide}
+            return slide.id === currentSlide ? { ...slide, objects: newObjects } : { ...slide }
           }),
         },
       }
@@ -566,8 +567,8 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
 
       const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
       const moveObject = objects?.find((object) => object.id === action.payload.objectId)
-      
-      if (!objects || !moveObject ) {
+
+      if (!objects || !moveObject) {
         return state
       }
 
@@ -578,14 +579,14 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       }
 
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
-      newObjects.splice(newObjects.length, 0, {...moveObject})
+      newObjects.splice(newObjects.length, 0, { ...moveObject })
 
       const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: state.document.slideList.map((slide) => {
-            return slide.id === currentSlide ? {...slide, objects: newObjects} : {...slide}
+            return slide.id === currentSlide ? { ...slide, objects: newObjects } : { ...slide }
           }),
         },
       }
@@ -600,8 +601,8 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
 
       const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
       const moveObject = objects?.find((object) => object.id === action.payload.objectId)
-      
-      if (!objects || !moveObject ) {
+
+      if (!objects || !moveObject) {
         return state
       }
 
@@ -612,14 +613,14 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       }
 
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
-      newObjects.splice(0, 0, {...moveObject})
+      newObjects.splice(0, 0, { ...moveObject })
 
       const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: state.document.slideList.map((slide) => {
-            return slide.id === currentSlide ? {...slide, objects: newObjects} : {...slide}
+            return slide.id === currentSlide ? { ...slide, objects: newObjects } : { ...slide }
           }),
         },
       }
@@ -628,18 +629,51 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return newState
     }
 
-    case EditorActions.UNDO:
-		const prevState = history.undo()
-		if (prevState) {
-			return prevState
-		}
-		return state
-	case EditorActions.REDO:
-		const nextState = history.redo()
-		if (nextState) {
-			return nextState
-		}
-		return state
+    case EditorActions.UNDO: {
+      const prevState = history.undo()
+      if (prevState) {
+        return prevState
+      }
+      return state
+    }
+
+    case EditorActions.REDO: {
+      const nextState = history.redo()
+      if (nextState) {
+        return nextState
+      }
+      return state
+    }
+
+    case EditorActions.NEW_EDITOR: {
+      const newState: Editor = {
+        document: {
+          title: 'Новая презентация',
+          slideList: [{
+            id: '90b877d2b36b454e820378127e8b9f7e',
+            background: {
+              type: SlideBackgroundType.SOLID_COLOR,
+              color: {
+                r: 255,
+                g: 255,
+                b: 255,
+                a: 1,
+              },
+            },
+            objects: [],
+          }],
+        },
+        history: [],
+        currentSlide: '90b877d2b36b454e820378127e8b9f7e',
+        selected: {
+          selectedType: SelectedType.OBJECT,
+          selected: '',
+        },
+      }
+      
+      history.addHistoryItem(newState)
+      return newState
+    }
 
     default:
       return state

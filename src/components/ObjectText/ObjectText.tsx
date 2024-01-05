@@ -39,7 +39,7 @@ const ObjectText = ({
 
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
-  const {contextMenuPosition, isShowContextMenu, items} = useContextMenu(id, ref, ContextMenuType.OBJECT)
+  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT)
 
   const setText = (text: string) => {
     createChangeTextAction(id, text)
@@ -67,7 +67,7 @@ const ObjectText = ({
         />
       </div>
       {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
-      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
+      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} onClose={onClose} />}
     </>
   )
 }

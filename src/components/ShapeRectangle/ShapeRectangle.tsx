@@ -24,7 +24,7 @@ const ShapeRectangle = ({ id, position, size, angle, borderColor, backgroundColo
 
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
-  const {contextMenuPosition, isShowContextMenu, items} = useContextMenu(id, ref, ContextMenuType.OBJECT)
+  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT)
   
   const objectStyle = getShapeObjectStyle(objectPosition, objectSize, angle)
   const rectStyle = getRectangleShapeStyle(objectSize, borderColor, backgroundColor)
@@ -45,7 +45,7 @@ const ShapeRectangle = ({ id, position, size, angle, borderColor, backgroundColo
         </svg>
       </div>
       {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
-      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
+      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} onClose={onClose}/>}
     </>
   )
 }

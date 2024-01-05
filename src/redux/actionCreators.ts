@@ -215,6 +215,12 @@ function createRedoAction() {
 	}
 }
 
+function createNewEditorAction() {
+	return {
+		type: EditorActions.NEW_EDITOR,
+	}
+}
+
 export {
   createChangeTitleAction,
   createChangeObjectPositionAction,
@@ -241,5 +247,6 @@ export {
   createMoveUpObjectAction,
   createMoveDownObjectAction,
   createUndoAction,
-  createRedoAction
+  createRedoAction,
+  createNewEditorAction
 }

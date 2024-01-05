@@ -10,7 +10,7 @@ enum ContextMenuType {
 
 const root = document.getElementById('root') as Element
 
-const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: ContextMenuType): { contextMenuPosition: Position, isShowContextMenu: boolean, items: ContextMenuItem[] } => {
+const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: ContextMenuType): { contextMenuPosition: Position, isShowContextMenu: boolean, items: ContextMenuItem[], onClose: () => void } => {
     const [contextMenuPosition, setContextMenuPosition] = useState<Position>({ top: 0, left: 0 })
     const [isShowContextMenu, setShowContextMenu] = useState(false)
 
@@ -19,6 +19,7 @@ const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: Contex
         createDeleteObjectAction,
         createMoveDownObjectAction,
         createMoveUpObjectAction,
+        createChangeSelectedObjectIdAction
     } = useAppActions()
 
     const objectMenuItems: ContextMenuItem[] = [
@@ -60,32 +61,27 @@ const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: Contex
     ]
 
     const handleContextMenu = (e: Event) => {
+        createChangeSelectedObjectIdAction(id)
         e.preventDefault()
         setContextMenuPosition({ top: (e as MouseEvent).pageY, left: (e as MouseEvent).pageX })
         setShowContextMenu(true)
     }
 
-    const handleMouseDown = (e: Event) => {
-        isShowContextMenu && setShowContextMenu(false)
-    }
-
     useEffect(() => {
         if (ref.current) {
             ref.current?.addEventListener('contextmenu', handleContextMenu)
-            root.addEventListener('mousedown', handleMouseDown)
         }
         return () => {
             ref.current?.removeEventListener('contextmenu', handleContextMenu)
-            root.removeEventListener('mousedown', handleMouseDown)
         }
 
     })
 
     switch (type) {
         case ContextMenuType.OBJECT:
-            return { contextMenuPosition, isShowContextMenu, items: objectMenuItems }
+            return { contextMenuPosition, isShowContextMenu, items: objectMenuItems, onClose: () => {setShowContextMenu(false)} }
         default:
-            return { contextMenuPosition, isShowContextMenu, items: objectMenuItems }
+            return { contextMenuPosition, isShowContextMenu, items: objectMenuItems, onClose: () => {setShowContextMenu(false)} }
     }
 }
 
