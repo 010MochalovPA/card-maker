@@ -1,7 +1,7 @@
 import styles from './PictureObject.css'
 import { PictureObjectType, Position, Size } from '../../types'
 import getPictureObjectStyle from '../../common/getPictureObjectStyle'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
@@ -26,33 +26,34 @@ const PictureObject = ({
   isPreview,
 }: PictureObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
-  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
-    useAppActions()
+  const {createChangeSelectedObjectIdAction } = useAppActions()
+  const [objectPosition, setObjectPosition] = useState<Position>(position)
+  const [objectSize, setObjectSize] = useState<Size>(size)
+  
+  useEffect(()=> {
+    setObjectPosition(position)
+    setObjectSize(size)
+  },[position, size])
 
-  const setPosition = (newPosition: Position) => {
-    createChangeObjectPositionAction(id, newPosition)
-  }
+  
+  const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
+  useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
 
-  const setSize = (newSize: Size) => {
-    createChangeObjectSizeAction(id, newSize)
-  }
-
-  const [moveFn] = getDNDFunctions(setPosition, setSize)
-
-
-  useDragAndDrop(ref, position, size, moveFn)
   const {contextMenuPosition, isShowContextMenu, items} = useContextMenu(id, ref, ContextMenuType.OBJECT)
 
-  const style = getPictureObjectStyle(position, size, angle, data, borderColor, backgroundColor)
+  const style = getPictureObjectStyle(objectPosition, objectSize, angle, borderColor, backgroundColor)
+  
   return (
     <>
       <div
         ref={ref}
         className={styles.picture}
-        style={{ ...style, top: `${position.top}px`, left: `${position.left}px` }}
+        style={{ ...style, top: `${objectPosition.top}px`, left: `${objectPosition.left}px` }}
         onMouseDown={() => createChangeSelectedObjectIdAction(id)}
-      />
-      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
+      >
+        <img className={styles.image} src={data}></img>
+      </div>
+      {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
       {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
     </>
   )

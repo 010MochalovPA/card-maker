@@ -1,16 +1,23 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import styles from './AddImage.css'
 import { PictureType } from '../../types'
 import { checkImgSrc } from '../../common/checkImgSrc'
+import { convertBase64 } from '../../common/convertBase64'
 
 type AddImageProps = {
-  onSave: (url: string) => void
+  onSave: (url: string, type: PictureType) => void
 }
 
 const AddImage = ({ onSave }: AddImageProps) => {
   const [type, setType] = useState<PictureType>(PictureType.URL)
-  const [url, setUrl] = useState<string>('')
+  const [data, setData] = useState<string>('')
   const [isDone, setDone] = useState<boolean>(false)
+
+  const uploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    const image = e.target.files?.length ? await convertBase64(e.target.files[0]) : ''
+    image && setData(image as string);
+  }
+
   return (
     <div className={styles.addImage}>
       <div>
@@ -18,28 +25,17 @@ const AddImage = ({ onSave }: AddImageProps) => {
         <button onClick={() => setType(PictureType.BASE64)}>base64</button>
       </div>
       {type === PictureType.URL ? (
-        <div>
-          <input
-            type="text"
-            value={url}
-            onInput={(e) => setUrl(e.currentTarget.value)}
-            onChange={(e) =>
-              checkImgSrc(
-                e.currentTarget.value,
-                () => setDone(true),
-                () => setDone(false),
-              )
-            }
-          />
-        </div>
+        <input
+          type="text"
+          value={data}
+          onInput={(e) => setData(e.currentTarget.value)}
+          onChange={(e) => checkImgSrc(e.currentTarget.value, () => setDone(true), () => setDone(false))}
+        />
       ) : (
-        <div>BASE64</div>
+        <input type="file" onChange={(e) => uploadImage(e)} />
       )}
       <button
-        disabled={!isDone}
-        onClick={() => {
-          onSave(url)
-        }}
+        onClick={() => onSave(data, type)}
       >
         Добавить
       </button>

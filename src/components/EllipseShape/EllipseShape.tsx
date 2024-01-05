@@ -1,28 +1,33 @@
 import getEllipseShapeStyle from '../../common/getEllipseShapeStyle'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import styles from './EllipseShape.css'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import { ShapeObjectProps } from '../ShapeObject/ShapeObject'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
 import { Position, Size } from '../../types'
 import { useAppActions } from '../../redux/hooks'
+import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
+import { ContextMenu } from '../ContextMenu/ContextMenu'
 
 const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
-  const { createChangeObjectPositionAction, createChangeSelectedObjectIdAction, createChangeObjectSizeAction } =
-    useAppActions()
+  const {createChangeSelectedObjectIdAction } = useAppActions()
+  const [objectPosition, setObjectPosition] = useState<Position>(position)
+  const [objectSize, setObjectSize] = useState<Size>(size)
+  
+  useEffect(()=> {
+    setObjectPosition(position)
+    setObjectSize(size)
+  },[position, size])
 
-  const setPosition = (newPosition: Position) => createChangeObjectPositionAction(id, newPosition)
-  const setSize = (newSize: Size) => createChangeObjectSizeAction(id, newSize)
+  const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
+  useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
+  const {contextMenuPosition, isShowContextMenu, items} = useContextMenu(id, ref, ContextMenuType.OBJECT)
 
-  const [moveFn] = getDNDFunctions(setPosition, setSize)
-
-  useDragAndDrop(ref, position, size, moveFn)
-
-  const objectStyle = getShapeObjectStyle(position, size, angle)
-  const ellipseStyle = getEllipseShapeStyle(size, borderColor, backgroundColor)
+  const objectStyle = getShapeObjectStyle(objectPosition, objectSize, angle)
+  const ellipseStyle = getEllipseShapeStyle(objectSize, borderColor, backgroundColor)
   return (
     <>
       <div
@@ -34,11 +39,12 @@ const EllipseShape = ({ id, position, size, angle, borderColor, backgroundColor,
           e.stopPropagation()
         }}
       >
-        <svg width={size.width} height={size.height}>
+        <svg width={objectSize.width} height={objectSize.height}>
           <ellipse {...ellipseStyle} />
         </svg>
       </div>
-      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
+      {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
+      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
     </>
   )
 }

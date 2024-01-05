@@ -9,11 +9,11 @@ import styles from './SlideView.css'
 function getSlideObject(slideObject: SlideObject, isSelected: boolean, isPreview: boolean) {
   switch (slideObject.type) {
     case SlideObjectType.TEXT:
-      return <TextObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview}/>
+      return <TextObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
     case SlideObjectType.PICTURE:
-      return <PictureObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview}/>
+      return <PictureObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
     case SlideObjectType.SHAPE:
-      return <ShapeObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview}/>
+      return <ShapeObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
   }
 }
 
@@ -39,21 +39,12 @@ const SlideView = ({ slideId, scale, isPreview }: SlideViewProps) => {
   const background = getSlideBackgroundString(slide)
   const pointerEvents = isPreview ? 'none' : 'auto'
 
-  if (isPreview) {
-    return (
-      <div className={styles.slide} style={{ background, transform: `scale(${scale})`, pointerEvents }}>
-        {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId, isPreview))}
-        <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')} />
-      </div>
-    )
-  } else {
-    return (
-      <div className={styles.slide} style={{ background, transform: `scale(${scale})`, pointerEvents }} id={'slideView'}>
-        {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId, isPreview))}
-        <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')} />
-      </div>
-    )
-  }
+  return (
+    <div className={styles.slide} style={{ background, transform: `scale(${scale})`, pointerEvents }}>
+      {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId, isPreview))}
+      <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')} />
+    </div>
+  )
 }
 
 export default SlideView

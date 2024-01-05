@@ -424,6 +424,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newSlideList = slideList.filter((slide) => slide.id !== state.currentSlide)
 
       newSlideList.splice(newIndex, 0, { ...MoveSlide })
+
       return {
         ...state,
         document: {

@@ -1,4 +1,4 @@
-import { Color, FontStyles, Position, Size } from '../types'
+import { Color, FontStyles, PictureType, Position, Size } from '../types'
 
 enum EditorActions {
   CHANGE_TITLE = 'CHANGE_TITLE',
@@ -154,6 +154,7 @@ type ChangeImageData = {
   payload: {
     objectId: string
     data: string
+    type: PictureType
   }
 }
 
