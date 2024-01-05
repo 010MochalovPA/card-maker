@@ -2,11 +2,13 @@ import styles from './TextObject.css'
 import { getTextStyle } from '../../common/getTextStyle'
 import { Position, Size, TextObjectType } from '../../types'
 import getTextObjectStyle from '../../common/getTextObjectStyle'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import getDNDFunctions from '../../common/getDNDFunctions'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import { useAppActions } from '../../redux/hooks'
+import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
+import { ContextMenu } from '../ContextMenu/ContextMenu'
 
 type TextObjectProps = TextObjectType & {
   isSelected: boolean
@@ -25,39 +27,33 @@ const TextObject = ({
   isSelected,
   isPreview
 }: TextObjectProps) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const {
-    createChangeObjectPositionAction,
-    createChangeSelectedObjectIdAction,
-    createChangeObjectSizeAction,
-    createChangeTextAction,
-  } = useAppActions()
+  const ref = useRef<HTMLDivElement | null>(null)
+  const {createChangeSelectedObjectIdAction, createChangeTextAction } = useAppActions()
+  const [objectPosition, setObjectPosition] = useState<Position>(position)
+  const [objectSize, setObjectSize] = useState<Size>(size)
+  
+  useEffect(()=> {
+    setObjectPosition(position)
+    setObjectSize(size)
+  },[position, size])
 
-  const setPosition = (newPosition: Position) => {
-    createChangeObjectPositionAction(id, newPosition)
-  }
-
-  const setSize = (newSize: Size) => {
-    createChangeObjectSizeAction(id, newSize)
-  }
+  const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
+  useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
+  const {contextMenuPosition, isShowContextMenu, items} = useContextMenu(id, ref, ContextMenuType.OBJECT)
 
   const setText = (text: string) => {
     createChangeTextAction(id, text)
   }
 
-  const [moveFn] = getDNDFunctions(setPosition, setSize)
-
-  useDragAndDrop(ref, position, size, moveFn)
-
   const textStyle = getTextStyle(style)
-  const objectStyle = getTextObjectStyle(position, size, angle, borderColor, backgroundColor)
+  const objectStyle = getTextObjectStyle(objectPosition, objectSize, angle, borderColor, backgroundColor)
 
   return (
     <>
       <div
         ref={ref}
         className={styles.text}
-        style={{ ...objectStyle, top: `${position.top}px`, left: `${position.left}px` }}
+        style={{ ...objectStyle, top: `${objectPosition.top}px`, left: `${objectPosition.left}px` }}
         onMouseDown={() => {
           createChangeSelectedObjectIdAction(id)
         }}
@@ -70,7 +66,8 @@ const TextObject = ({
           value={text}
         />
       </div>
-      {!isPreview && isSelected && <SelectedItem position={position} size={size} setPosition={setPosition} setSize={setSize} />}
+      {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
+      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} />}
     </>
   )
 }

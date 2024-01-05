@@ -16,7 +16,7 @@ const SlidePreview = ({ index, slideId, onClick, isActive }: SlidePreviewProps) 
   const ref = useRef<HTMLDivElement>(null)
 
   useSlideListDragAndDrop(slideId, ref, setOffset)
-  //console.log(index)
+
   return (
     <div ref={ref} className={classNames(styles.slidePreview, isActive && styles.active)} onMouseDown={onClick} style={{top: `${offset}px`}}>
       <SlideView slideId={slideId} scale={0.25} isPreview={true}/>

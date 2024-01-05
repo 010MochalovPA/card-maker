@@ -1,4 +1,4 @@
-import { Color, FontStyles, Position, Size } from '../types'
+import { Color, FontStyles, PictureType, Position, Size } from '../types'
 import { EditorActions } from './actions'
 
 function createChangeTitleAction(newTitle: string) {
@@ -70,12 +70,13 @@ function createChangeTextAction(objectId: string, text: string) {
   }
 }
 
-function createChangeImageDataAction(objectId: string, data: string) {
+function createChangeImageDataAction(objectId: string, data: string, type: PictureType) {
   return {
     type: EditorActions.CHANGE_IMAGE_DATA,
     payload: {
       objectId,
       data,
+      type,
     },
   }
 }

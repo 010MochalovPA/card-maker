@@ -1,7 +1,10 @@
-import { RefObject, useEffect } from 'react'
+import { RefObject, useEffect, useState } from 'react'
 import { Position, Size } from '../types'
+import { useAppActions } from '../redux/hooks'
 
 const useDragAndDrop = (
+  id: string,
+  targetRef: RefObject<HTMLDivElement>,
   ref: RefObject<HTMLDivElement>,
   position: Position,
   size: Size,
@@ -17,6 +20,7 @@ const useDragAndDrop = (
     startHeight: number,
   ) => void,
 ) => {
+  const { createChangeObjectPositionAction, createChangeObjectSizeAction } = useAppActions()
   let posX: number, posY: number
   const delta: { x: number; y: number } = { x: 0, y: 0 }
 
@@ -26,19 +30,21 @@ const useDragAndDrop = (
     }
 
     const onMouseUp = () => {
+      const x = targetRef.current!.offsetLeft
+      const y = targetRef.current!.offsetTop
+      const {width, height} = targetRef.current!.getBoundingClientRect()
+
+      createChangeObjectPositionAction(id, {left: x, top: y})
+      createChangeObjectSizeAction(id, {width, height})
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseup', onMouseUp)
     }
 
     const onMouseDown = (e: MouseEvent) => {
-      if (e.button === 0) {
         posX = e.pageX
         posY = e.pageY
         window.addEventListener('mousemove', onMouseMove)
         window.addEventListener('mouseup', onMouseUp)
-      } else {
-        e.preventDefault()
-      }
     }
 
     ref.current!.addEventListener('mousedown', onMouseDown)

@@ -1,17 +1,19 @@
-import { useRef } from 'react'
+import { RefObject, useRef, useState } from 'react'
 import { Position, Size } from '../../types'
 import styles from './SelectedItem.css'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import getDNDFunctions from '../../common/getDNDFunctions'
 
 type SelectedItemProps = {
+  targetRef: RefObject<HTMLDivElement>
+  id: string
   position: Position
   size: Size
   setPosition: (position: Position) => void
   setSize: (size: Size) => void
 }
 
-const SelectedItem = ({ position, size, setPosition, setSize }: SelectedItemProps) => {
+const SelectedItem = ({id, targetRef, position, size, setPosition, setSize }: SelectedItemProps) => {
   const leftRef = useRef<HTMLDivElement>(null)
   const leftTopRef = useRef<HTMLDivElement>(null)
   const topRef = useRef<HTMLDivElement>(null)
@@ -34,14 +36,14 @@ const SelectedItem = ({ position, size, setPosition, setSize }: SelectedItemProp
     leftBottomResize,
   ] = getDNDFunctions(setPosition, setSize)
 
-  useDragAndDrop(leftRef, position, size, leftResize)
-  useDragAndDrop(leftTopRef, position, size, leftTopResize)
-  useDragAndDrop(topRef, position, size, topResize)
-  useDragAndDrop(rightTopRef, position, size, rightTopResize)
-  useDragAndDrop(rightRef, position, size, rightResize)
-  useDragAndDrop(rightBottomRef, position, size, rightBottomResize)
-  useDragAndDrop(bottomRef, position, size, bottomResize)
-  useDragAndDrop(leftBottomRef, position, size, leftBottomResize)
+  useDragAndDrop(id, targetRef, leftRef, position, size, leftResize)
+  useDragAndDrop(id, targetRef, leftTopRef, position, size, leftTopResize)
+  useDragAndDrop(id, targetRef, topRef, position, size, topResize)
+  useDragAndDrop(id, targetRef, rightTopRef, position, size, rightTopResize)
+  useDragAndDrop(id, targetRef, rightRef, position, size, rightResize)
+  useDragAndDrop(id, targetRef, rightBottomRef, position, size, rightBottomResize)
+  useDragAndDrop(id, targetRef, bottomRef, position, size, bottomResize)
+  useDragAndDrop(id, targetRef, leftBottomRef, position, size, leftBottomResize)
 
   return (
     <>
