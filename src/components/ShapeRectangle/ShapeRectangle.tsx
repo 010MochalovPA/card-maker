@@ -1,9 +1,9 @@
-import styles from './RectangleShape.css'
+import styles from './ShapeRectangle.css'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getRectangleShapeStyle from '../../common/getRectangleShapeStyle'
 import { useEffect, useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
-import { ShapeObjectProps } from '../ShapeObject/ShapeObject'
+import { ShapeObjectProps } from '../ObjectShape/ObjectShape'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
 import { useAppActions } from '../../redux/hooks'
@@ -11,7 +11,7 @@ import { Position, Size } from '../../types'
 import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
 import { ContextMenu } from '../ContextMenu/ContextMenu'
 
-const RectangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeObjectProps) => {
+const ShapeRectangle = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const {createChangeSelectedObjectIdAction } = useAppActions()
   const [objectPosition, setObjectPosition] = useState<Position>(position)
@@ -50,4 +50,4 @@ const RectangleShape = ({ id, position, size, angle, borderColor, backgroundColo
   )
 }
 
-export default RectangleShape
+export default ShapeRectangle

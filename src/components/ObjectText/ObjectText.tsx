@@ -1,4 +1,4 @@
-import styles from './TextObject.css'
+import styles from './ObjectText.css'
 import { getTextStyle } from '../../common/getTextStyle'
 import { Position, Size, TextObjectType } from '../../types'
 import getTextObjectStyle from '../../common/getTextObjectStyle'
@@ -15,7 +15,7 @@ type TextObjectProps = TextObjectType & {
   isPreview: boolean
 }
 
-const TextObject = ({
+const ObjectText = ({
   id,
   position,
   size,
@@ -72,4 +72,4 @@ const TextObject = ({
   )
 }
 
-export default TextObject
+export default ObjectText

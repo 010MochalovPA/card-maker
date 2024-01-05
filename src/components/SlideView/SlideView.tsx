@@ -1,19 +1,19 @@
 import getSlideBackgroundString from '../../common/getSlideBackgroundString'
 import { useAppActions, useAppSelector } from '../../redux/hooks'
 import { SlideObject, SlideObjectType } from '../../types'
-import PictureObject from '../PictureObject/PictureObject'
-import { ShapeObject } from '../ShapeObject/ShapeObject'
-import TextObject from '../TextObject/TextObject'
+import ObjectPicture from '../ObjectPicture/ObjectPicture'
+import { ObjectShape } from '../ObjectShape/ObjectShape'
+import ObjectText from '../ObjectText/ObjectText'
 import styles from './SlideView.css'
 
 function getSlideObject(slideObject: SlideObject, isSelected: boolean, isPreview: boolean) {
   switch (slideObject.type) {
     case SlideObjectType.TEXT:
-      return <TextObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
+      return <ObjectText key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
     case SlideObjectType.PICTURE:
-      return <PictureObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
+      return <ObjectPicture key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
     case SlideObjectType.SHAPE:
-      return <ShapeObject key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
+      return <ObjectShape key={slideObject.id} {...slideObject} isSelected={isSelected} isPreview={isPreview} />
   }
 }
 

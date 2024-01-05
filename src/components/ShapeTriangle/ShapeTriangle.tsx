@@ -1,4 +1,4 @@
-import styles from './TriangleShape.css'
+import styles from './ShapeTriangle.css'
 import { Position, ShapeObjectType, Size } from '../../types'
 import getShapeObjectStyle from '../../common/getShapeObjectStyle'
 import getTriangleShapeStyle from '../../common/getTriangleShapeStyle'
@@ -15,7 +15,7 @@ type ShapeProps = ShapeObjectType & {
   isPreview: boolean
 }
 
-const TriangleShape = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeProps) => {
+const ShapeTriangle = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const {createChangeSelectedObjectIdAction } = useAppActions()
   const [objectPosition, setObjectPosition] = useState<Position>(position)
@@ -53,4 +53,4 @@ const TriangleShape = ({ id, position, size, angle, borderColor, backgroundColor
   )
 }
 
-export default TriangleShape
+export default ShapeTriangle
