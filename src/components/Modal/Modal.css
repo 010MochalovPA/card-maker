@@ -9,6 +9,7 @@
   background-color: lightgray;
   min-width: 300px;
   min-height: 200px;
+  z-index: 9;
 }
 
 .close {
