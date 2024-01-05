@@ -1,8 +1,9 @@
 .slides-panel {
   grid-area: slides-panel;
+  padding: 20px 0;
+  background: #F9F9F9;
   overflow-y: auto;
   border-right: 1px solid #D4D4D4;
-  padding: 20px 0;
 }
 
 .slides-wrapper {

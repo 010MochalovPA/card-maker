@@ -1,20 +1,26 @@
 .header {
-  padding: 8px 8px 8px 0;
+  padding: 8px 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   background: linear-gradient(90deg, #0DF 0%, #B352FF 100%);
 }
 
-.spacer {
-  flex-grow: 1;
+.equal-block-wrapper {
+  display: flex;
+  align-items: center;
+  width: 400px;
+}
+
+.equal-block-wrapper-start {
+  justify-content: flex-start;
+}
+
+.equal-block-wrapper-end {
+  justify-content: flex-end;
 }
 
 .logo {
-  padding: 0 20px;
-}
-
-.title {
-  position: absolute;
-
+  margin-right: 20px;
 }

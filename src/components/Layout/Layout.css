@@ -5,6 +5,5 @@
     'top-panel top-panel top-panel' 104px
     'slides-panel slide option-panel' calc(100% - 104px) / 320px 1fr 320px;
   height: 100vh;
-  background-color: #f6f6f2;
   user-select: none;
 }

@@ -11,7 +11,7 @@ const SizeOptions = ({ id, width, height }: SizeOptionsProps) => {
   const { createChangeObjectSizeAction } = useAppActions()
   return (
     <>
-      <div className={styles.title}>Найстройки размера</div>
+      <div className={styles.title}>Настройки размера</div>
       <div className={styles.sizeOptions}>
         <span>Ширина:</span>
         <input

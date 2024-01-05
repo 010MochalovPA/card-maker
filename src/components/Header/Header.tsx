@@ -14,19 +14,22 @@ const Header = () => {
   
   return (
     <div className={styles.header}>
-      <div className={styles.logo}>
-        <Logo />
+      <div className={`${styles.equalBlockWrapper} ${styles.equalBlockWrapperStart}`}>
+        <div className={styles.logo}>
+          <Logo />
+        </div>
+        <ToolbarFile />
+        <ToolbarHistory />
       </div>
-      <ToolbarFile />
-      <ToolbarHistory />
       <PresentationTitle />
-      <div className={styles.spacer}></div>
-      <ButtonHeader icon={FileExport} text={'Экспорт в PDF'} onClick={() => setIsPreviewOpen(true)} />
-      {isPreviewOpen && (
-        <Modal onClose={() => setIsPreviewOpen(false)}>
-          <PreviewPDF/>
-        </Modal>
-      )}
+      <div className={`${styles.equalBlockWrapper} ${styles.equalBlockWrapperEnd}`}>
+        <ButtonHeader icon={FileExport} text={'Экспорт в PDF'} onClick={() => setIsPreviewOpen(true)} />
+        {isPreviewOpen && (
+          <Modal onClose={() => setIsPreviewOpen(false)}>
+            <PreviewPDF/>
+          </Modal>
+        )}
+      </div>
     </div>
   )
 }

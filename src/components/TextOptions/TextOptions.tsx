@@ -98,7 +98,7 @@ const TextOptions = ({ id, fontFamily, fontSize, bold, cursive, fontColor, text 
 
   return (
     <>
-      <div className={styles.title}>Найстройки формата текста</div>
+      <div className={styles.title}>Настройки формата текста</div>
       <div className={styles.textOptions}>
         <span>Текст:</span>
         <input className={styles.input} type="text" value={text} onChange={(e) => handleText(e.target.value)} />
