@@ -1,4 +1,5 @@
 .slide-container {
+  padding: 20px;
   grid-area: slide;
   display: flex;
   flex-direction: column;

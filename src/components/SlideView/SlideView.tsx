@@ -41,7 +41,7 @@ const SlideView = ({ slideId, scale, isPreview }: SlideViewProps) => {
 
   if (isPreview) {
     return (
-      <div className={styles.slide} style={{ background, transform: `scale(${scale})`, pointerEvents }}>
+      <div className={styles.slidePreview} style={{ background, transform: `scale(${scale})`, pointerEvents }}>
         {objects.map((slideObject) => getSlideObject(slideObject, slideObject.id === selectedId, isPreview))}
         <div className={styles.overlay} onMouseDown={() => createChangeSelectedObjectIdAction('')} />
       </div>

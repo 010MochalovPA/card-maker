@@ -7,6 +7,15 @@
   border: 1px solid #388087;
 }
 
+.slide-preview {
+  width: 1024px;
+  height: 768px;
+  position: relative;
+  overflow: hidden;
+  transform-origin: left top;
+  border-radius: 60px;
+}
+
 .overlay {
   position: absolute;
   inset: 0;
