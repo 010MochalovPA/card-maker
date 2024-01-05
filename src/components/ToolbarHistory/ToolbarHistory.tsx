@@ -3,6 +3,7 @@ import styles from './ToolbarHistory.css'
 import HistoryUndo from '../../icons/HistoryUndo'
 import HistoryRedo from '../../icons/HistoryRedo'
 import ToolbarHeaderItem from '../ToolbarHeaderItem/ToolbarHeaderItem'
+import { useAppActions } from '../../redux/hooks'
 
 export type OptionItemType = {
   icon: ComponentType
@@ -11,16 +12,16 @@ export type OptionItemType = {
 }
 
 const ToolbarHistory = () => {
-
+  const {createUndoAction, createRedoAction} = useAppActions()
   const options: OptionItemType[] = [
     {
       icon: HistoryUndo,
-      onClick: () => console.log('Undo'),
+      onClick: createUndoAction,
       tooltip: 'Undo',
     },
     {
       icon: HistoryRedo,
-      onClick: () => console.log('Redo'),
+      onClick: createRedoAction,
       tooltip: 'Redo',
     },
   ]

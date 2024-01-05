@@ -13,66 +13,78 @@ import {
   TextObjectType,
 } from '../types'
 import generateUUID from '../common/generateUUID'
+import { createHistory } from '../history/History'
+
+const history = createHistory<Editor>(editor1)
 
 const editorReducer = (state: Editor = editor1, action: Action) => {
   switch (action.type) {
     case EditorActions.CHANGE_TITLE: {
-      return { ...state, document: { ...state.document, title: action.payload.newTitle } }
+      const newState = { ...state, document: { ...state.document, title: action.payload.newTitle } }
+      history.addHistoryItem(newState)
+      console.log(history.history())
+      return newState
     }
 
     case EditorActions.CHANGE_OBJECT_POSITION: {
       const currentSlide = state.currentSlide
-      const slideList = state.document.slideList
+      const slideList = [...state.document.slideList]
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: slideList.map((slide) => {
             if (slide.id === currentSlide) {
-              slide.objects = slide.objects.map((object) => {
+              slide.objects = [...slide.objects.map((object) => {
                 if (object.id === action.payload.objectId) {
                   object.position = action.payload.position
                 }
-
-                return object
-              })
+                return {...object}
+              })]
             }
-            return slide
+            return {...slide}
           }),
         },
       }
+      
+      history.addHistoryItem(newState)
+      console.log(history.history())
+      return newState
     }
 
     case EditorActions.CHANGE_OBJECT_SIZE: {
       const currentSlide = state.currentSlide
-      const slideList = state.document.slideList
+      const slideList = [...state.document.slideList]
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
-          slideList: slideList.map((slide) => {
+          slideList: [...slideList.map((slide) => {
             if (slide.id === currentSlide) {
               slide.objects = slide.objects.map((object) => {
                 if (object.id === action.payload.objectId) {
                   object.size = action.payload.size
                 }
 
-                return object
+                return {...object}
               })
             }
-            return slide
-          }),
+            return {...slide}
+          })],
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.CHANGE_OBJECT_BACKGROUND_COLOR: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -90,13 +102,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.CHANGE_OBJECT_BORDER_COLOR: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -114,13 +129,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.CHANGE_TEXT_FONT_STYLES: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -138,13 +156,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.CHANGE_IMAGE_DATA: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -162,13 +183,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.INSERT_IMAGE: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -191,13 +215,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.INSERT_RECTANGLE: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -219,13 +246,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.INSERT_TRIANGLE: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -247,13 +277,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.INSERT_ELLIPSE: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -275,13 +308,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.INSERT_TEXT: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -310,13 +346,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.CHANGE_TEXT: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -334,13 +373,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.DELETE_OBJECT: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -352,6 +394,9 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.ADD_SLIDE: {
@@ -366,25 +411,31 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
         objects: [],
       }
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: [...slideList, newSlide],
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.DELETE_SLIDE: {
       const slideList = state.document.slideList
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: slideList.filter((slide) => slide.id !== state.currentSlide),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.MOVE_DOWN_SLIDE: {
@@ -401,13 +452,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newSlideList = slideList.filter((slide) => slide.id !== state.currentSlide)
 
       newSlideList.splice(newIndex, 0, { ...MoveSlide })
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: [...newSlideList],
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.MOVE_UP_SLIDE: {
@@ -425,21 +479,26 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
 
       newSlideList.splice(newIndex, 0, { ...MoveSlide })
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: [...newSlideList],
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.CHANGE_CURRENT_SLIDE_ID: {
-      return { ...state, currentSlide: action.payload.slideId }
+      const newState = { ...state, currentSlide: action.payload.slideId }
+      return newState
     }
 
     case EditorActions.CHANGE_SELECTED_OBJECT_ID: {
-      return { ...state, selected: { ...state.selected, selected: action.payload.objectId } }
+      const newState = { ...state, selected: { ...state.selected, selected: action.payload.objectId } }
+      return newState
     }
 
     case EditorActions.CHANGE_ORDER_SLIDES: {
@@ -454,13 +513,16 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newSlideList = slideList.filter((slide) => slide.id !== state.currentSlide)
 
       newSlideList.splice(newIndex, 0, { ...MoveSlide })
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
           slideList: [...newSlideList],
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.CHANGE_ORDER_OBJECTS: {
@@ -485,7 +547,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
       newObjects.splice(index + action.payload.newIndex, 0, {...moveObject})
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -494,6 +556,9 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.MOVE_UP_OBJECT: {
@@ -516,7 +581,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
       newObjects.splice(newObjects.length, 0, {...moveObject})
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -525,6 +590,9 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
 
     case EditorActions.MOVE_DOWN_OBJECT: {
@@ -547,7 +615,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
       newObjects.splice(0, 0, {...moveObject})
 
-      return {
+      const newState = {
         ...state,
         document: {
           ...state.document,
@@ -556,7 +624,23 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           }),
         },
       }
+
+      history.addHistoryItem(newState)
+      return newState
     }
+
+    case EditorActions.UNDO:
+		const prevState = history.undo()
+		if (prevState) {
+			return prevState
+		}
+		return state
+	case EditorActions.REDO:
+		const nextState = history.redo()
+		if (nextState) {
+			return nextState
+		}
+		return state
 
     default:
       return state

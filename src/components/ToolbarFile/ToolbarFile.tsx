@@ -31,12 +31,12 @@ const ToolbarFile = () => {
     },
     {
       icon: FileOpen,
-      onClick: () => anchorRef.current?.click(),
+      onClick: () => inputRef.current?.click(),
       tooltip: 'Open',
     },
     {
       icon: FileSave,
-      onClick: () => inputRef.current?.click(),
+      onClick: () => anchorRef.current?.click(),
       tooltip: 'Save',
     },
   ]
@@ -58,7 +58,6 @@ const ToolbarFile = () => {
   const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const parsedData = await readJsonFile(event.target.files![0])
-      console.log(parsedData)
     }
   }
 

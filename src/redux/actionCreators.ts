@@ -203,6 +203,18 @@ function createChangeOrderObjectsAction(objectId: string, newIndex: number) {
   }
 }
 
+function createUndoAction() {
+	return {
+		type: EditorActions.UNDO,
+	}
+}
+
+function createRedoAction() {
+	return {
+		type: EditorActions.REDO,
+	}
+}
+
 export {
   createChangeTitleAction,
   createChangeObjectPositionAction,
@@ -227,5 +239,7 @@ export {
   createChangeOrderSlidesAction,
   createChangeOrderObjectsAction,
   createMoveUpObjectAction,
-  createMoveDownObjectAction
+  createMoveDownObjectAction,
+  createUndoAction,
+  createRedoAction
 }

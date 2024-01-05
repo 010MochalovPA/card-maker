@@ -7,7 +7,7 @@ type TitleInputProps = {
 }
 
 const TitleInput = ({ text, setText }: TitleInputProps) => {
-  const inputRef = useRef<HTMLInputElement | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {

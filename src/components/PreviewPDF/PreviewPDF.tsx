@@ -23,13 +23,11 @@ const PreviewPDF = () => {
         useCORS: true,
       }).then((canvas) => {
         const imgData = canvas.toDataURL("image/png")
-        console.log(imgData)
         const pdfWidth = pdf.internal.pageSize.getWidth()
         const pdfHeight = pdf.internal.pageSize.getHeight()
         const imgWidth = canvas.width
         const imgHeight = canvas.height
         const ratio = Math.min(pdfWidth / imgWidth, pdfHeight, imgHeight)
-        console.log(pdfWidth, pdfHeight, imgWidth, imgHeight, ratio)
         pdf.addImage(imgData, 'png', 0, 0, imgWidth * ratio, imgHeight * ratio)
         pdf.addPage()
       })

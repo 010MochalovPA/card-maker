@@ -25,6 +25,8 @@ enum EditorActions {
   CHANGE_ORDER_OBJECTS = 'CHANGE_ORDER_OBJECTS',
   MOVE_UP_OBJECT = 'MOVE_UP_OBJECT',
   MOVE_DOWN_OBJECT = 'MOVE_DOWN_OBJECT',
+  UNDO = 'UNDO',
+  REDO = 'REDO'
 }
 
 type ChangeTitleAction = {
@@ -181,6 +183,14 @@ type DeleteObject = {
   }
 }
 
+type UndoAction = {
+  type: EditorActions.UNDO,
+}
+
+type RedoAction = {
+  type: EditorActions.REDO,
+}
+
 type Action =
   | ChangeTitleAction
   | ChangeObjectPosition
@@ -206,5 +216,7 @@ type Action =
   | ChangeOrderObjects
   | MoveDownObject
   | MoveUpObject
+  | UndoAction
+  | RedoAction
 
 export { EditorActions, type Action }
