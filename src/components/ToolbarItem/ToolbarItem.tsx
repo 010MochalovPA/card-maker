@@ -4,7 +4,7 @@ import styles from './ToolbarItem.css'
 const ToolbarItem = ({ icon: Icon, onClick, tooltip, isDisabled }: OptionItemType) => {
   return isDisabled
     ? (
-        <div title={tooltip} className={styles.toolbarItem}>
+        <div title={tooltip} className={`${styles.toolbarItem} ${styles.toolbarItemNoactive}`}>
           <Icon />
         </div>
     )

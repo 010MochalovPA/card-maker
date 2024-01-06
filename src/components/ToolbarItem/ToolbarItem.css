@@ -15,12 +15,8 @@
   transition: all .3s ease-in-out;
 }
 
-.toolbar-item > svg > path {
+.toolbar-item-noactive > svg > path {
   fill: #cccccc;
-}
-
-.toolbar-item-active > svg > path {
-  fill: #212121;
 }
 
 .toolbar-item-active:hover {
