@@ -8,7 +8,14 @@ enum ContextMenuType {
     OBJECT,
 }
 
-const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: ContextMenuType): { contextMenuPosition: Position, isShowContextMenu: boolean, items: ContextMenuItem[], onClose: () => void } => {
+enum ObjectPosition {
+    LAST,
+    TOP,
+    CENTER,
+    BOTTOM,
+}
+
+const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: ContextMenuType, objectPosition: number): { contextMenuPosition: Position, isShowContextMenu: boolean, items: ContextMenuItem[], onClose: () => void } => {
     const [contextMenuPosition, setContextMenuPosition] = useState<Position>({ top: 0, left: 0 })
     const [isShowContextMenu, setShowContextMenu] = useState(false)
 
@@ -20,35 +27,39 @@ const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: Contex
         createChangeSelectedObjectIdAction
     } = useAppActions()
 
+    const menuItemTop = {
+        text: 'Поместить наверх',
+        handler: () => {
+            createMoveUpObjectAction(id)
+            setShowContextMenu(false)
+        },
+    }
+
+    const menuItemUp = {
+        text: 'Переместить выше',
+        handler: () => {
+            createChangeOrderObjectsAction(id, 1)
+            setShowContextMenu(false)
+        },
+    }
+
+    const menuItemDown = {
+        text: 'Переместить ниже',
+        handler: () => {
+            createChangeOrderObjectsAction(id, -1)
+            setShowContextMenu(false)
+        },
+    }
+
+    const menuItemBottom = {
+        text: 'Поместить вниз',
+        handler: () => {
+            createMoveDownObjectAction(id)
+            setShowContextMenu(false)
+        },
+    }
+
     const objectMenuItems: ContextMenuItem[] = [
-        {
-            text: 'Переместить вверх',
-            handler: () => {
-                createMoveUpObjectAction(id)
-                setShowContextMenu(false)
-            }
-        },
-        {
-            text: 'Переместить выше',
-            handler: () => {
-                createChangeOrderObjectsAction(id, 1)
-                setShowContextMenu(false)
-            }
-        },
-        {
-            text: 'Переместить ниже',
-            handler: () => {
-                createChangeOrderObjectsAction(id, -1)
-                setShowContextMenu(false)
-            }
-        },
-        {
-            text: 'Переместить вниз',
-            handler: () => {
-                createMoveDownObjectAction(id)
-                setShowContextMenu(false) 
-            }
-        },
         {
             text: 'Удалить',
             handler: () => {
@@ -57,6 +68,23 @@ const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: Contex
             }
         },
     ]
+
+    switch (objectPosition) {
+        case ObjectPosition.CENTER:
+            objectMenuItems.unshift(menuItemBottom)
+            objectMenuItems.unshift(menuItemDown)
+            objectMenuItems.unshift(menuItemUp)
+            objectMenuItems.unshift(menuItemTop)
+            break;
+        case ObjectPosition.TOP:
+            objectMenuItems.unshift(menuItemBottom)
+            objectMenuItems.unshift(menuItemDown)
+            break;
+        case ObjectPosition.BOTTOM:
+            objectMenuItems.unshift(menuItemUp)
+            objectMenuItems.unshift(menuItemTop)
+            break;
+    }
 
     const handleContextMenu = (e: Event) => {
         createChangeSelectedObjectIdAction(id)
@@ -83,4 +111,4 @@ const useContextMenu = (id: string, ref: RefObject<HTMLDivElement>, type: Contex
     }
 }
 
-export { useContextMenu, ContextMenuType }
+export { useContextMenu, ContextMenuType, ObjectPosition }

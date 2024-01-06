@@ -6,9 +6,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import getDNDFunctions from '../../common/getDNDFunctions'
 import SelectedItem from '../SelectedItem/SelectedItem'
-import { useAppActions } from '../../redux/hooks'
+import { useAppActions, useAppSelector } from '../../redux/hooks'
 import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
 import { ContextMenu } from '../ContextMenu/ContextMenu'
+import getObjectPosition from '../../common/getObjectPosition'
 
 type ShapeProps = ShapeObjectType & {
   isSelected: boolean
@@ -20,7 +21,10 @@ const ShapeTriangle = ({ id, position, size, angle, borderColor, backgroundColor
   const {createChangeSelectedObjectIdAction } = useAppActions()
   const [objectPosition, setObjectPosition] = useState<Position>(position)
   const [objectSize, setObjectSize] = useState<Size>(size)
-  
+  const slideList = useAppSelector((state) => state.editor.document.slideList)
+  const currentSlideId = useAppSelector((state) => state.editor.currentSlide)
+  const objects = slideList.find((slide) => slide.id === currentSlideId)?.objects
+
   useEffect(()=> {
     setObjectPosition(position)
     setObjectSize(size)
@@ -28,7 +32,7 @@ const ShapeTriangle = ({ id, position, size, angle, borderColor, backgroundColor
 
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
-  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT)
+  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT, getObjectPosition(objects!, id))
   const objectStyle = getShapeObjectStyle(objectPosition, objectSize, angle)
   const triangleStyle = getTriangleShapeStyle(objectSize, borderColor, backgroundColor)
 
