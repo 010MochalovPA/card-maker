@@ -4,6 +4,7 @@ enum EditorActions {
   CHANGE_TITLE = 'CHANGE_TITLE',
   CHANGE_OBJECT_POSITION = 'CHANGE_OBJECT_POSITION',
   CHANGE_OBJECT_SIZE = 'CHANGE_OBJECT_SIZE',
+  CHANGE_OBJECT_SIZE_AND_POSITION = 'CHANGE_OBJECT_SIZE_AND_POSITION',
   CHANGE_OBJECT_BACKGROUND_COLOR = 'CHANGE_OBJECT_BACKGROUND_COLOR',
   CHANGE_CURRENT_SLIDE_ID = 'CHANGE_CURRENT_SLIDE_ID',
   CHANGE_SELECTED_OBJECT_ID = 'CHANGE_SELECTED_OBJECT_ID',
@@ -50,6 +51,15 @@ type ChangeObjectSize = {
   payload: {
     objectId: string
     size: Size
+  }
+}
+
+type ChangeObjectSizeAndPosition = {
+  type: EditorActions.CHANGE_OBJECT_SIZE_AND_POSITION
+  payload: {
+    objectId: string
+    size: Size
+    position: Position
   }
 }
 
@@ -200,6 +210,7 @@ type Action =
   | ChangeTitleAction
   | ChangeObjectPosition
   | ChangeObjectSize
+  | ChangeObjectSizeAndPosition
   | ChangeObjectBackgroundColor
   | ChangeObjectBorderColor
   | ChangeTextFontStyles

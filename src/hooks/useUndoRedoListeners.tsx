@@ -14,6 +14,12 @@ function useUndoRedoListeners() {
 					createRedoAction()
 				}
 			}
+
+			if (event.ctrlKey && event.shiftKey) {
+				if (event.code === 'KeyZ') {
+					createUndoAction()
+				}
+			}
 		}
 
 		window.addEventListener('keydown', handleKeydownEvent)

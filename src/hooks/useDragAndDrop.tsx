@@ -20,7 +20,7 @@ const useDragAndDrop = (
     startHeight: number,
   ) => void,
 ) => {
-  const { createChangeObjectPositionAction, createChangeObjectSizeAction } = useAppActions()
+  const { createChangeObjectSizeAndPositionAction } = useAppActions()
   let posX: number, posY: number
   const delta: { x: number; y: number } = { x: 0, y: 0 }
 
@@ -34,8 +34,7 @@ const useDragAndDrop = (
       const y = targetRef.current!.offsetTop
       const {width, height} = targetRef.current!.getBoundingClientRect()
 
-      createChangeObjectPositionAction(id, {left: x, top: y})
-      createChangeObjectSizeAction(id, {width, height})
+      createChangeObjectSizeAndPositionAction(id, {width, height}, {left: x, top: y})
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseup', onMouseUp)
     }

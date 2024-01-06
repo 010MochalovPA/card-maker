@@ -30,6 +30,17 @@ function createChangeObjectSizeAction(objectId: string, size: Size) {
   }
 }
 
+function createChangeObjectSizeAndPositionAction(objectId: string, size: Size, position: Position) {
+  return {
+    type: EditorActions.CHANGE_OBJECT_SIZE_AND_POSITION,
+    payload: {
+      objectId,
+      size,
+      position,
+    },
+  }
+}
+
 function createChangeObjectBackgroundColorAction(objectId: string, backgroundColor: Color) {
   return {
     type: EditorActions.CHANGE_OBJECT_BACKGROUND_COLOR,
@@ -227,6 +238,7 @@ export {
   createChangeCurrentSlideIdAction,
   createChangeSelectedObjectIdAction,
   createChangeObjectSizeAction,
+  createChangeObjectSizeAndPositionAction,
   createChangeObjectBackgroundColorAction,
   createChangeObjectBorderColorAction,
   createChangeTextFontStylesAction,

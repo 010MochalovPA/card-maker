@@ -79,6 +79,34 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return newState
     }
 
+    case EditorActions.CHANGE_OBJECT_SIZE_AND_POSITION: {
+      const currentSlide = state.currentSlide
+      const slideList = state.document.slideList
+
+      const newState = {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: slideList.map((slide) => {
+            if (slide.id === currentSlide) {
+              slide.objects = slide.objects.map((object) => {
+                if (object.id === action.payload.objectId) {
+                  object.size = action.payload.size
+                  object.position = action.payload.position
+                }
+
+                return object
+              })
+            }
+            return slide
+          }),
+        },
+      }
+
+      history.addHistoryItem(newState)
+      return newState
+    }
+
     case EditorActions.CHANGE_OBJECT_BACKGROUND_COLOR: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
