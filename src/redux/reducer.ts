@@ -219,6 +219,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
     case EditorActions.INSERT_IMAGE: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
+      const {width, height} = action.payload.size
 
       const newState = {
         ...state,
@@ -228,7 +229,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
             if (slide.id === currentSlide) {
               const newImage: PictureObjectType = {
                 id: generateUUID(),
-                size: { width: 100, height: 100 },
+                size: { width: 300, height: Math.round(300 * height / width) },
                 position: { top: 0, left: 0 },
                 angle: 0,
                 backgroundColor: { r: 255, g: 255, b: 255, a: 0 },

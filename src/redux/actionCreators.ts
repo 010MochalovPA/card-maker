@@ -110,11 +110,12 @@ function createChangeSelectedObjectIdAction(objectId: string) {
   }
 }
 
-function createInsertImageAction(data: string) {
+function createInsertImageAction(data: string, size: Size) {
   return {
     type: EditorActions.INSERT_IMAGE,
     payload: {
       data,
+      size,
     },
   }
 }
