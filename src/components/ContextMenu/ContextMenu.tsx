@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 import { Position } from '../../types'
 
 type ContextMenuItem = {
-  text: string,
+  text: string
   handler: () => void
 }
 
@@ -17,18 +17,17 @@ type ContextMenuProps = {
 const contextMenu = document.getElementById('context-menu') as Element
 
 const ContextMenu = ({ position, items, onClose }: ContextMenuProps) => {
-
   return createPortal(
     <>
       <div className={styles.menu} style={position}>
-        {items.map((item, key) => <ContextMenuButton key={key} text={item.text} handler={item.handler} />)}
+        {items.map((item, key) => (
+          <ContextMenuButton key={key} text={item.text} handler={item.handler} />
+        ))}
       </div>
-      <div className={styles.overlay} onMouseDown={onClose}/>
-    </>, contextMenu
+      <div className={styles.overlay} onMouseDown={onClose} />
+    </>,
+    contextMenu,
   )
 }
 
-export {
-  ContextMenu,
-  ContextMenuItem
-}
+export { ContextMenu, ContextMenuItem }

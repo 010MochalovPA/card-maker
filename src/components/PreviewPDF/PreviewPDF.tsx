@@ -11,18 +11,18 @@ const PreviewPDF = () => {
 
   const downloadPDF = async () => {
     const pdf = new jsPDF('l', 'mm', 'a4', true)
-    
-    for (const element of itemsRef.current)  {
+
+    for (const element of itemsRef.current) {
       if (!element) {
         return
       }
 
-      await html2canvas(element,{
+      await html2canvas(element, {
         imageTimeout: 0,
         allowTaint: true,
         useCORS: true,
       }).then((canvas) => {
-        const imgData = canvas.toDataURL("image/png")
+        const imgData = canvas.toDataURL('image/png')
         const pdfWidth = pdf.internal.pageSize.getWidth()
         const pdfHeight = pdf.internal.pageSize.getHeight()
         const imgWidth = canvas.width
@@ -40,12 +40,14 @@ const PreviewPDF = () => {
     <>
       <div className={styles.preview}>
         {slideList.map((slide, index) => (
-          <div key={index} ref={el => itemsRef.current[index] = el}>
+          <div key={index} ref={(el) => (itemsRef.current[index] = el)}>
             <SlideView slideId={slide.id} scale={1} isPreview={true} />
           </div>
         ))}
       </div>
-      <button className={styles.button} onClick={downloadPDF}>export</button>
+      <button className={styles.button} onClick={downloadPDF}>
+        export
+      </button>
     </>
   )
 }

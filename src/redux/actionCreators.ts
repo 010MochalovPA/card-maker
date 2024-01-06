@@ -174,8 +174,8 @@ function createMoveUpObjectAction(objectId: string) {
   return {
     type: EditorActions.MOVE_UP_OBJECT,
     payload: {
-      objectId
-    }
+      objectId,
+    },
   }
 }
 
@@ -183,8 +183,8 @@ function createMoveDownObjectAction(objectId: string) {
   return {
     type: EditorActions.MOVE_DOWN_OBJECT,
     payload: {
-      objectId
-    }
+      objectId,
+    },
   }
 }
 
@@ -215,21 +215,21 @@ function createChangeOrderObjectsAction(objectId: string, newIndex: number) {
 }
 
 function createUndoAction() {
-	return {
-		type: EditorActions.UNDO,
-	}
+  return {
+    type: EditorActions.UNDO,
+  }
 }
 
 function createRedoAction() {
-	return {
-		type: EditorActions.REDO,
-	}
+  return {
+    type: EditorActions.REDO,
+  }
 }
 
 function createNewEditorAction() {
-	return {
-		type: EditorActions.NEW_EDITOR,
-	}
+  return {
+    type: EditorActions.NEW_EDITOR,
+  }
 }
 
 export {
@@ -260,5 +260,5 @@ export {
   createMoveDownObjectAction,
   createUndoAction,
   createRedoAction,
-  createNewEditorAction
+  createNewEditorAction,
 }

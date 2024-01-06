@@ -13,7 +13,7 @@ export type OptionItemType = {
 }
 
 const ToolbarHistory = () => {
-  const {createUndoAction, createRedoAction} = useAppActions()
+  const { createUndoAction, createRedoAction } = useAppActions()
   const options: OptionItemType[] = [
     {
       icon: HistoryUndo,

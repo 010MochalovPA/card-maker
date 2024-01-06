@@ -15,20 +15,29 @@ type ShapeProps = ShapeObjectType & {
   isPreview: boolean
 }
 
-const ShapeTriangle = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeProps) => {
+const ShapeTriangle = ({
+  id,
+  position,
+  size,
+  angle,
+  borderColor,
+  backgroundColor,
+  isSelected,
+  isPreview,
+}: ShapeProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
-  const {createChangeSelectedObjectIdAction } = useAppActions()
+  const { createChangeSelectedObjectIdAction } = useAppActions()
   const [objectPosition, setObjectPosition] = useState<Position>(position)
   const [objectSize, setObjectSize] = useState<Size>(size)
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     setObjectPosition(position)
     setObjectSize(size)
-  },[position, size])
+  }, [position, size])
 
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
-  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT)
+  const { contextMenuPosition, isShowContextMenu, items, onClose } = useContextMenu(id, ref, ContextMenuType.OBJECT)
   const objectStyle = getShapeObjectStyle(objectPosition, objectSize, angle)
   const triangleStyle = getTriangleShapeStyle(objectSize, borderColor, backgroundColor)
 
@@ -47,8 +56,19 @@ const ShapeTriangle = ({ id, position, size, angle, borderColor, backgroundColor
           <polygon {...triangleStyle} />
         </svg>
       </div>
-      {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
-      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} onClose={onClose}/>}
+      {!isPreview && isSelected && (
+        <SelectedItem
+          id={id}
+          targetRef={ref}
+          position={objectPosition}
+          size={objectSize}
+          setPosition={setObjectPosition}
+          setSize={setObjectSize}
+        />
+      )}
+      {!isPreview && isShowContextMenu && (
+        <ContextMenu position={contextMenuPosition} items={items} onClose={onClose} />
+      )}
     </>
   )
 }

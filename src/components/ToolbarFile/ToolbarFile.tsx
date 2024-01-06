@@ -20,7 +20,7 @@ const ToolbarFile = () => {
   const editor = useAppSelector((state) => state.editor)
   const text = JSON.stringify(editor)
 
-  const {createNewEditorAction} = useAppActions()
+  const { createNewEditorAction } = useAppActions()
 
   const file = new Blob([text], { type: 'text/plain' })
 
@@ -28,7 +28,7 @@ const ToolbarFile = () => {
     {
       icon: FileNew,
       onClick: () => {
-        if (confirm("Создать новый документ?")) {
+        if (confirm('Создать новый документ?')) {
           createNewEditorAction()
         }
       },
@@ -66,6 +66,7 @@ const ToolbarFile = () => {
   const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const parsedData = await readJsonFile(event.target.files![0])
+      console.log(parsedData)
     }
   }
 

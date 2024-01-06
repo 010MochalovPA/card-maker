@@ -2,14 +2,13 @@
   padding: 12px;
   width: 200px;
   font:
-    700
-    14px/1 Roboto,
+    700 14px/1 Roboto,
     Arial,
     sans-serif;
   background-color: transparent;
   border-radius: 3px;
   border: 1px solid transparent;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -18,5 +17,5 @@
 }
 
 .input:focus {
-  outline: 1px solid #FFFFFF;
+  outline: 1px solid #ffffff;
 }

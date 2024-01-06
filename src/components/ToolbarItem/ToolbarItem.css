@@ -4,15 +4,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #F9F9F9;
-  outline: 1px solid #D4D4D4;
+  background: #f9f9f9;
+  outline: 1px solid #d4d4d4;
   outline-offset: -1px;
   border-radius: 5px;
 }
 
 .toolbar-item-active {
   cursor: pointer;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .toolbar-item-noactive > svg > path {
@@ -20,10 +20,10 @@
 }
 
 .toolbar-item-active:hover {
-  background: #E9E9E9;
+  background: #e9e9e9;
 }
 
 .toolbar-item-active:active {
   transition: none;
-  background: #D9D9D9;
+  background: #d9d9d9;
 }

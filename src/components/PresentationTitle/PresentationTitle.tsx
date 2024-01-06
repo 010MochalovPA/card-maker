@@ -6,9 +6,11 @@ const PresentationTitle = () => {
   const title = useAppSelector((state) => state.editor.document.title)
   const { createChangeTitleAction } = useAppActions()
 
-  return <div className={styles.presentationTitle}>
-    <TitleInput text={title} setText={ createChangeTitleAction }/>
-  </div>
+  return (
+    <div className={styles.presentationTitle}>
+      <TitleInput text={title} setText={createChangeTitleAction} />
+    </div>
+  )
 }
 
 export default PresentationTitle

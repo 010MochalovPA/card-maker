@@ -560,7 +560,6 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
       const moveObject = objects?.find((object) => object.id === action.payload.objectId)
 
-
       if (!objects || !moveObject) {
         return state
       }
@@ -570,7 +569,6 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       if (index === -1 || index + action.payload.newIndex < 0 || index + action.payload.newIndex >= slideList.length) {
         return state
       }
-
 
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
       newObjects.splice(index + action.payload.newIndex, 0, { ...moveObject })
@@ -677,19 +675,21 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const newState: Editor = {
         document: {
           title: 'Новая презентация',
-          slideList: [{
-            id: '90b877d2b36b454e820378127e8b9f7e',
-            background: {
-              type: SlideBackgroundType.SOLID_COLOR,
-              color: {
-                r: 255,
-                g: 255,
-                b: 255,
-                a: 1,
+          slideList: [
+            {
+              id: '90b877d2b36b454e820378127e8b9f7e',
+              background: {
+                type: SlideBackgroundType.SOLID_COLOR,
+                color: {
+                  r: 255,
+                  g: 255,
+                  b: 255,
+                  a: 1,
+                },
               },
+              objects: [],
             },
-            objects: [],
-          }],
+          ],
         },
         history: [],
         currentSlide: '90b877d2b36b454e820378127e8b9f7e',
@@ -698,7 +698,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           selected: '',
         },
       }
-      
+
       history.addHistoryItem(newState)
       return newState
     }
