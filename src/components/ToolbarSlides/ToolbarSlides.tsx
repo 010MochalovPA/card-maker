@@ -6,7 +6,7 @@ import SlideMoveUp from '../../icons/SlideMoveUp'
 import SlideMoveDown from '../../icons/SlideMoveDown'
 import SlideEditBackground from '../../icons/SlideEditBackground'
 import ToolbarItem from '../ToolbarItem/ToolbarItem'
-import { useAppActions } from '../../redux/hooks'
+import { useAppActions, useAppSelector } from '../../redux/hooks'
 
 export type OptionItemType = {
   icon: ComponentType
