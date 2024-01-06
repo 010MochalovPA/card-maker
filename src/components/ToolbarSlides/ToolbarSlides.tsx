@@ -20,6 +20,7 @@ const ToolbarSlides = () => {
     useAppActions()
 
   const slideList = useAppSelector((state) => state.editor.document.slideList)
+  const currentSlide = useAppSelector((state) => state.editor.currentSlide)
 
   const options: OptionItemType[] = [
     {
@@ -44,7 +45,7 @@ const ToolbarSlides = () => {
         createMoveUpSlideAction()
       },
       tooltip: 'Move up slide',
-      isDisabled: false,
+      isDisabled: slideList[0].id === currentSlide,
     },
     {
       icon: SlideMoveDown,
@@ -52,7 +53,7 @@ const ToolbarSlides = () => {
         createMoveDownSlideAction()
       },
       tooltip: 'Move down slide',
-      isDisabled: false,
+      isDisabled: slideList[slideList.length - 1].id === currentSlide,
     },
     {
       icon: SlideEditBackground,
