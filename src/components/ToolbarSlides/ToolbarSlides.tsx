@@ -6,17 +6,20 @@ import SlideMoveUp from '../../icons/SlideMoveUp'
 import SlideMoveDown from '../../icons/SlideMoveDown'
 import SlideEditBackground from '../../icons/SlideEditBackground'
 import ToolbarItem from '../ToolbarItem/ToolbarItem'
-import { useAppActions } from '../../redux/hooks'
+import { useAppActions, useAppSelector } from '../../redux/hooks'
 
 export type OptionItemType = {
   icon: ComponentType
   onClick: () => void
   tooltip: string
+  isDisabled: boolean
 }
 
 const ToolbarSlides = () => {
   const { createAddSlideAction, createDeleteSlideAction, createMoveDownSlideAction, createMoveUpSlideAction } =
     useAppActions()
+
+  const slideList = useAppSelector((state) => state.editor.document.slideList)
 
   const options: OptionItemType[] = [
     {
@@ -25,6 +28,7 @@ const ToolbarSlides = () => {
         createAddSlideAction()
       },
       tooltip: 'Add slide',
+      isDisabled: false,
     },
     {
       icon: SlideDelete,
@@ -32,6 +36,7 @@ const ToolbarSlides = () => {
         createDeleteSlideAction()
       },
       tooltip: 'Delete slide',
+      isDisabled: slideList.length < 2,
     },
     {
       icon: SlideMoveUp,
@@ -39,6 +44,7 @@ const ToolbarSlides = () => {
         createMoveUpSlideAction()
       },
       tooltip: 'Move up slide',
+      isDisabled: false,
     },
     {
       icon: SlideMoveDown,
@@ -46,6 +52,7 @@ const ToolbarSlides = () => {
         createMoveDownSlideAction()
       },
       tooltip: 'Move down slide',
+      isDisabled: false,
     },
     {
       icon: SlideEditBackground,
@@ -53,6 +60,7 @@ const ToolbarSlides = () => {
         console.log('change background')
       },
       tooltip: 'Change background',
+      isDisabled: false,
     },
   ]
 

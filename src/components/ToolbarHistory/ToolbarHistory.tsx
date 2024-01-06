@@ -9,6 +9,7 @@ export type OptionItemType = {
   icon: ComponentType
   onClick: () => void
   tooltip: string
+  isDisabled: boolean
 }
 
 const ToolbarHistory = () => {
@@ -18,11 +19,13 @@ const ToolbarHistory = () => {
       icon: HistoryUndo,
       onClick: createUndoAction,
       tooltip: 'Undo',
+      isDisabled: false,
     },
     {
       icon: HistoryRedo,
       onClick: createRedoAction,
       tooltip: 'Redo',
+      isDisabled: false,
     },
   ]
 

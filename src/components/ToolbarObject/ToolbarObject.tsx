@@ -14,6 +14,7 @@ export type OptionItemType = {
   icon: ComponentType
   onClick: () => void
   tooltip: string
+  isDisabled: boolean
 }
 
 const ToolbarObject = () => {
@@ -34,6 +35,7 @@ const ToolbarObject = () => {
         createInsertRectangleAction()
       },
       tooltip: 'Rectangle',
+      isDisabled: false,
     },
     {
       icon: InsertTriangle,
@@ -41,6 +43,7 @@ const ToolbarObject = () => {
         createInsertTriangleAction()
       },
       tooltip: 'Triangle',
+      isDisabled: false,
     },
     {
       icon: InsertEllipse,
@@ -48,6 +51,7 @@ const ToolbarObject = () => {
         createInsertEllipseAction()
       },
       tooltip: 'Ellipse',
+      isDisabled: false,
     },
     {
       icon: InsertText,
@@ -55,6 +59,7 @@ const ToolbarObject = () => {
         createInsertTextAction()
       },
       tooltip: 'Text',
+      isDisabled: false,
     },
     {
       icon: InsertImage,
@@ -62,6 +67,7 @@ const ToolbarObject = () => {
         setIsModalOpen(true)
       },
       tooltip: 'Image',
+      isDisabled: false,
     },
   ]
 

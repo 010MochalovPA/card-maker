@@ -10,6 +10,7 @@ export type OptionItemType = {
   icon: ComponentType
   onClick: () => void
   tooltip: string
+  isDisabled: boolean
 }
 
 const ToolbarFile = () => {
@@ -32,16 +33,19 @@ const ToolbarFile = () => {
         }
       },
       tooltip: 'New',
+      isDisabled: false,
     },
     {
       icon: FileOpen,
       onClick: () => inputRef.current?.click(),
       tooltip: 'Open',
+      isDisabled: false,
     },
     {
       icon: FileSave,
       onClick: () => anchorRef.current?.click(),
       tooltip: 'Save',
+      isDisabled: false,
     },
   ]
 
