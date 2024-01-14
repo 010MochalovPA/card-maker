@@ -113,6 +113,7 @@ type InsertImage = {
   type: EditorActions.INSERT_IMAGE
   payload: {
     data: string
+    size: Size
   }
 }
 

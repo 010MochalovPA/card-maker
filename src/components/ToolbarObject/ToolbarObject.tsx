@@ -72,8 +72,12 @@ const ToolbarObject = () => {
   ]
 
   const onSave = (url: string) => {
-    createInsertImageAction(url)
-    setIsModalOpen(false)
+    const image = new Image()
+    image.src = url
+    image.onload = () => {
+      createInsertImageAction(url, { width: image.width, height: image.height })
+      setIsModalOpen(false)
+    }
   }
 
   return (

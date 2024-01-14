@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
 import SelectedItem from '../SelectedItem/SelectedItem'
 import getDNDFunctions from '../../common/getDNDFunctions'
-import { useAppActions } from '../../redux/hooks'
+import { useAppActions, useAppSelector } from '../../redux/hooks'
 import { ContextMenu } from '../ContextMenu/ContextMenu'
 import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
+import getObjectPosition from '../../common/getObjectPosition'
 
 type PictureObjectProps = PictureObjectType & {
   isSelected: boolean
@@ -29,6 +30,9 @@ const ObjectPicture = ({
   const { createChangeSelectedObjectIdAction } = useAppActions()
   const [objectPosition, setObjectPosition] = useState<Position>(position)
   const [objectSize, setObjectSize] = useState<Size>(size)
+  const slideList = useAppSelector((state) => state.editor.document.slideList)
+  const currentSlideId = useAppSelector((state) => state.editor.currentSlide)
+  const objects = slideList.find((slide) => slide.id === currentSlideId)?.objects
 
   useEffect(() => {
     setObjectPosition(position)
@@ -38,7 +42,12 @@ const ObjectPicture = ({
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
 
-  const { contextMenuPosition, isShowContextMenu, items, onClose } = useContextMenu(id, ref, ContextMenuType.OBJECT)
+  const { contextMenuPosition, isShowContextMenu, items, onClose } = useContextMenu(
+    id,
+    ref,
+    ContextMenuType.OBJECT,
+    getObjectPosition(objects!, id),
+  )
 
   const style = getPictureObjectStyle(objectPosition, objectSize, angle, borderColor, backgroundColor)
 

@@ -15,6 +15,7 @@ import {
 } from '../types'
 import generateUUID from '../common/generateUUID'
 import { createHistory } from '../history/History'
+import getSlideOrder from '../common/getSlideOrder'
 
 const history = createHistory<Editor>(structuredClone(editor1))
 
@@ -218,6 +219,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
     case EditorActions.INSERT_IMAGE: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList
+      const { width, height } = action.payload.size
 
       const newState = {
         ...state,
@@ -227,7 +229,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
             if (slide.id === currentSlide) {
               const newImage: PictureObjectType = {
                 id: generateUUID(),
-                size: { width: 100, height: 100 },
+                size: { width: 300, height: Math.round((300 * height) / width) },
                 position: { top: 0, left: 0 },
                 angle: 0,
                 backgroundColor: { r: 255, g: 255, b: 255, a: 0 },
@@ -406,7 +408,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
     }
 
     case EditorActions.DELETE_OBJECT: {
-      const currentSlide = state.currentSlide
+      const currentSlideId = state.currentSlide
       const slideList = state.document.slideList
 
       const newState = {
@@ -414,7 +416,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
         document: {
           ...state.document,
           slideList: slideList.map((slide) => {
-            if (slide.id === currentSlide) {
+            if (slide.id === currentSlideId) {
               slide.objects = slide.objects.filter((object) => object.id !== action.payload.objectId)
             }
             return slide
@@ -453,6 +455,9 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
 
     case EditorActions.DELETE_SLIDE: {
       const slideList = state.document.slideList
+      const currentSlideId = state.currentSlide
+      const currentSlideOrder = getSlideOrder(slideList, currentSlideId)
+      const newSlideOrder = currentSlideOrder === slideList.length - 1 ? slideList.length - 2 : currentSlideOrder + 1
 
       const newState = {
         ...state,
@@ -460,6 +465,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
           ...state.document,
           slideList: slideList.filter((slide) => slide.id !== state.currentSlide),
         },
+        currentSlide: slideList[newSlideOrder].id,
       }
 
       history.addHistoryItem(newState)

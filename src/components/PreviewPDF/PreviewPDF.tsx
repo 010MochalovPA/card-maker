@@ -21,7 +21,7 @@ const PreviewPDF = () => {
         imageTimeout: 0,
         allowTaint: true,
         useCORS: true,
-      }).then((canvas) => {
+      }).then((canvas: HTMLCanvasElement) => {
         const imgData = canvas.toDataURL('image/png')
         const pdfWidth = pdf.internal.pageSize.getWidth()
         const pdfHeight = pdf.internal.pageSize.getHeight()
