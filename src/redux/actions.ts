@@ -1,4 +1,4 @@
-import { Color, FontStyles, PictureType, Position, Size } from '../types'
+import { Color, Editor, FontStyles, PictureType, Position, Size } from '../types'
 
 enum EditorActions {
   CHANGE_TITLE = 'CHANGE_TITLE',
@@ -29,6 +29,7 @@ enum EditorActions {
   UNDO = 'UNDO',
   REDO = 'REDO',
   NEW_EDITOR = 'NEW_EDITOR',
+  OPEN_EDITOR = 'OPEN_EDITOR',
 }
 
 type ChangeTitleAction = {
@@ -207,6 +208,13 @@ type NewEditorAction = {
   type: EditorActions.NEW_EDITOR
 }
 
+type OpenEditorAction = {
+  type: EditorActions.OPEN_EDITOR
+  payload: {
+    editor: Editor
+  }
+}
+
 type Action =
   | ChangeTitleAction
   | ChangeObjectPosition
@@ -236,5 +244,6 @@ type Action =
   | UndoAction
   | RedoAction
   | NewEditorAction
+  | OpenEditorAction
 
 export { EditorActions, type Action }
