@@ -143,4 +143,6 @@ export {
   FontStyles,
   Position,
   Size,
+  BackgroundSolid,
+  BackgroundPicture
 }

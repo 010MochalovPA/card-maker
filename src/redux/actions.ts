@@ -1,4 +1,4 @@
-import { Color, Editor, FontStyles, PictureType, Position, Size } from '../types'
+import { Color, Editor, FontStyles, PictureType, Position, Size, SlideBackgroundType } from '../types'
 
 enum EditorActions {
   CHANGE_TITLE = 'CHANGE_TITLE',
@@ -30,6 +30,10 @@ enum EditorActions {
   REDO = 'REDO',
   NEW_EDITOR = 'NEW_EDITOR',
   OPEN_EDITOR = 'OPEN_EDITOR',
+  CHANGE_SLIDE_IMAGE_DATA = 'CHANGE_SLIDE_IMAGE_DATA',
+  CHANGE_ALL_SLIDES_IMAGE_DATA = 'CHANGE_ALL_SLIDES_IMAGE_DATA',
+  CHANGE_ALL_SLIDES_COLOR = 'CHANGE_ALL_SLIDES_COLOR',
+  CHANGE_SLIDE_COLOR = 'CHANGE_SLIDE_COLOR'
 }
 
 type ChangeTitleAction = {
@@ -173,6 +177,38 @@ type ChangeImageData = {
   }
 }
 
+type ChangeSlideImageData = {
+  type: EditorActions.CHANGE_SLIDE_IMAGE_DATA
+  payload: {
+    data: string
+    type: SlideBackgroundType.PICTURE_BASE64 | SlideBackgroundType.PICTURE_URL
+  }
+}
+
+type ChangeAllSlidesImageData = {
+  type: EditorActions.CHANGE_ALL_SLIDES_IMAGE_DATA
+  payload: {
+    data: string
+    type: SlideBackgroundType.PICTURE_BASE64 | SlideBackgroundType.PICTURE_URL
+  }
+}
+
+type ChangeSlideColor = {
+  type: EditorActions.CHANGE_SLIDE_COLOR
+  payload: {
+    data: Color
+    type: SlideBackgroundType.SOLID_COLOR
+  }
+}
+
+type ChangeAllSlidesColor = {
+  type: EditorActions.CHANGE_ALL_SLIDES_COLOR
+  payload: {
+    data: Color
+    type: SlideBackgroundType.SOLID_COLOR
+  }
+}
+
 type ChangeOrderSlides = {
   type: EditorActions.CHANGE_ORDER_SLIDES
   payload: {
@@ -245,5 +281,9 @@ type Action =
   | RedoAction
   | NewEditorAction
   | OpenEditorAction
+  | ChangeSlideImageData
+  | ChangeAllSlidesImageData
+  | ChangeAllSlidesColor
+  | ChangeSlideColor
 
 export { EditorActions, type Action }
