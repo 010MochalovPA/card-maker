@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom'
 import styles from './Modal.css'
+import CloseWindow from '../../icons/CloseWindow'
 
 type ModalProps = {
   children: string | JSX.Element | JSX.Element[]
@@ -13,8 +14,8 @@ const Modal = ({ children, onClose }: ModalProps) => {
     <>
       <div className={styles.overlay} onClick={() => onClose()}/>
       <div className={styles.modal}>
-        <button onClick={() => onClose()} className={styles.close}>
-          x
+        <button onClick={() => onClose()} className={styles.close} title='Закрыть'>
+          <CloseWindow />
         </button>
         {children}
       </div>
