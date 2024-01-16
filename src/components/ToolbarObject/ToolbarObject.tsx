@@ -20,16 +20,6 @@ export type OptionItemType = {
 const ToolbarObject = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const OVERLAY_CLASS = styles.overlay
-  const showOverlay = (isShow:boolean) => {
-    const overlay = document.querySelector('#layer')!
-    if (isShow) {
-      overlay.classList.add(OVERLAY_CLASS)
-    } else {
-      overlay.classList.remove(OVERLAY_CLASS)
-    }
-  }
-
   const {
     createInsertImageAction,
     createInsertRectangleAction,
@@ -75,7 +65,6 @@ const ToolbarObject = () => {
       icon: InsertImage,
       onClick: () => {
         setIsModalOpen(true)
-        showOverlay(true)
       },
       tooltip: 'Image',
       isDisabled: false,
@@ -88,7 +77,6 @@ const ToolbarObject = () => {
     image.onload = () => {
       createInsertImageAction(url, { width: image.width, height: image.height })
       setIsModalOpen(false)
-      showOverlay(false)
     }
   }
 
@@ -101,7 +89,6 @@ const ToolbarObject = () => {
       {isModalOpen && (
         <Modal onClose={() => {
           setIsModalOpen(false)
-          showOverlay(false)
         }}>
           <AddImage onSave={onSave} />
         </Modal>

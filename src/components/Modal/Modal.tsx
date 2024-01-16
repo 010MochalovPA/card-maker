@@ -10,12 +10,15 @@ const layer = document.getElementById('layer') as Element
 
 const Modal = ({ children, onClose }: ModalProps) => {
   return createPortal(
-    <div className={styles.modal}>
-      <button onClick={() => onClose()} className={styles.close}>
-        x
-      </button>
-      {children}
-    </div>,
+    <>
+      <div className={styles.overlay} onClick={() => onClose()}/>
+      <div className={styles.modal}>
+        <button onClick={() => onClose()} className={styles.close}>
+          x
+        </button>
+        {children}
+      </div>
+    </>,
     layer,
   )
 }
