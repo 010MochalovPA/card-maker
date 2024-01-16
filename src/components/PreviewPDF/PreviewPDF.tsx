@@ -45,9 +45,11 @@ const PreviewPDF = () => {
           </div>
         ))}
       </div>
-      <button className={styles.button} onClick={downloadPDF}>
-        export
-      </button>
+      <div className={styles.buttonContainer}>
+        <button className={styles.button} onClick={downloadPDF}>
+          Экспорт
+        </button>
+      </div >
     </>
   )
 }

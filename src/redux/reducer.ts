@@ -660,19 +660,21 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       const objects = slideList.find((slide) => slide.id === currentSlide)?.objects
       const moveObject = objects?.find((object) => object.id === action.payload.objectId)
 
+      
       if (!objects || !moveObject) {
         return state
       }
 
       const index = objects.findIndex((object) => object.id === action.payload.objectId)
 
-      if (index === -1 || index + action.payload.newIndex < 0 || index + action.payload.newIndex >= slideList.length) {
+     
+      if (index === -1 || index + action.payload.newIndex < 0 || index + action.payload.newIndex > slideList.length) {
         return state
       }
 
       const newObjects = objects.filter((object) => object.id !== action.payload.objectId)
       newObjects.splice(index + action.payload.newIndex, 0, { ...moveObject })
-
+      
       const newState = {
         ...state,
         document: {
@@ -734,7 +736,7 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
 
       const index = objects.findIndex((object) => object.id === action.payload.objectId)
 
-      if (index < 0 || index >= slideList.length) {
+      if (index < 0 || index > slideList.length) {
         return state
       }
 

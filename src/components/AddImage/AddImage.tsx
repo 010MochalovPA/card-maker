@@ -19,17 +19,8 @@ const AddImage = ({ onSave }: AddImageProps) => {
   return (
     <div className={styles.addImage}>
       <div className={styles.tabs}>
-        {type === PictureType.URL ? (
-          <>
-            <button className={`${styles.tab} ${styles.tabActive}`}>Ссылка</button>
-            <button className={styles.tab} onClick={() => setType(PictureType.BASE64)}>Файл</button>
-          </>
-        ) : (
-          <>
-            <button className={styles.tab} onClick={() => setType(PictureType.URL)}>Ссылка</button>
-            <button className={`${styles.tab} ${styles.tabActive}`}>Файл</button>
-          </>
-        )}
+            <button className={`${styles.tab} ${(type === PictureType.URL) && styles.tabActive}`} onClick={() => setType(PictureType.URL)}>Ссылка</button>
+            <button className={`${styles.tab} ${(type === PictureType.BASE64) && styles.tabActive}`} onClick={() => setType(PictureType.BASE64)}>Файл</button>
       </div>
       <div className={styles.form}>
         {type === PictureType.URL ? (
