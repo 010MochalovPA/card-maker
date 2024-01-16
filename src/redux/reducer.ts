@@ -216,6 +216,100 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return newState
     }
 
+    case EditorActions.CHANGE_SLIDE_IMAGE_DATA: {
+      const currentSlide = state.currentSlide
+      const slideList = state.document.slideList
+
+      const newState = {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: slideList.map((slide) => {
+            if (slide.id === currentSlide) {
+              slide.background = {
+                type: action.payload.type,
+                data: action.payload.data
+              }
+            }
+            return slide
+          }),
+        },
+      }
+
+      history.addHistoryItem(newState)
+      return newState
+    }
+
+    case EditorActions.CHANGE_ALL_SLIDES_IMAGE_DATA: {
+
+      const slideList = state.document.slideList
+
+      const newState = {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: slideList.map((slide) => {
+
+            slide.background = {
+              type: action.payload.type,
+              data: action.payload.data
+            }
+
+            return slide
+          }),
+        },
+      }
+      history.addHistoryItem(newState)
+      return newState
+    }
+
+    case EditorActions.CHANGE_SLIDE_COLOR: {
+      const currentSlide = state.currentSlide
+      const slideList = state.document.slideList
+
+      const newState = {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: slideList.map((slide) => {
+            if (slide.id === currentSlide) {
+              slide.background = {
+                type: action.payload.type,
+                color: action.payload.data
+              }
+            }
+            return slide
+          }),
+        },
+      }
+      history.addHistoryItem(newState)
+      return newState
+    }
+
+    case EditorActions.CHANGE_ALL_SLIDES_COLOR: {
+      
+      const slideList = state.document.slideList
+
+      const newState = {
+        ...state,
+        document: {
+          ...state.document,
+          slideList: slideList.map((slide) => {
+
+            slide.background = {
+              type: action.payload.type,
+              color: action.payload.data
+            }
+
+            return slide
+          }),
+        },
+      }
+      
+      history.addHistoryItem(newState)
+      return newState
+    }
+
     case EditorActions.INSERT_IMAGE: {
       const currentSlide = state.currentSlide
       const slideList = state.document.slideList

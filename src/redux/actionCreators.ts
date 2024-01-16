@@ -1,4 +1,4 @@
-import { Color, Editor, FontStyles, PictureType, Position, Size } from '../types'
+import { Color, Editor, FontStyles, PictureType, Position, Size, SlideBackgroundType } from '../types'
 import { EditorActions } from './actions'
 
 function createChangeTitleAction(newTitle: string) {
@@ -86,6 +86,46 @@ function createChangeImageDataAction(objectId: string, data: string, type: Pictu
     type: EditorActions.CHANGE_IMAGE_DATA,
     payload: {
       objectId,
+      data,
+      type,
+    },
+  }
+}
+
+function createChangeSlideImageDataAction(data: string, type: SlideBackgroundType.PICTURE_BASE64 | SlideBackgroundType.PICTURE_URL) {
+  return {
+    type: EditorActions.CHANGE_SLIDE_IMAGE_DATA,
+    payload: {
+      data,
+      type,
+    },
+  }
+}
+
+function createChangeAllSlidesImageDataAction(data: string, type: SlideBackgroundType.PICTURE_BASE64 | SlideBackgroundType.PICTURE_URL) {
+  return {
+    type: EditorActions.CHANGE_ALL_SLIDES_IMAGE_DATA,
+    payload: {
+      data,
+      type,
+    },
+  }
+}
+
+function createChangeSlideColorAction(data: Color, type: SlideBackgroundType.SOLID_COLOR) {
+  return {
+    type: EditorActions.CHANGE_SLIDE_COLOR,
+    payload: {
+      data,
+      type,
+    },
+  }
+}
+
+function createChangeAllSlidesColorAction(data: Color, type: SlideBackgroundType.SOLID_COLOR) {
+  return {
+    type: EditorActions.CHANGE_ALL_SLIDES_COLOR,
+    payload: {
       data,
       type,
     },
@@ -272,4 +312,8 @@ export {
   createRedoAction,
   createNewEditorAction,
   createOpenEditorAction,
+  createChangeSlideImageDataAction,
+  createChangeAllSlidesImageDataAction,
+  createChangeSlideColorAction,
+  createChangeAllSlidesColorAction,
 }
