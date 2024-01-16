@@ -21,7 +21,7 @@ const PictureOptions = ({ id }: PictureOptionsProps) => {
 
   return (
     <div className={styles.pictureOptions}>
-      <button onClick={() => setIsModalOpen(true)}>Изменить</button>
+      <button className={styles.button} onClick={() => setIsModalOpen(true)}>Изменить</button>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           <AddImage onSave={onSave} />

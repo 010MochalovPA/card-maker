@@ -1,6 +1,6 @@
 import { Action, EditorActions } from './actions'
 import { combineReducers } from 'redux'
-import { editor1 } from '../mock'
+import { newEditor } from '../mock'
 import {
   Editor,
   PictureObjectType,
@@ -17,9 +17,9 @@ import generateUUID from '../common/generateUUID'
 import { createHistory } from '../history/History'
 import getSlideOrder from '../common/getSlideOrder'
 
-const history = createHistory<Editor>(structuredClone(editor1))
+const history = createHistory<Editor>(structuredClone(newEditor))
 
-const editorReducer = (state: Editor = editor1, action: Action) => {
+const editorReducer = (state: Editor = newEditor, action: Action) => {
   switch (action.type) {
     case EditorActions.CHANGE_TITLE: {
       const newState = { ...state, document: { ...state.document, title: action.payload.newTitle } }

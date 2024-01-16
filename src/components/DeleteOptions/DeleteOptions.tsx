@@ -10,7 +10,7 @@ const DeleteOptions = ({ id }: DeleteOptionsProps) => {
 
   return (
     <div className={styles.deleteOptions}>
-      <button onClick={() => createDeleteObjectAction(id)}>Удалить</button>
+      <button className={styles.button} onClick={() => createDeleteObjectAction(id)}>Удалить</button>
     </div>
   )
 }

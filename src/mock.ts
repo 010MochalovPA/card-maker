@@ -1408,14 +1408,31 @@ const editor2: Editor = {
   },
 }
 
-const editor3: Editor = {
-  document: document3,
+const newEditor: Editor = {
+  document: {
+    title: 'Новая презентация',
+    slideList: [
+      {
+        id: '90b877d2b36b454e820378127e8b9f7e',
+        background: {
+          type: SlideBackgroundType.SOLID_COLOR,
+          color: {
+            r: 255,
+            g: 255,
+            b: 255,
+            a: 1,
+          },
+        },
+        objects: [],
+      },
+    ],
+  },
   history: [],
-  currentSlide: 'c1d4b504d20a44b9a104709adfd29839',
+  currentSlide: '90b877d2b36b454e820378127e8b9f7e',
   selected: {
     selectedType: SelectedType.OBJECT,
     selected: '',
   },
 }
 
-export { editor1, editor2, editor3 }
+export { editor1, editor2, newEditor }
