@@ -709,6 +709,12 @@ const editorReducer = (state: Editor = editor1, action: Action) => {
       return newState
     }
 
+    case EditorActions.OPEN_EDITOR: {
+      const newState = structuredClone(action.payload.editor)
+      history.addHistoryItem(newState)
+      return newState
+    }
+
     default:
       return state
   }

@@ -1,4 +1,4 @@
-import { Color, FontStyles, PictureType, Position, Size } from '../types'
+import { Color, Editor, FontStyles, PictureType, Position, Size } from '../types'
 import { EditorActions } from './actions'
 
 function createChangeTitleAction(newTitle: string) {
@@ -233,6 +233,15 @@ function createNewEditorAction() {
   }
 }
 
+function createOpenEditorAction(editor: Editor,) {
+  return {
+    type: EditorActions.OPEN_EDITOR,
+    payload: {
+      editor,
+    },
+  }
+}
+
 export {
   createChangeTitleAction,
   createChangeObjectPositionAction,
@@ -262,4 +271,5 @@ export {
   createUndoAction,
   createRedoAction,
   createNewEditorAction,
+  createOpenEditorAction,
 }

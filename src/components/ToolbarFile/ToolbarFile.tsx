@@ -5,6 +5,7 @@ import FileOpen from '../../icons/FileOpen'
 import FileSave from '../../icons/FileSave'
 import ToolbarHeaderItem from '../ToolbarHeaderItem/ToolbarHeaderItem'
 import { useAppActions, useAppSelector } from '../../redux/hooks'
+import { Editor } from '../../types'
 
 export type OptionItemType = {
   icon: ComponentType
@@ -20,7 +21,7 @@ const ToolbarFile = () => {
   const editor = useAppSelector((state) => state.editor)
   const text = JSON.stringify(editor)
 
-  const { createNewEditorAction } = useAppActions()
+  const { createNewEditorAction, createOpenEditorAction } = useAppActions()
 
   const file = new Blob([text], { type: 'text/plain' })
 
@@ -66,7 +67,7 @@ const ToolbarFile = () => {
   const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const parsedData = await readJsonFile(event.target.files![0])
-      console.log(parsedData)
+      createOpenEditorAction(parsedData as Editor)
     }
   }
 

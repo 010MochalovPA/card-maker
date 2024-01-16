@@ -5,6 +5,7 @@
   position: relative;
   border-radius: 15px;
   overflow: hidden;
+  outline: 1px solid #b352ff;
 }
 
 .active {
