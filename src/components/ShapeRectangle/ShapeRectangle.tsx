@@ -12,24 +12,39 @@ import { ContextMenuType, useContextMenu } from '../../hooks/useContextMenu'
 import { ContextMenu } from '../ContextMenu/ContextMenu'
 import getObjectPosition from '../../common/getObjectPosition'
 
-const ShapeRectangle = ({ id, position, size, angle, borderColor, backgroundColor, isSelected, isPreview }: ShapeObjectProps) => {
+const ShapeRectangle = ({
+  id,
+  position,
+  size,
+  angle,
+  borderColor,
+  backgroundColor,
+  isSelected,
+  isPreview,
+}: ShapeObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
-  const {createChangeSelectedObjectIdAction } = useAppActions()
+  const { createChangeSelectedObjectIdAction } = useAppActions()
   const [objectPosition, setObjectPosition] = useState<Position>(position)
   const [objectSize, setObjectSize] = useState<Size>(size)
+
   const slideList = useAppSelector((state) => state.editor.document.slideList)
   const currentSlideId = useAppSelector((state) => state.editor.currentSlide)
   const objects = slideList.find((slide) => slide.id === currentSlideId)?.objects
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     setObjectPosition(position)
     setObjectSize(size)
-  },[position, size])
+  }, [position, size])
 
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
-  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT, getObjectPosition(objects!, id))
-  
+
+  const { contextMenuPosition, isShowContextMenu, items, onClose } = useContextMenu(
+    id,
+    ref,
+    ContextMenuType.OBJECT,
+    getObjectPosition(objects!, id),
+  )
   const objectStyle = getShapeObjectStyle(objectPosition, objectSize, angle)
   const rectStyle = getRectangleShapeStyle(objectSize, borderColor, backgroundColor)
 
@@ -38,7 +53,13 @@ const ShapeRectangle = ({ id, position, size, angle, borderColor, backgroundColo
       <div
         ref={ref}
         className={styles.shape}
-        style={{ ...objectStyle, top: objectPosition.top, left: objectPosition.left, width: objectSize.width, height: objectSize.height }}
+        style={{
+          ...objectStyle,
+          top: objectPosition.top,
+          left: objectPosition.left,
+          width: objectSize.width,
+          height: objectSize.height,
+        }}
         onMouseDown={(e) => {
           createChangeSelectedObjectIdAction(id)
           e.stopPropagation()
@@ -48,8 +69,19 @@ const ShapeRectangle = ({ id, position, size, angle, borderColor, backgroundColo
           <rect {...rectStyle} />
         </svg>
       </div>
-      {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
-      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} onClose={onClose}/>}
+      {!isPreview && isSelected && (
+        <SelectedItem
+          id={id}
+          targetRef={ref}
+          position={objectPosition}
+          size={objectSize}
+          setPosition={setObjectPosition}
+          setSize={setObjectSize}
+        />
+      )}
+      {!isPreview && isShowContextMenu && (
+        <ContextMenu position={contextMenuPosition} items={items} onClose={onClose} />
+      )}
     </>
   )
 }

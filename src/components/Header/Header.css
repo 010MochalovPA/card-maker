@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  background: linear-gradient(90deg, #0DF 0%, #B352FF 100%);
+  background: linear-gradient(90deg, #0df 0%, #b352ff 100%);
 }
 
 .equal-block-wrapper {

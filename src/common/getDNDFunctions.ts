@@ -63,7 +63,7 @@ const getDNDFunctions = (setPos: (position: Position) => void, setNewSize: (size
     deltaX = e.pageX - posX
     deltaX = deltaX > objectSize.width - MIN_SIZE ? objectSize.width - MIN_SIZE : deltaX
 
-    newPos = { left: (newPos.left + deltaX), top: newPos.top }
+    newPos = { left: newPos.left + deltaX, top: newPos.top }
     objectSize.width -= deltaX
 
     setNewSize(objectSize)

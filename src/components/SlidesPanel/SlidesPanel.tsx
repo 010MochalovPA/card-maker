@@ -14,8 +14,7 @@ type SlidesPanelPropsType = {
 }
 
 const SlidesPanel = ({ slideList }: SlidesPanelPropsType) => {
-  const { createAddSlideAction } =
-    useAppActions()
+  const { createAddSlideAction } = useAppActions()
 
   return (
     <div className={styles.slidesPanel}>

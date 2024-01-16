@@ -7,7 +7,7 @@ const getPictureObjectStyle = (
   size: Size,
   angle: number,
   borderColor: Color,
-  backgroundColor: Color
+  backgroundColor: Color,
 ) => {
   const { left, top } = position
   const { width, height } = size

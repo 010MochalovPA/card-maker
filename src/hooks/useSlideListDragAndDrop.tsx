@@ -4,11 +4,11 @@ import { useAppActions } from '../redux/hooks'
 const useSlideListDragAndDrop = (slideId: string, ref: RefObject<HTMLDivElement>, setPos: (y: number) => void) => {
   let posY: number
   let deltaY = 0
-  
-  const {createChangeOrderSlidesAction} = useAppActions()
+
+  const { createChangeOrderSlidesAction } = useAppActions()
 
   useEffect(() => {
-    const height = ref.current!.clientHeight;
+    const height = ref.current!.clientHeight
     const onMouseMove = (e: MouseEvent) => {
       deltaY = e.pageY - posY
       setPos(deltaY)
@@ -16,11 +16,11 @@ const useSlideListDragAndDrop = (slideId: string, ref: RefObject<HTMLDivElement>
 
     const onMouseUp = () => {
       if (deltaY < 0 && deltaY < -height) {
-        createChangeOrderSlidesAction(slideId, Math.ceil(deltaY/height))
+        createChangeOrderSlidesAction(slideId, Math.ceil(deltaY / height))
       }
 
       if (deltaY > 0 && deltaY > height) {
-        createChangeOrderSlidesAction(slideId, Math.floor(deltaY/height))
+        createChangeOrderSlidesAction(slideId, Math.floor(deltaY / height))
       }
 
       setPos(0)

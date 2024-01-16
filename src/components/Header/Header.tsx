@@ -11,7 +11,7 @@ import PreviewPDF from '../PreviewPDF/PreviewPDF'
 
 const Header = () => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
-  
+
   return (
     <div className={styles.header}>
       <div className={`${styles.equalBlockWrapper} ${styles.equalBlockWrapperStart}`}>
@@ -26,7 +26,7 @@ const Header = () => {
         <ButtonHeader icon={FileExport} text={'Экспорт в PDF'} onClick={() => setIsPreviewOpen(true)} />
         {isPreviewOpen && (
           <Modal onClose={() => setIsPreviewOpen(false)}>
-            <PreviewPDF/>
+            <PreviewPDF />
           </Modal>
         )}
       </div>

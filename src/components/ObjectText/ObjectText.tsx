@@ -26,24 +26,29 @@ const ObjectText = ({
   borderColor,
   backgroundColor,
   isSelected,
-  isPreview
+  isPreview,
 }: TextObjectProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
-  const {createChangeSelectedObjectIdAction, createChangeTextAction } = useAppActions()
+  const { createChangeSelectedObjectIdAction, createChangeTextAction } = useAppActions()
   const [objectPosition, setObjectPosition] = useState<Position>(position)
   const [objectSize, setObjectSize] = useState<Size>(size)
   const slideList = useAppSelector((state) => state.editor.document.slideList)
   const currentSlideId = useAppSelector((state) => state.editor.currentSlide)
   const objects = slideList.find((slide) => slide.id === currentSlideId)?.objects
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     setObjectPosition(position)
     setObjectSize(size)
-  },[position, size])
+  }, [position, size])
 
   const [moveFn] = getDNDFunctions(setObjectPosition, setObjectSize)
   useDragAndDrop(id, ref, ref, objectPosition, objectSize, moveFn)
-  const {contextMenuPosition, isShowContextMenu, items, onClose} = useContextMenu(id, ref, ContextMenuType.OBJECT, getObjectPosition(objects!, id))
+  const { contextMenuPosition, isShowContextMenu, items, onClose } = useContextMenu(
+    id,
+    ref,
+    ContextMenuType.OBJECT,
+    getObjectPosition(objects!, id),
+  )
 
   const setText = (text: string) => {
     createChangeTextAction(id, text)
@@ -70,8 +75,19 @@ const ObjectText = ({
           value={text}
         />
       </div>
-      {!isPreview && isSelected && <SelectedItem id={id} targetRef={ref} position={objectPosition} size={objectSize} setPosition={setObjectPosition} setSize={setObjectSize} />}
-      {!isPreview && isShowContextMenu && <ContextMenu position={contextMenuPosition} items={items} onClose={onClose} />}
+      {!isPreview && isSelected && (
+        <SelectedItem
+          id={id}
+          targetRef={ref}
+          position={objectPosition}
+          size={objectSize}
+          setPosition={setObjectPosition}
+          setSize={setObjectSize}
+        />
+      )}
+      {!isPreview && isShowContextMenu && (
+        <ContextMenu position={contextMenuPosition} items={items} onClose={onClose} />
+      )}
     </>
   )
 }

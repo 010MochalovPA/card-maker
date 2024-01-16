@@ -733,7 +733,6 @@ const text7: TextObjectType = {
   },
 }
 
-
 const text8: TextObjectType = {
   id: '83157e6a6f88888dbb27b95bcd68f3c2',
   type: SlideObjectType.TEXT,
@@ -812,47 +811,6 @@ const text9: TextObjectType = {
   },
 }
 
-
-const text10: TextObjectType = {
-  id: '6bf260c101010dfcb4e5fb667e759f18',
-  type: SlideObjectType.TEXT,
-  size: {
-    width: 250,
-    height: 250,
-  },
-  position: {
-    left: 360,
-    top: 0,
-  },
-  text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, modi repellendus esse dicta labore iusto expedita ab officia debitis, ullam temporibus. Sequi, ducimus. Natus, quidem! Facere eos obcaecati ipsa, fugit quod nihil voluptates nemo animi ullam blanditiis veritatis mollitia excepturi. Voluptatibus velit est nisi nesciunt neque autem dolores vero, quo, sed aliquid in natus? Nostrum repellendus earum corporis perspiciatis exercitationem!',
-  angle: 0,
-  style: {
-    fontFamily: 'Roboto',
-    fontSize: 16,
-    bold: false,
-    cursive: true,
-    fontColor: {
-      r: 255,
-      g: 235,
-      b: 20,
-      a: 1,
-    },
-  },
-  borderColor: {
-    r: 0,
-    g: 0,
-    b: 0,
-    a: 1,
-  },
-  backgroundColor: {
-    r: 126,
-    g: 20,
-    b: 144,
-    a: 1,
-  },
-}
-
-
 const text11: TextObjectType = {
   id: '6bf260cf55cf4df111111167e759f18',
   type: SlideObjectType.TEXT,
@@ -892,7 +850,6 @@ const text11: TextObjectType = {
   },
 }
 
-
 const text12: TextObjectType = {
   id: '12f260cf55cf4dfcb4e5fb667e759f18',
   type: SlideObjectType.TEXT,
@@ -931,7 +888,6 @@ const text12: TextObjectType = {
     a: 1,
   },
 }
-
 
 const text13: TextObjectType = {
   id: '6bf260cf13134dfcb4e5fb667e759f18',
@@ -1239,7 +1195,6 @@ const shape7: ShapeObjectType = {
   },
 }
 
-
 const shape8: ShapeObjectType = {
   id: 'c1770501888888a47724fc361e1',
   type: SlideObjectType.SHAPE,
@@ -1266,7 +1221,6 @@ const shape8: ShapeObjectType = {
     a: 1,
   },
 }
-
 
 const shape9: ShapeObjectType = {
   id: 'c1770501999999005b4c5297da47724fc361e1',

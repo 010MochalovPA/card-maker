@@ -9,7 +9,7 @@ type SlideContentProps = {
 const SlideContent = ({ slideId }: SlideContentProps) => {
   return (
     <div className={classNames(styles.slideContainer)}>
-      <SlideView slideId={slideId} scale={1} isPreview={false}/>
+      <SlideView slideId={slideId} scale={1} isPreview={false} />
     </div>
   )
 }

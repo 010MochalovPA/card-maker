@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState } from 'react'
+import { RefObject, useRef } from 'react'
 import { Position, Size } from '../../types'
 import styles from './SelectedItem.css'
 import { useDragAndDrop } from '../../hooks/useDragAndDrop'
@@ -13,7 +13,7 @@ type SelectedItemProps = {
   setSize: (size: Size) => void
 }
 
-const SelectedItem = ({id, targetRef, position, size, setPosition, setSize }: SelectedItemProps) => {
+const SelectedItem = ({ id, targetRef, position, size, setPosition, setSize }: SelectedItemProps) => {
   const leftRef = useRef<HTMLDivElement>(null)
   const leftTopRef = useRef<HTMLDivElement>(null)
   const topRef = useRef<HTMLDivElement>(null)
